@@ -4,10 +4,14 @@
 
 uniform mat4 transform;
 uniform sampler2D height;
+uniform float timef;
+uniform int texPrecision;
+uniform float cameraPos;
 
-// in ### a_vertex;
+in vec3 a_vertex;
 
-// out ... ;
+out float h;
+out vec2 texCoord;
 
 void main()
 {
@@ -19,8 +23,11 @@ void main()
 	// find two vectors that are sufficient for correct light impression.
 	// (It is not required to be absolutely physically correct, but only
 	// to depend on the terrains slope.
-
-	gl_Position = transform * vec4(0.0, 0.0, 0.0, 1.0);
+	float prec = 64 * smoothstep(0.0, 1.0, cameraPos/25);
+	vec4 v = texture(height, vec2(a_vertex.x/256, a_vertex.z/256.0));
+	h = v.z;
+	gl_Position = transform * vec4(a_vertex.x/256.0, h, a_vertex.z/256.0, 1.0);
+	texCoord = vec2(a_vertex.x/prec, a_vertex.z/prec); //
 	
 	// Task_1_4 - ToDo End
 }

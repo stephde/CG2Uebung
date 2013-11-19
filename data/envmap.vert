@@ -2,7 +2,13 @@
 
 // Task_2_1 - ToDo Begin
 
-//uniform mat4 ...
+uniform mat4 viewProjectionTransform;
+uniform mat4 viewProjectionTransformInv;
+uniform mat4 viewTransform;
+uniform mat4 projectionTransform;
+uniform mat4 viewTransformInv;
+uniform mat4 projectionTransformInv;
+
 
 
 in vec2 a_vertex;
@@ -17,7 +23,7 @@ void main()
 	// the fragment stage for accessing the various projection
 	// mappings. 
 		
-	v_eye = (vec4(a_vertex, 0.0, 1.0)).xyz;
+	v_eye = ( projectionTransformInv * viewTransformInv * (vec4(a_vertex, 0.0, 1.0))).xyz;
 
 	// Task_2_1 - ToDo End
 	

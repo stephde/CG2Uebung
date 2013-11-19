@@ -24,8 +24,8 @@ namespace
     const int SphereProgram      = AbstractPainter::PaintMode9 + 4;
     const int SphereCubeProgram  = AbstractPainter::PaintMode9 + 5;
 
-    //const int TerrainProgram     = AbstractPainter::PaintMode9 + 6;
-    //const int TerrainCubeProgram = AbstractPainter::PaintMode9 + 7;
+    const int TerrainProgram     = AbstractPainter::PaintMode9 + 6;
+    const int TerrainCubeProgram = AbstractPainter::PaintMode9 + 7;
 
     // const int OtherProgram = AbstractPainter::PaintMode9 + 2;
     // ...
@@ -78,13 +78,14 @@ bool Painter::initialize()
     m_transforms[0].translate(-.5f, 0.f, -.5f);
 
     m_terrains << new Terrain(256, *this);
-    // m_terrains << new Terrain(2, *this); // this should give you a plane that you might use as a water plane ;)
+    m_terrains << new Terrain(256, *this); // this should give you a plane that you might use as a water plane ;)
 
 
     // Note: You can absolutely modify/paint/change these textures if you like.
     m_height    = FileAssociatedTexture::getOrCreate2D("data/height.png", *this); // e.g., there is a height2 or use L3DT (see moodle)
     m_ground    = FileAssociatedTexture::getOrCreate2D("data/ground.png", *this);
     m_caustics  = FileAssociatedTexture::getOrCreate2D("data/caustics.png", *this);
+	m_water		= FileAssociatedTexture::getOrCreate2D("data/water.png", *this);
 
 
     // uebung 1_1
@@ -97,8 +98,8 @@ bool Painter::initialize()
     //m_programs[PaintMode3] = createBasicShaderProgram("data/terrain_1_3.vert", "data/terrain_1_3.frag");
 
     // uebung 1_4 +
-    //m_programs[PaintMode4] = createBasicShaderProgram("data/terrain_1_4.vert", "data/terrain_1_4.frag"); 
-    //m_programs[PaintMode5] = createBasicShaderProgram("data/terrain_1_5.vert", "data/terrain_1_5.frag");
+    m_programs[PaintMode4] = createBasicShaderProgram("data/terrain_1_4.vert", "data/terrain_1_4.frag"); 
+    m_programs[PaintMode5] = createBasicShaderProgram("data/terrain_1_5.vert", "data/terrain_1_5.frag");
 
     // ...
 
@@ -121,7 +122,7 @@ bool Painter::initialize()
 
 
     m_programs[EnvMapProgram] = createBasicShaderProgram("data/envmap.vert", "data/envmap.frag");
-
+	
     // uebung 2_2
 
     m_icosa = new Icosahedron(*this, 4);
@@ -132,7 +133,7 @@ bool Painter::initialize()
 
     // uebung 2_3
 
-    //m_programs[TerrainProgram] = createBasicShaderProgram("data/terrain.vert", "data/terrain.frag");
+   m_programs[TerrainProgram] = createBasicShaderProgram("data/terrain.vert", "data/terrain.frag");
     
     m_waterheights = FileAssociatedTexture::getOrCreate2D("data/waterheights.png", *this);
     m_waternormals = FileAssociatedTexture::getOrCreate2D("data/waternormals.png", *this);
@@ -194,6 +195,12 @@ bool Painter::initialize()
 
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
+    //m_programs[PaintMode4] = createBasicShaderProgram("data/terrain_1_4.vert", "data/terrain_1_4.frag"); 
+    //m_programs[PaintMode5] = createBasicShaderProgram("data/water.vert", "data/water.frag");
+    //...
+
+    //m_programs[OtherProgram] = createBasicShaderProgram("data/other_1.vert", "data/other_1.frag");
+	
     return true;
 }
 
@@ -327,6 +334,8 @@ void Painter::update(const QList<QOpenGLShaderProgram *> & programs)
             case PaintMode6:
             case PaintMode5:
             case PaintMode4:
+				program->setUniformValue("water",    2);
+				program->setUniformValue("caustics", 3);
             case PaintMode3:
                 program->setUniformValue("ground", 1);
             case PaintMode2:
@@ -363,7 +372,12 @@ void Painter::update(const QList<QOpenGLShaderProgram *> & programs)
                 // Set required matrix/matrices of the vertex shader...
                 // Note: use the camera()-> ... matrices here (e.g., view, projection, or inverted, etc..)
 
-                //program->setUniformValue("...", camera()->...());
+				program->setUniformValue("projectionTransformInv", camera()->projection().inverted());
+				program->setUniformValue("viewTransformInv", camera()->view().inverted());
+				program->setUniformValue("projectionTransform", camera()->projection());
+				program->setUniformValue("viewTransform", camera()->view());
+				program->setUniformValue("viewProjectionTransform", camera()->viewProjection());
+				program->setUniformValue("viewProjectionTransformInv", camera()->viewProjection().inverted());
                 //...
 
                 // Task_2_1 - ToDo End
@@ -390,7 +404,12 @@ void Painter::update(const QList<QOpenGLShaderProgram *> & programs)
 
                 program->setUniformValue("transform", m_transforms[1]);
                 //program->setUniformValue("...", camera()->...);
-                // ...?
+                program->setUniformValue("projectionTransformInv", camera()->projection().inverted());
+				program->setUniformValue("viewTransformInv", camera()->view().inverted());
+				program->setUniformValue("projectionTransform", camera()->projection());
+				program->setUniformValue("viewTransform", camera()->view());
+				program->setUniformValue("viewProjectionTransform", camera()->viewProjection());
+				program->setUniformValue("viewProjectionTransformInv", camera()->viewProjection().inverted());
 
                 // Task_2_2 - ToDo End
 
@@ -515,7 +534,64 @@ void Painter::paint_1_3(float timef)
 
 void Painter::paint_1_4(float timef)
 {
-    // ... 
+    QOpenGLShaderProgram * program(m_programs[PaintMode4]);
+	QOpenGLShaderProgram * program2(m_programs[PaintMode5]);
+    Terrain * terrain(m_terrains[1]);
+	Terrain * terWater(m_terrains[2]);
+
+
+
+    if (program->isLinked())
+    {
+        glActiveTexture(GL_TEXTURE0);
+        glEnable(GL_TEXTURE_2D);
+        glBindTexture(GL_TEXTURE_2D, m_height);
+
+        glActiveTexture(GL_TEXTURE1);
+        glEnable(GL_TEXTURE_2D);
+        glBindTexture(GL_TEXTURE_2D, m_ground);		
+
+		glActiveTexture(GL_TEXTURE3);
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D, m_caustics);
+
+        program->bind();		
+		program->setUniformValue("timef", timef);
+		program->setUniformValue("cameraPos", camera()->eye().y());
+        terrain->draw(*this);
+        program->release();
+
+		glBindTexture(GL_TEXTURE_2D, 0);
+		glDisable(GL_TEXTURE_2D);
+
+		glActiveTexture(GL_TEXTURE1);		
+        glBindTexture(GL_TEXTURE_2D, 0);
+        glDisable(GL_TEXTURE_2D);
+
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, 0);
+        glDisable(GL_TEXTURE_2D);
+    }
+
+	if(program2->isLinked())
+	{
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+
+		glActiveTexture(GL_TEXTURE2);
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D, m_water);
+
+		program2->bind();
+		program2->setUniformValue("timef", timef);
+        terWater->draw(*this);
+        program2->release();
+
+        glBindTexture(GL_TEXTURE_2D, 0);
+        glDisable(GL_TEXTURE_2D);
+
+		glDisable(GL_BLEND);
+	}
 }
 
 void Painter::bindEnvMaps(GLenum target)
@@ -569,10 +645,15 @@ void Painter::paint_2_1_envmap(
     // Quad, when its vertices z-components are equal to the far plane in NDC.
 
     // ToDo: configure depth state here
-
-    program->bind();
+	glDepthMask(GL_FALSE);
+	glDepthFunc(GL_EQUAL);
+   
+	program->bind();
     m_quad->draw(*this);
     program->release();
+	
+	glDepthFunc(GL_LESS);
+	glDepthMask(GL_TRUE);
 
     // ToDo: cleanup depth state here
 

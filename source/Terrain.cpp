@@ -28,7 +28,7 @@ Terrain::Terrain(
 
     // Configure your Vertex Attribute Pointer based on your vertex buffer (mainly number of coefficients ;)).
 
-    gl.glVertexAttribPointer(0, 0, GL_FLOAT, GL_FALSE, sizeof(float)* 0, nullptr);
+	gl.glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 3, nullptr);//
     gl.glEnableVertexAttribArray(0);
 
     // Task_1_1 - ToDo End
@@ -47,16 +47,27 @@ void Terrain::draw(
 
     // gl.glEnable(...
     // ...
+	glEnable(GL_PRIMITIVE_RESTART);
+	//glEnable(GL_PRIMITIVE_RESTART_FIXED_INDEX);
+	glEnable(GL_CULL_FACE);
+	glDisable(GL_CULL_FACE);
+	//glEnable(GL_DEPTH_TEST);
+	gl.glPrimitiveRestartIndex(static_cast<unsigned short int>(-1));
+    gl.glEnableVertexAttribArray(0);
+	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
     m_vao.bind();
-    // gl.glDrawElements(...);
+	gl.glDrawElements(mode, m_indices.size() / sizeof(unsigned short int), GL_UNSIGNED_SHORT, 0);
     m_vao.release();
 
     // Remember to "clean up" the state after rendering.
 
     // gl.glDisable(...
     // ...
-
+	gl.glDisableVertexAttribArray(0);
+	//glDisable(GL_PRIMITIVE_RESTART_FIXED_INDEX);
+	glDisable(GL_PRIMITIVE_RESTART);
+	glDisable(GL_CULL_FACE);
     // Task_1_1 - ToDo End
 }
 
@@ -74,15 +85,37 @@ void Terrain::strip(
     // floats or other structs, fitting the purpose. further, remember that 
     // gradually summing up lots of small floats might lead to major inaccuracies ...
 
-    // ...
+	std::vector<float> vertex;
 
-	//vertices.bind();
-	//vertices.allocate(...);
+	for(int i=0;i < size;i++)
+	{
+		for (int k = 0; k < size; k++)
+		{
+			vertex.push_back((float)i);
+			vertex.push_back(0.0);
+			vertex.push_back((float)k); 
+		}
+	}
+	vertices.bind();
+	vertices.allocate(vertex.data(), (size+1) * size * 3 * sizeof(float));
 
-	// ...
 
-	//indices.bind();
-	//indices.allocate(...);
+	std::vector<unsigned short int> index;
+
+	for(int y=0; y < size-1;y++)
+	{
+		for(int x=0; x <= size; x++)
+		{
+			if(x == size ){
+				index.push_back(static_cast<unsigned short int>(primitiveRestartIndex));
+			}else{
+				index.push_back(y*size + x);
+				index.push_back((y+1)*size + x);
+			}
+		}
+	}
+	indices.bind();
+	indices.allocate(index.data(), ((size * 2) * (size) + size) * sizeof(unsigned short int));
 
     // Task_1_1 - ToDo End
 }

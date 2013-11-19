@@ -5,9 +5,9 @@
 uniform mat4 transform;
 uniform sampler2D height;
 
-// in ### a_vertex;
+in vec3 a_vertex;
 
-// out ... ;
+out float h;
 
 void main()
 {
@@ -16,10 +16,9 @@ void main()
 	// accidentally could be interpreted as texture coordinates ...
 	
 	// use texture2D function to access a sampler2D object
-	
-	// ...
-
-	gl_Position = transform * vec4(0.0, 0.0, 0.0, 1.0);
-	
+		
+	vec4 v = texture(height, vec2(a_vertex.x/500.0, a_vertex.z/500.0));
+	h = v.z;
+	gl_Position = transform * vec4(a_vertex.x/500.0, h, a_vertex.z/500.0, 1.0);
 	// Task_1_2 - ToDo End
 }

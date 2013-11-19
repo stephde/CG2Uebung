@@ -95,6 +95,7 @@ protected:
 
     GLuint m_height;
     GLuint m_ground;
+	GLuint m_water;
     GLuint m_caustics;
 
     GLuint m_cubeFBO;
