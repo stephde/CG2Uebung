@@ -22,10 +22,10 @@ vec4 env(in vec3 eye)
 {
 	vec4 color;
 	
-	if(0 == mapping) 		// cube
+	if(0 == mapping) 	// cube
 	{
 		// use texture function with the cubemap sampler
-		color = vec4(0.0, 0.0, 0.0, 1.0);//textureCube(cubemap, eye);//  // ToDo
+		color = texture(cubemap, eye);//  // ToDo
 	}
 	else if(1 == mapping) 	// polar
 	{	
