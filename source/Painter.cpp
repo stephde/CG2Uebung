@@ -1,4 +1,3 @@
-
 #include <cassert>
 
 #include <QKeyEvent>
@@ -132,9 +131,9 @@ bool Painter::initialize()
     m_transforms << QMatrix4x4(); // 1
 
     // uebung 2_3
-
+	// TODO: shader ändern auf terrain_1_4.vert etc.
    m_programs[TerrainProgram] = createBasicShaderProgram("data/terrain.vert", "data/terrain.frag");
-    
+    	// TODO: water shader einbinden
     m_waterheights = FileAssociatedTexture::getOrCreate2D("data/waterheights.png", *this);
     m_waternormals = FileAssociatedTexture::getOrCreate2D("data/waternormals.png", *this);
 
@@ -157,9 +156,9 @@ bool Painter::initialize()
 
     glGenTextures(1, &m_cubeTex);
     glBindTexture(GL_TEXTURE_CUBE_MAP, m_cubeTex);
-    //glTexParameteri(..., ..., GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST); // GL_TEXTURE_MAG_FILTER
     //...
-    //glTexParameteri(..., GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     //...
 
     // glTexImage2D(...) // for each face ;)
@@ -168,14 +167,16 @@ bool Painter::initialize()
 
     glGenRenderbuffers(1, &m_cubeDepthRB);
     glBindTexture(GL_TEXTURE_CUBE_MAP, m_cubeDepthRB);
-    //glTexParameteri(..., ..., GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST); 
     //...
-    //glTexParameteri(..., GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     //...
 
     // Note: Be aware of multiple available DepthBufferComponent formats...
 
-    // glTexImage2D(...) // for each face ;)
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA,
+      &m_cubeTex.width, &m_cubeTex.height, 	// FIXME
+      0, GL_RGBA, GL_UNSIGNED_INT_8_8_8_8, &m_cubeTex); // for each face ;)
 
 
     // Task_2_3 - ToDo End
