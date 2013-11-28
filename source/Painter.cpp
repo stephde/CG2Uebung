@@ -98,8 +98,8 @@ bool Painter::initialize()
     //m_programs[PaintMode3] = createBasicShaderProgram("data/terrain_1_3.vert", "data/terrain_1_3.frag");
 
     // uebung 1_4 +
-    m_programs[PaintMode4] = createBasicShaderProgram("data/terrain_1_4.vert", "data/terrain_1_4.frag"); 
-    m_programs[PaintMode5] = createBasicShaderProgram("data/terrain_1_5.vert", "data/terrain_1_5.frag");
+    //m_programs[PaintMode4] = createBasicShaderProgram("data/terrain_1_4.vert", "data/terrain_1_4.frag"); 
+    //m_programs[PaintMode5] = createBasicShaderProgram("data/terrain_1_5.vert", "data/terrain_1_5.frag");
 
     // ...
 
@@ -107,7 +107,6 @@ bool Painter::initialize()
     // uebung 2_1
 
     m_quad = new ScreenAlignedQuad(*this);
-
 
     // Task_2_1 - ToDo Begin
 
@@ -119,7 +118,6 @@ bool Painter::initialize()
     m_envmaps[SphereMapping]     = FileAssociatedTexture::getOrCreate2D("data/env_sphere.png", *this);
 
     // Task_2_1 - ToDo End
-
 
     m_programs[EnvMapProgram] = createBasicShaderProgram("data/envmap.vert", "data/envmap.frag");
 	
@@ -133,7 +131,7 @@ bool Painter::initialize()
 
     // uebung 2_3
 
-   m_programs[TerrainProgram] = createBasicShaderProgram("data/terrain.vert", "data/terrain.frag");
+    m_programs[TerrainProgram] = createBasicShaderProgram("data/terrain_1_4.vert", "data/terrain_1_4.frag");
     
     m_waterheights = FileAssociatedTexture::getOrCreate2D("data/waterheights.png", *this);
     m_waternormals = FileAssociatedTexture::getOrCreate2D("data/waternormals.png", *this);
@@ -372,14 +370,10 @@ void Painter::update(const QList<QOpenGLShaderProgram *> & programs)
                 // Set required matrix/matrices of the vertex shader...
                 // Note: use the camera()-> ... matrices here (e.g., view, projection, or inverted, etc..)
 
-				program->setUniformValue("projectionTransformInv", camera()->projection().inverted());
-				program->setUniformValue("viewTransformInv", camera()->view().inverted());
-				program->setUniformValue("projectionTransform", camera()->projection());
-				program->setUniformValue("viewTransform", camera()->view());
-				program->setUniformValue("viewProjectionTransform", camera()->viewProjection());
-				program->setUniformValue("viewProjectionTransformInv", camera()->viewProjection().inverted());
+				program->setUniformValue("view", camera()->view());
+				program->setUniformValue("projectionInverted", camera()->projectionInverted());
                 //...
-
+				
                 // Task_2_1 - ToDo End
 
                 program->setUniformValue("envmap", 0);

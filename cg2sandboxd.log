@@ -1,0 +1,1539 @@
+[13-11-26::21:15:55] cg2sandbox cg2ws1314.1.. on Qt-5.1.1
+[13-11-26::21:15:55] cg2ws1314.1.. 
+[13-11-26::21:15:57] 
+[13-11-26::21:15:57] GPU: AMD Radeon HD 7800 Series (ATI Technologies Inc., 3.2.12337 Core Profile Context 13.101.0.0)
+[13-11-26::21:15:57] GL Version: 3.2 Core
+[13-11-26::21:15:57] 
+[13-11-26::21:15:57] Setting swap interval to VerticalSyncronization.
+[13-11-26::21:15:58] WARNING: "data/terrain_1_5.vert"  does not exist: shader is without source and associated file. 
+[13-11-26::21:15:58] WARNING: "data/terrain_1_5.frag"  does not exist: shader is without source and associated file. 
+[13-11-26::21:15:58] WARNING: QOpenGLShader::link: "Error: No shaders attached to current program 
+" 
+[13-11-26::21:15:59] WARNING: "data/terrain.vert"  does not exist: shader is without source and associated file. 
+[13-11-26::21:15:59] WARNING: "data/terrain.frag"  does not exist: shader is without source and associated file. 
+[13-11-26::21:15:59] WARNING: QOpenGLShader::link: "Error: No shaders attached to current program 
+" 
+[13-11-26::21:15:59] cube fbo invalid 
+[13-11-26::21:16:26] cg2sandbox cg2ws1314.1.. on Qt-5.1.1
+[13-11-26::21:16:26] cg2ws1314.1.. 
+[13-11-26::21:16:27] 
+[13-11-26::21:16:27] GPU: AMD Radeon HD 7800 Series (ATI Technologies Inc., 3.2.12337 Core Profile Context 13.101.0.0)
+[13-11-26::21:16:27] GL Version: 3.2 Core
+[13-11-26::21:16:27] 
+[13-11-26::21:16:27] Setting swap interval to VerticalSyncronization.
+[13-11-26::21:16:28] WARNING: "data/terrain_1_5.vert"  does not exist: shader is without source and associated file. 
+[13-11-26::21:16:28] WARNING: "data/terrain_1_5.frag"  does not exist: shader is without source and associated file. 
+[13-11-26::21:16:28] WARNING: QOpenGLShader::link: "Error: No shaders attached to current program 
+" 
+[13-11-26::21:16:29] WARNING: "data/terrain.vert"  does not exist: shader is without source and associated file. 
+[13-11-26::21:16:29] WARNING: "data/terrain.frag"  does not exist: shader is without source and associated file. 
+[13-11-26::21:16:29] WARNING: QOpenGLShader::link: "Error: No shaders attached to current program 
+" 
+[13-11-26::21:16:29] cube fbo invalid 
+[13-11-26::21:22:03] cg2sandbox cg2ws1314.1.. on Qt-5.1.1
+[13-11-26::21:22:03] cg2ws1314.1.. 
+[13-11-26::21:22:04] 
+[13-11-26::21:22:04] GPU: AMD Radeon HD 7800 Series (ATI Technologies Inc., 3.2.12337 Core Profile Context 13.101.0.0)
+[13-11-26::21:22:04] GL Version: 3.2 Core
+[13-11-26::21:22:04] 
+[13-11-26::21:22:04] Setting swap interval to VerticalSyncronization.
+[13-11-26::21:22:04] WARNING: "data/terrain_1_5.vert"  does not exist: shader is without source and associated file. 
+[13-11-26::21:22:04] WARNING: "data/terrain_1_5.frag"  does not exist: shader is without source and associated file. 
+[13-11-26::21:22:04] WARNING: QOpenGLShader::link: "Error: No shaders attached to current program 
+" 
+[13-11-26::21:22:06] WARNING: "data/terrain.vert"  does not exist: shader is without source and associated file. 
+[13-11-26::21:22:06] WARNING: "data/terrain.frag"  does not exist: shader is without source and associated file. 
+[13-11-26::21:22:06] WARNING: QOpenGLShader::link: "Error: No shaders attached to current program 
+" 
+[13-11-26::21:22:06] cube fbo invalid 
+[13-11-27::14:33:04] cg2sandbox cg2ws1314.1.. on Qt-5.1.1
+[13-11-27::14:33:04] cg2ws1314.1.. 
+[13-11-27::14:33:06] 
+[13-11-27::14:33:06] GPU: AMD Radeon HD 7800 Series (ATI Technologies Inc., 3.2.12337 Core Profile Context 13.101.0.0)
+[13-11-27::14:33:06] GL Version: 3.2 Core
+[13-11-27::14:33:06] 
+[13-11-27::14:33:06] Setting swap interval to VerticalSyncronization.
+[13-11-27::14:33:07] WARNING: "data/terrain_1_5.vert"  does not exist: shader is without source and associated file. 
+[13-11-27::14:33:07] WARNING: "data/terrain_1_5.frag"  does not exist: shader is without source and associated file. 
+[13-11-27::14:33:07] WARNING: QOpenGLShader::link: "Error: No shaders attached to current program 
+" 
+[13-11-27::14:33:08] WARNING: "data/terrain.vert"  does not exist: shader is without source and associated file. 
+[13-11-27::14:33:08] WARNING: "data/terrain.frag"  does not exist: shader is without source and associated file. 
+[13-11-27::14:33:08] WARNING: QOpenGLShader::link: "Error: No shaders attached to current program 
+" 
+[13-11-27::14:33:08] cube fbo invalid 
+[13-11-27::14:34:15] cg2sandbox cg2ws1314.1.. on Qt-5.1.1
+[13-11-27::14:34:15] cg2ws1314.1.. 
+[13-11-27::14:34:16] 
+[13-11-27::14:34:16] GPU: AMD Radeon HD 7800 Series (ATI Technologies Inc., 3.2.12337 Core Profile Context 13.101.0.0)
+[13-11-27::14:34:16] GL Version: 3.2 Core
+[13-11-27::14:34:16] 
+[13-11-27::14:34:16] Setting swap interval to VerticalSyncronization.
+[13-11-27::14:34:17] WARNING: "data/terrain_1_5.vert"  does not exist: shader is without source and associated file. 
+[13-11-27::14:34:17] WARNING: "data/terrain_1_5.frag"  does not exist: shader is without source and associated file. 
+[13-11-27::14:34:17] WARNING: QOpenGLShader::link: "Error: No shaders attached to current program 
+" 
+[13-11-27::14:34:18] WARNING: "data/terrain.vert"  does not exist: shader is without source and associated file. 
+[13-11-27::14:34:18] WARNING: "data/terrain.frag"  does not exist: shader is without source and associated file. 
+[13-11-27::14:34:18] WARNING: QOpenGLShader::link: "Error: No shaders attached to current program 
+" 
+[13-11-27::14:34:18] cube fbo invalid 
+[13-11-27::21:30:34] cg2sandbox cg2ws1314.1.. on Qt-5.1.1
+[13-11-27::21:30:34] cg2ws1314.1.. 
+[13-11-27::21:30:35] 
+[13-11-27::21:30:35] GPU: AMD Radeon HD 7800 Series (ATI Technologies Inc., 3.2.12337 Core Profile Context 13.101.0.0)
+[13-11-27::21:30:35] GL Version: 3.2 Core
+[13-11-27::21:30:35] 
+[13-11-27::21:30:36] Setting swap interval to VerticalSyncronization.
+[13-11-27::21:30:36] WARNING: "data/terrain_1_5.vert"  does not exist: shader is without source and associated file. 
+[13-11-27::21:30:36] WARNING: "data/terrain_1_5.frag"  does not exist: shader is without source and associated file. 
+[13-11-27::21:30:36] WARNING: QOpenGLShader::link: "Error: No shaders attached to current program 
+" 
+[13-11-27::21:30:37] WARNING: "data/terrain.vert"  does not exist: shader is without source and associated file. 
+[13-11-27::21:30:37] WARNING: "data/terrain.frag"  does not exist: shader is without source and associated file. 
+[13-11-27::21:30:37] WARNING: QOpenGLShader::link: "Error: No shaders attached to current program 
+" 
+[13-11-27::21:30:37] cube fbo invalid 
+[13-11-27::21:45:14] cg2sandbox cg2ws1314.1.. on Qt-5.1.1
+[13-11-27::21:45:14] cg2ws1314.1.. 
+[13-11-27::21:45:15] 
+[13-11-27::21:45:15] GPU: AMD Radeon HD 7800 Series (ATI Technologies Inc., 3.2.12337 Core Profile Context 13.101.0.0)
+[13-11-27::21:45:15] GL Version: 3.2 Core
+[13-11-27::21:45:15] 
+[13-11-27::21:45:15] Setting swap interval to VerticalSyncronization.
+[13-11-27::21:45:17] cube fbo invalid 
+[13-11-27::22:56:23] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-27::22:56:45] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-27::22:56:45] WARNING: QOpenGLShader::compile(Fragment): Fragment shader failed to compile with the following errors:
+ERROR: 2:24: error(#160) Cannot convert from: "highp 3-component vector of vec3" to: "highp 4-component vector of vec4"
+ERROR: error(#273) 1 compilation errors.  No code generated
+
+
+[13-11-27::22:56:45] WARNING: *** Problematic Fragment shader source code ***
+[13-11-27::22:56:45] WARNING: #version 140
+#define lowp
+#define mediump
+#define highp
+
+uniform sampler2D envmap;
+uniform samplerCube cubemap;
+
+uniform int mapping;
+
+out vec4 fragColor;
+
+in vec3 v_eye;
+
+// Task_2_1 - ToDo Begin
+// Implement the four requested projection mappings.
+
+// const float c_...  = ...;
+const float pi = 3.1415926;
+
+vec4 env(in vec3 eye)
+{
+	vec4 color;
+	
+	if(0 == mapping) 		// cube
+	{
+		// use texture function with the cubemap sampler
+		color = vec3(texture(cubemap, eye));//vec4(0.0, 0.0, 0.0, 1.0);//  // ToDo
+	}
+	else if(1 == mapping) 	// polar
+	{	
+		// use texture function with the envmap sampler
+		
+		vec2 uv = vec2(0.5*(1/pi)*atan(eye.x, eye.y), (1/pi)*acos(-eye.z)) ;
+
+		color = texture(envmap, uv);//vec4(0.0, 1.0, 0.0, 1.0); // ToDo
+	}	
+	else if(2 == mapping) 	// paraboloid
+	{
+		// use texture function with the envmap sampler
+
+		float m = 2.0 + 2.0 * eye.z;
+		vec2 uv = vec2(0.5 + eye.x*(1/m), 0.5 + eye.y*(1/m));
+		color = texture(envmap, uv);//vec4(0.0, 0.0, 1.0, 1.0); // ToDo
+	}
+	else if(3 == mapping) 	// sphere
+	{
+		// use texture function with the envmap sampler
+		
+		float m = 2.0*sqrt(pow(eye.x, 2) + pow(eye.z, 2) + pow(1.0 - eye.y, 2));
+		vec2 uv = vec2(0.5 - eye.x*(1/m), 0.5 + eye.z*(1/m));
+		color = texture(envmap, uv);//vec4(1.0, 1.0, 0.0, 1.0); // ToDo
+	}
+	return color;
+}
+
+// Task_2_1 - ToDo End
+
+
+void main()
+{
+	vec3 eye = normalize(v_eye);
+	vec4 color = env(eye);
+	
+	fragColor = color;
+}
+ 
+[13-11-27::22:56:45] WARNING: ***
+[13-11-27::22:56:55] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-27::22:59:48] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-27::23:00:38] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-27::23:00:38] WARNING: QOpenGLShader::compile(Fragment): Fragment shader failed to compile with the following errors:
+ERROR: 2:24: error(#202) No matching overloaded function found: textureCube
+WARNING: 2:24: warning(#402) Implicit truncation of vector from size: 1 to size: 4
+ERROR: error(#273) 1 compilation errors.  No code generated
+
+
+[13-11-27::23:00:38] WARNING: *** Problematic Fragment shader source code ***
+[13-11-27::23:00:38] WARNING: #version 140
+#define lowp
+#define mediump
+#define highp
+
+uniform sampler2D envmap;
+uniform samplerCube cubemap;
+
+uniform int mapping;
+
+out vec4 fragColor;
+
+in vec3 v_eye;
+
+// Task_2_1 - ToDo Begin
+// Implement the four requested projection mappings.
+
+// const float c_...  = ...;
+const float pi = 3.1415926;
+
+vec4 env(in vec3 eye)
+{
+	vec4 color;
+	
+	if(0 == mapping) 		// cube
+	{
+		// use texture function with the cubemap sampler
+		color = textureCube(cubemap, 1.0);//vec4(0.0, 0.0, 0.0, 1.0);//  // ToDo
+	}
+	else if(1 == mapping) 	// polar
+	{	
+		// use texture function with the envmap sampler
+		
+		vec2 uv = vec2(0.5*(1/pi)*atan(eye.x, eye.y), (1/pi)*acos(-eye.z)) ;
+
+		color = texture(envmap, uv);//vec4(0.0, 1.0, 0.0, 1.0); // ToDo
+	}	
+	else if(2 == mapping) 	// paraboloid
+	{
+		// use texture function with the envmap sampler
+
+		float m = 2.0 + 2.0 * eye.z;
+		vec2 uv = vec2(0.5 + eye.x*(1/m), 0.5 + eye.y*(1/m));
+		color = texture(envmap, uv);//vec4(0.0, 0.0, 1.0, 1.0); // ToDo
+	}
+	else if(3 == mapping) 	// sphere
+	{
+		// use texture function with the envmap sampler
+		
+		float m = 2.0*sqrt(pow(eye.x, 2) + pow(eye.z, 2) + pow(1.0 - eye.y, 2));
+		vec2 uv = vec2(0.5 - eye.x*(1/m), 0.5 + eye.z*(1/m));
+		color = texture(envmap, uv);//vec4(1.0, 1.0, 0.0, 1.0); // ToDo
+	}
+	return color;
+}
+
+// Task_2_1 - ToDo End
+
+
+void main()
+{
+	vec3 eye = normalize(v_eye);
+	vec4 color = env(eye);
+	
+	fragColor = color;
+}
+ 
+[13-11-27::23:00:38] WARNING: ***
+[13-11-27::23:01:27] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-27::23:01:57] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-27::23:02:02] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-27::23:02:06] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-27::23:02:15] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-27::23:03:42] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-27::23:04:13] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-27::23:16:57] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-27::23:16:57] WARNING: QOpenGLShader::compile(Fragment): Fragment shader failed to compile with the following errors:
+ERROR: 2:30: error(#143) Undeclared identifier: pi
+ERROR: error(#273) 1 compilation errors.  No code generated
+
+
+[13-11-27::23:16:57] WARNING: *** Problematic Fragment shader source code ***
+[13-11-27::23:16:57] WARNING: #version 140
+#define lowp
+#define mediump
+#define highp
+
+uniform sampler2D envmap;
+uniform samplerCube cubemap;
+
+uniform int mapping;
+
+out vec4 fragColor;
+
+in vec3 v_eye;
+
+// Task_2_1 - ToDo Begin
+// Implement the four requested projection mappings.
+
+// const float c_...  = ...;
+const float c_pi = 3.1415926;
+
+vec4 env(in vec3 eye)
+{
+	vec4 color;
+	
+	if(0 == mapping) 		// cube
+	{
+		// use texture function with the cubemap sampler
+		color = textureCube(cubemap, eye);//vec4(0.0, 0.0, 0.0, 1.0);//  // ToDo
+	}
+	else if(1 == mapping) 	// polar
+	{	
+		// use texture function with the envmap sampler
+		
+		vec2 uv = vec2(0.5*(1/c_pi)*atan(eye.x, eye.y), (1/pi)*acos(-eye.z)) ;
+
+		color = texture(envmap, uv);//vec4(0.0, 1.0, 0.0, 1.0); // ToDo
+	}	
+	else if(2 == mapping) 	// paraboloid
+	{
+		// use texture function with the envmap sampler
+
+		float m = 2.0 + 2.0 * eye.z;
+		vec2 uv = vec2(0.5 + eye.x*(1/m), 0.5 + eye.y*(1/m));
+		color = texture(envmap, uv);//vec4(0.0, 0.0, 1.0, 1.0); // ToDo
+	}
+	else if(3 == mapping) 	// sphere
+	{
+		// use texture function with the envmap sampler
+		
+		float m = 2.0*sqrt(pow(eye.x, 2) + pow(eye.z, 2) + pow(1.0 - eye.y, 2));
+		vec2 uv = vec2(0.5 - eye.x*(1/m), 0.5 + eye.z*(1/m));
+		color = texture(envmap, uv);//vec4(1.0, 1.0, 0.0, 1.0); // ToDo
+	}
+	return color;
+}
+
+// Task_2_1 - ToDo End
+
+
+void main()
+{
+	vec3 eye = normalize(v_eye);
+	vec4 color = env(eye);
+	
+	fragColor = color;
+}
+ 
+[13-11-27::23:16:57] WARNING: ***
+[13-11-27::23:17:42] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-27::23:24:17] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-27::23:24:47] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-27::23:27:24] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-27::23:27:24] WARNING: QOpenGLShader::compile(Vertex): Vertex shader failed to compile with the following errors:
+ERROR: 2:23: error(#143) Undeclared identifier: viewProjectionInv
+ERROR: error(#273) 1 compilation errors.  No code generated
+
+
+[13-11-27::23:27:24] WARNING: *** Problematic Vertex shader source code ***
+[13-11-27::23:27:24] WARNING: #version 140
+#define lowp
+#define mediump
+#define highp
+
+// Task_2_1 - ToDo Begin
+
+uniform mat4 viewProjectionTransform;
+uniform mat4 viewProjectionTransformInv;
+uniform mat4 viewTransform;
+uniform mat4 viewTransformInv;
+uniform mat4 projectionTransform;
+uniform mat4 projectionTransformInv;
+
+in vec2 a_vertex;
+
+out vec3 v_eye;
+ 
+void main()
+{	
+	// ToDo: use the given xy coordinates to retrieve 
+	// the vertices eye vector (basically the view frustums edges
+	// pointing towards +z) that need to be passed to
+	// the fragment stage for accessing the various projection
+	// mappings. 
+		
+	v_eye = (viewProjectionInv * (vec4(a_vertex, 0.0, 1.0))).xyz;
+
+	// Task_2_1 - ToDo End
+	
+	// Note: z is already at z = 1.0 (back plane in NDC)
+	
+	gl_Position = vec4(a_vertex, 1.0, 1.0);
+}
+   
+[13-11-27::23:27:24] WARNING: ***
+[13-11-27::23:27:59] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-27::23:28:20] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-27::23:30:16] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-27::23:30:21] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-27::23:30:39] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-27::23:34:44] cg2sandbox cg2ws1314.1.. exited
+[13-11-27::23:34:44] 
+[13-11-27::23:35:07] cg2sandbox cg2ws1314.1.. on Qt-5.1.1
+[13-11-27::23:35:07] cg2ws1314.1.. 
+[13-11-27::23:35:08] 
+[13-11-27::23:35:08] GPU: AMD Radeon HD 7800 Series (ATI Technologies Inc., 3.2.12337 Core Profile Context 13.101.0.0)
+[13-11-27::23:35:08] GL Version: 3.2 Core
+[13-11-27::23:35:08] 
+[13-11-27::23:35:08] Setting swap interval to VerticalSyncronization.
+[13-11-27::23:35:09] cube fbo invalid 
+[13-11-27::23:35:48] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-27::23:35:48] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-27::23:36:04] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-27::23:37:41] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-27::23:37:41] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-27::23:39:40] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-27::23:40:01] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-27::23:40:27] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-27::23:40:27] WARNING: QOpenGLShader::compile(Vertex): Vertex shader failed to compile with the following errors:
+ERROR: 2:23: error(#143) Undeclared identifier: ProjectionTransformInv
+ERROR: error(#273) 1 compilation errors.  No code generated
+
+
+[13-11-27::23:40:27] WARNING: *** Problematic Vertex shader source code ***
+[13-11-27::23:40:27] WARNING: #version 140
+#define lowp
+#define mediump
+#define highp
+
+// Task_2_1 - ToDo Begin
+
+uniform mat4 viewProjectionTransform;
+uniform mat4 viewProjectionTransformInv;
+uniform mat4 viewTransform;
+uniform mat4 viewTransformInv;
+uniform mat4 projectionTransform;
+uniform mat4 projectionTransformInv;
+
+in vec2 a_vertex;
+
+out vec3 v_eye;
+ 
+void main()
+{	
+	// ToDo: use the given xy coordinates to retrieve 
+	// the vertices eye vector (basically the view frustums edges
+	// pointing towards +z) that need to be passed to
+	// the fragment stage for accessing the various projection
+	// mappings. 
+		
+	v_eye = (ProjectionTransformInv * viewTransform * (vec4(a_vertex, 0.0, 1.0))).xyz;
+
+	// Task_2_1 - ToDo End
+	
+	// Note: z is already at z = 1.0 (back plane in NDC)
+	
+	gl_Position = vec4(a_vertex, 1.0, 1.0);
+}
+   
+[13-11-27::23:40:27] WARNING: ***
+[13-11-27::23:40:39] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-27::23:40:45] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-27::23:40:45] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-28::00:01:19] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-28::00:01:19] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-28::00:01:50] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-28::00:01:50] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-28::00:02:00] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-28::00:02:00] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-28::00:02:10] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-28::00:02:10] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-28::00:02:57] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-28::00:02:57] WARNING: QOpenGLShader::compile(Vertex): Vertex shader failed to compile with the following errors:
+ERROR: 2:23: error(#162) Wrong operand types: no operation "*" exists that takes a left-hand operand of type "4X4 matrix of mat4" and a right operand of type "highp 3-component vector of vec3" (or there is no acceptable conversion)
+ERROR: 2:23: error(#160) Cannot convert from: "4X4 matrix of mat4" to: "default out 3-component vector of vec3"
+ERROR: error(#273) 2 compilation errors.  No code generated
+
+
+[13-11-28::00:02:57] WARNING: *** Problematic Vertex shader source code ***
+[13-11-28::00:02:57] WARNING: #version 140
+#define lowp
+#define mediump
+#define highp
+
+// Task_2_1 - ToDo Begin
+
+uniform mat4 viewProjectionTransform;
+uniform mat4 viewProjectionTransformInv;
+uniform mat4 viewTransform;
+uniform mat4 viewTransformInv;
+uniform mat4 projectionTransform;
+uniform mat4 projectionTransformInv;
+
+in vec2 a_vertex;
+
+out vec3 v_eye;
+ 
+void main()
+{	
+	// ToDo: use the given xy coordinates to retrieve 
+	// the vertices eye vector (basically the view frustums edges
+	// pointing towards +z) that need to be passed to
+	// the fragment stage for accessing the various projection
+	// mappings. 
+		
+	v_eye = (projectionTransform * viewTransformInv * (vec4(a_vertex, 0.0, 1.0)).xyz);
+
+	// Task_2_1 - ToDo End
+	
+	// Note: z is already at z = 1.0 (back plane in NDC)
+	
+	gl_Position = vec4(a_vertex, 1.0, 1.0);
+}
+   
+[13-11-28::00:02:57] WARNING: ***
+[13-11-28::00:02:57] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-28::00:02:57] WARNING: QOpenGLShader::compile(Vertex): Vertex shader failed to compile with the following errors:
+ERROR: 2:23: error(#162) Wrong operand types: no operation "*" exists that takes a left-hand operand of type "4X4 matrix of mat4" and a right operand of type "highp 3-component vector of vec3" (or there is no acceptable conversion)
+ERROR: 2:23: error(#160) Cannot convert from: "4X4 matrix of mat4" to: "default out 3-component vector of vec3"
+ERROR: error(#273) 2 compilation errors.  No code generated
+
+
+[13-11-28::00:02:57] WARNING: *** Problematic Vertex shader source code ***
+[13-11-28::00:02:57] WARNING: #version 140
+#define lowp
+#define mediump
+#define highp
+
+// Task_2_1 - ToDo Begin
+
+uniform mat4 viewProjectionTransform;
+uniform mat4 viewProjectionTransformInv;
+uniform mat4 viewTransform;
+uniform mat4 viewTransformInv;
+uniform mat4 projectionTransform;
+uniform mat4 projectionTransformInv;
+
+in vec2 a_vertex;
+
+out vec3 v_eye;
+ 
+void main()
+{	
+	// ToDo: use the given xy coordinates to retrieve 
+	// the vertices eye vector (basically the view frustums edges
+	// pointing towards +z) that need to be passed to
+	// the fragment stage for accessing the various projection
+	// mappings. 
+		
+	v_eye = (projectionTransform * viewTransformInv * (vec4(a_vertex, 0.0, 1.0)).xyz);
+
+	// Task_2_1 - ToDo End
+	
+	// Note: z is already at z = 1.0 (back plane in NDC)
+	
+	gl_Position = vec4(a_vertex, 1.0, 1.0);
+}
+   
+[13-11-28::00:02:57] WARNING: ***
+[13-11-28::00:07:10] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-28::00:16:11] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::09:40:50] cg2sandbox cg2ws1314.1.. on Qt-5.1.1
+[13-11-28::09:40:50] cg2ws1314.1.. 
+[13-11-28::09:40:51] 
+[13-11-28::09:40:51] GPU: AMD Radeon HD 7800 Series (ATI Technologies Inc., 3.2.12337 Core Profile Context 13.101.0.0)
+[13-11-28::09:40:51] GL Version: 3.2 Core
+[13-11-28::09:40:51] 
+[13-11-28::09:40:52] Setting swap interval to VerticalSyncronization.
+[13-11-28::09:40:53] cube fbo invalid 
+[13-11-28::09:42:03] cg2sandbox cg2ws1314.1.. on Qt-5.1.1
+[13-11-28::09:42:03] cg2ws1314.1.. 
+[13-11-28::09:42:04] 
+[13-11-28::09:42:04] GPU: AMD Radeon HD 7800 Series (ATI Technologies Inc., 3.2.12337 Core Profile Context 13.101.0.0)
+[13-11-28::09:42:04] GL Version: 3.2 Core
+[13-11-28::09:42:04] 
+[13-11-28::09:42:04] Setting swap interval to VerticalSyncronization.
+[13-11-28::09:42:06] cube fbo invalid 
+[13-11-28::10:13:40] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-28::10:15:53] Loading image from "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/env_cube_pz.png" failed. 
+[13-11-28::10:15:53] Loading image from "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/env_cube_nx.png" failed. 
+[13-11-28::10:15:53] Loading image from "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/env_cube_ny.png" failed. 
+[13-11-28::10:15:53] Loading image from "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/env_cube_nz.png" failed. 
+[13-11-28::10:15:53] Loading image from "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/env_cube_px.png" failed. 
+[13-11-28::10:15:53] Loading image from "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/env_cube_py.png" failed. 
+[13-11-28::10:16:13] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-28::10:16:50] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::10:17:55] cg2sandbox cg2ws1314.1.. on Qt-5.1.1
+[13-11-28::10:17:55] cg2ws1314.1.. 
+[13-11-28::10:17:56] 
+[13-11-28::10:17:56] GPU: AMD Radeon HD 7800 Series (ATI Technologies Inc., 3.2.12337 Core Profile Context 13.101.0.0)
+[13-11-28::10:17:56] GL Version: 3.2 Core
+[13-11-28::10:17:56] 
+[13-11-28::10:17:56] Setting swap interval to VerticalSyncronization.
+[13-11-28::10:17:58] cube fbo invalid 
+[13-11-28::10:19:24] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-28::10:19:46] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-28::10:19:46] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-28::10:20:00] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-28::10:20:00] WARNING: QOpenGLShader::compile(Vertex): Vertex shader failed to compile with the following errors:
+ERROR: 2:24: error(#143) Undeclared identifier: ProjectionTransformInv
+ERROR: error(#273) 1 compilation errors.  No code generated
+
+
+[13-11-28::10:20:00] WARNING: *** Problematic Vertex shader source code ***
+[13-11-28::10:20:00] WARNING: #version 140
+#define lowp
+#define mediump
+#define highp
+
+// Task_2_1 - ToDo Begin
+
+uniform mat4 viewProjectionTransform;
+uniform mat4 viewProjectionTransformInv;
+uniform mat4 viewTransform;
+uniform mat4 viewTransformInv;
+uniform mat4 projectionTransform;
+uniform mat4 projectionTransformInv;
+uniform mat4 transform;
+
+in vec2 a_vertex;
+
+out vec3 v_eye;
+ 
+void main()
+{	
+	// ToDo: use the given xy coordinates to retrieve 
+	// the vertices eye vector (basically the view frustums edges
+	// pointing towards +z) that need to be passed to
+	// the fragment stage for accessing the various projection
+	// mappings. 
+		
+	v_eye = (ProjectionTransformInv * viewTransformInv * vec4(a_vertex, 0.0, 1.0)).xyz;
+
+	// Task_2_1 - ToDo End
+	
+	// Note: z is already at z = 1.0 (back plane in NDC)
+	
+	gl_Position = vec4(a_vertex, 1.0, 1.0);
+}
+   
+[13-11-28::10:20:00] WARNING: ***
+[13-11-28::10:20:00] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-28::10:20:00] WARNING: QOpenGLShader::compile(Vertex): Vertex shader failed to compile with the following errors:
+ERROR: 2:24: error(#143) Undeclared identifier: ProjectionTransformInv
+ERROR: error(#273) 1 compilation errors.  No code generated
+
+
+[13-11-28::10:20:00] WARNING: *** Problematic Vertex shader source code ***
+[13-11-28::10:20:00] WARNING: #version 140
+#define lowp
+#define mediump
+#define highp
+
+// Task_2_1 - ToDo Begin
+
+uniform mat4 viewProjectionTransform;
+uniform mat4 viewProjectionTransformInv;
+uniform mat4 viewTransform;
+uniform mat4 viewTransformInv;
+uniform mat4 projectionTransform;
+uniform mat4 projectionTransformInv;
+uniform mat4 transform;
+
+in vec2 a_vertex;
+
+out vec3 v_eye;
+ 
+void main()
+{	
+	// ToDo: use the given xy coordinates to retrieve 
+	// the vertices eye vector (basically the view frustums edges
+	// pointing towards +z) that need to be passed to
+	// the fragment stage for accessing the various projection
+	// mappings. 
+		
+	v_eye = (ProjectionTransformInv * viewTransformInv * vec4(a_vertex, 0.0, 1.0)).xyz;
+
+	// Task_2_1 - ToDo End
+	
+	// Note: z is already at z = 1.0 (back plane in NDC)
+	
+	gl_Position = vec4(a_vertex, 1.0, 1.0);
+}
+   
+[13-11-28::10:20:00] WARNING: ***
+[13-11-28::10:20:07] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-28::10:20:07] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-28::10:20:43] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-28::10:20:43] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-28::10:21:12] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-28::10:21:12] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-28::10:21:23] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-28::10:21:23] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-28::10:21:53] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-28::10:21:57] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-28::10:21:57] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-28::10:32:56] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-28::10:35:53] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-28::10:35:53] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-28::10:36:01] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-28::10:36:01] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-28::10:36:20] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-28::10:36:26] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-28::10:36:26] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-28::10:36:31] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-28::10:36:31] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-28::10:36:40] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-28::10:41:58] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::10:45:52] cg2sandbox cg2ws1314.1.. on Qt-5.1.1
+[13-11-28::10:45:52] cg2ws1314.1.. 
+[13-11-28::10:45:53] 
+[13-11-28::10:45:53] GPU: AMD Radeon HD 7800 Series (ATI Technologies Inc., 3.2.12337 Core Profile Context 13.101.0.0)
+[13-11-28::10:45:53] GL Version: 3.2 Core
+[13-11-28::10:45:53] 
+[13-11-28::10:45:53] Setting swap interval to VerticalSyncronization.
+[13-11-28::10:45:55] cube fbo invalid 
+[13-11-28::10:46:46] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::10:47:04] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::10:49:01] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::10:50:01] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::10:51:00] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::10:51:52] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::10:53:19] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::10:53:27] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::10:56:46] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::10:57:02] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::11:18:31] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::11:20:14] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::11:20:26] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::11:20:58] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::11:21:14] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::11:21:22] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::11:21:29] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::11:21:34] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::11:21:49] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::11:40:12] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::11:44:08] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::11:44:08] WARNING: QOpenGLShader::compile(Fragment): Fragment shader failed to compile with the following errors:
+ERROR: 2:52: error(#198) Redefinition error: uv
+ERROR: 2:54: error(#198) Redefinition error: uv
+ERROR: 2:56: error(#198) Redefinition error: uv
+ERROR: error(#273) 3 compilation errors.  No code generated
+
+
+[13-11-28::11:44:08] WARNING: *** Problematic Fragment shader source code ***
+[13-11-28::11:44:08] WARNING: #version 140
+#define lowp
+#define mediump
+#define highp
+
+uniform sampler2D envmap;
+uniform samplerCube cubemap;
+
+uniform int mapping;
+
+out vec4 fragColor;
+
+in vec3 v_eye;
+
+// Task_2_1 - ToDo Begin
+// Implement the four requested projection mappings.
+ 
+const float c_pi = 3.1415926;
+
+vec4 env(in vec3 eye)
+{
+	vec4 color;
+	
+	if(0 == mapping) 		// cube
+	{
+		// ToDo: use texture function with the cubemap sampler
+		// vec4(0.0, 0.0, 0.0, 1.0);
+		
+		color = texture(cubemap, eye);
+	}
+	else if(1 == mapping) 	// polar
+	{	
+		// ToDo: use texture function with the envmap sampler
+		// vec4(0.0, 1.0, 0.0, 1.0);
+		
+		vec2 uv = vec2(0.5*(1/c_pi)*atan(eye.x, eye.z), -1*(2/c_pi)*asin(eye.y)) ;
+		color = texture(envmap, uv); 
+	}	
+	else if(2 == mapping) 	// paraboloid
+	{
+		// ToDo: use texture function with the envmap sampler
+		// vec4(0.0, 0.0, 1.0, 1.0);
+		
+		float m = 2.0 + 2.0 * eye.y;
+		vec2 uv = vec2(0.5 + eye.x*(1/m), 0.5 + eye.z*(1/m));
+		color = texture(envmap, uv);
+	}
+	else if(3 == mapping) 	// sphere
+	{
+		// ToDo: use texture function with the envmap sampler
+		// vec4(1.0, 1.0, 0.0, 1.0);
+		
+		float m = 2.0*sqrt(pow(eye.x, 2) + pow(eye.y, 2) + pow(1.0 + eye.z, 2));
+		vec2 uv = vec2(0.5 + eye.x*(1/m), 0.5 + eye.y*(1/m));
+		color = texture(envmap, uv);
+		vec2 uv = vec2(0.5 - eye.x*(1/m), 0.5 + eye.y*(1/m));
+		color = texture(envmap, uv);
+		vec2 uv = vec2(0.5 + eye.x*(1/m), 0.5 - eye.y*(1/m));
+		color = texture(envmap, uv);
+		vec2 uv = vec2(0.5 - eye.x*(1/m), 0.5 - eye.y*(1/m));
+		color = texture(envmap, uv);
+	}
+	return color;
+}
+
+// Task_2_1 - ToDo End
+
+void main()
+{
+	vec3 eye = normalize(v_eye);
+	vec4 color = env(eye);
+	
+	fragColor = color;
+}
+ 
+[13-11-28::11:44:08] WARNING: ***
+[13-11-28::11:44:26] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::11:44:54] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::11:46:54] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::13:05:42] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::13:09:52] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::13:10:07] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::13:10:09] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::13:14:05] cg2sandbox cg2ws1314.1.. on Qt-5.1.1
+[13-11-28::13:14:05] cg2ws1314.1.. 
+[13-11-28::13:14:07] 
+[13-11-28::13:14:07] GPU: AMD Radeon HD 7800 Series (ATI Technologies Inc., 3.2.12337 Core Profile Context 13.101.0.0)
+[13-11-28::13:14:07] GL Version: 3.2 Core
+[13-11-28::13:14:07] 
+[13-11-28::13:14:07] Setting swap interval to VerticalSyncronization.
+[13-11-28::13:14:08] cube fbo invalid 
+[13-11-28::13:14:19] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-28::13:15:50] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-28::13:15:50] WARNING: QOpenGLShader::compile(Vertex): Vertex shader failed to compile with the following errors:
+ERROR: 2:27: error(#143) Undeclared identifier: cameraView
+ERROR: error(#273) 1 compilation errors.  No code generated
+
+
+[13-11-28::13:15:50] WARNING: *** Problematic Vertex shader source code ***
+[13-11-28::13:15:50] WARNING: #version 140
+#define lowp
+#define mediump
+#define highp
+
+// Task_2_1 - ToDo Begin
+
+uniform mat4 viewProjectionTransform;
+uniform mat4 viewProjectionTransformInv;
+uniform mat4 viewTransform;
+uniform mat4 viewTransformInv;
+uniform mat4 projectionTransform;
+uniform mat4 projectionTransformInv;
+uniform mat4 transform;
+uniform mat4 view;
+uniform mat4 projectionInverted;
+
+in vec2 a_vertex;
+
+out vec3 v_eye;
+ 
+void main()
+{	
+	// ToDo: use the given xy coordinates to retrieve 
+	// the vertices eye vector (basically the view frustums edges
+	// pointing towards +z) that need to be passed to
+	// the fragment stage for accessing the various projection
+	// mappings. 
+		
+	//v_eye = (viewProjectionTransformInv * vec4(a_vertex, 1.0, 1.0)).xyz;
+	v_eye = ((projectionInverted * vec4(a_vertex, 1.0, 1.0)) * cameraView).xyz;
+
+	// Task_2_1 - ToDo End
+	
+	// Note: z is already at z = 1.0 (back plane in NDC)
+	
+	gl_Position = vec4(a_vertex, 1.0, 1.0);
+}
+   
+[13-11-28::13:15:50] WARNING: ***
+[13-11-28::13:15:58] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-28::13:17:53] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::13:18:15] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::13:18:20] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::13:23:37] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::13:26:08] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::13:28:56] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::13:28:56] WARNING: QOpenGLShader::compile(Fragment): Fragment shader failed to compile with the following errors:
+ERROR: 2:32: error(#143) Undeclared identifier: _clamp
+ERROR: 2:32: error(#202) No matching overloaded function found: _clamp
+ERROR: error(#273) 2 compilation errors.  No code generated
+
+
+[13-11-28::13:28:56] WARNING: *** Problematic Fragment shader source code ***
+[13-11-28::13:28:56] WARNING: #version 140
+#define lowp
+#define mediump
+#define highp
+
+uniform sampler2D envmap;
+uniform samplerCube cubemap;
+
+uniform int mapping;
+
+out vec4 fragColor;
+
+in vec3 v_eye;
+
+// Task_2_1 - ToDo Begin
+// Implement the four requested projection mappings.
+ 
+const float c_pi = 3.1415926;
+
+vec4 env(in vec3 eye)
+{
+	vec4 color;
+	
+	if(0 == mapping) 		// cube
+	{
+		// ToDo: use texture function with the cubemap sampler
+		// vec4(0.0, 0.0, 0.0, 1.0);
+		
+		color = texture(cubemap, eye);
+	}
+	else if(1 == mapping) 	// polar
+	{	
+		// ToDo: use texture function with the envmap sampler
+		// vec4(0.0, 1.0, 0.0, 1.0);
+		
+		vec2 uv = vec2(0.5*(1/c_pi)*atan(eye.x, eye.z), _clamp(-1*(2/c_pi)*asin(eye.y), 0.0, 1.0)) ;
+		color = texture(envmap, uv); 
+	}	
+	else if(2 == mapping) 	// paraboloid
+	{
+		// ToDo: use texture function with the envmap sampler
+		// vec4(0.0, 0.0, 1.0, 1.0);
+		
+		float m = 2.0 + 2.0 * eye.y;
+		vec2 uv = vec2(0.5 + eye.x*(1/m), 0.5 + eye.z*(1/m));
+		color = texture(envmap, uv);
+	}
+	else if(3 == mapping) 	// sphere
+	{
+		// ToDo: use texture function with the envmap sampler
+		// vec4(1.0, 1.0, 0.0, 1.0);
+		
+		float m = 2.0*sqrt((eye.x*eye.x) + (eye.y*eye.y) + (1.0 - eye.z)*(1.0 - eye.z)); // x*x != pow(x, 2) WTF?
+		vec2 uv = vec2(1.0 - (0.5 + eye.x*(1/m)), 1.0 - (0.5 + eye.y*(1/m)));
+		color = texture(envmap, uv);		
+	}
+	return color;
+}
+
+// Task_2_1 - ToDo End
+
+void main()
+{
+	vec3 eye = normalize(v_eye);
+	vec4 color = env(eye);
+	
+	fragColor = color;
+}
+ 
+[13-11-28::13:28:56] WARNING: ***
+[13-11-28::13:29:26] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::13:29:48] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::13:30:00] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::13:30:11] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::13:30:22] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::13:32:26] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::13:32:26] WARNING: QOpenGLShader::compile(Fragment): Fragment shader failed to compile with the following errors:
+ERROR: 2:32: error(#202) No matching overloaded function found: abs
+ERROR: error(#273) 1 compilation errors.  No code generated
+
+
+[13-11-28::13:32:26] WARNING: *** Problematic Fragment shader source code ***
+[13-11-28::13:32:26] WARNING: #version 140
+#define lowp
+#define mediump
+#define highp
+
+uniform sampler2D envmap;
+uniform samplerCube cubemap;
+
+uniform int mapping;
+
+out vec4 fragColor;
+
+in vec3 v_eye;
+
+// Task_2_1 - ToDo Begin
+// Implement the four requested projection mappings.
+ 
+const float c_pi = 3.1415926;
+
+vec4 env(in vec3 eye)
+{
+	vec4 color;
+	
+	if(0 == mapping) 		// cube
+	{
+		// ToDo: use texture function with the cubemap sampler
+		// vec4(0.0, 0.0, 0.0, 1.0);
+		
+		color = texture(cubemap, eye);
+	}
+	else if(1 == mapping) 	// polar
+	{	
+		// ToDo: use texture function with the envmap sampler
+		// vec4(0.0, 1.0, 0.0, 1.0);
+		
+		vec2 uv = vec2(0.5*(1/c_pi)*atan(eye.x, eye.z), abs((2/c_pi)*asin(eye.y), -1.0, 0.0)) ;
+		color = texture(envmap, uv); 
+	}	
+	else if(2 == mapping) 	// paraboloid
+	{
+		// ToDo: use texture function with the envmap sampler
+		// vec4(0.0, 0.0, 1.0, 1.0);
+		
+		float m = 2.0 + 2.0 * eye.y;
+		vec2 uv = vec2(0.5 + eye.x*(1/m), 0.5 + eye.z*(1/m));
+		color = texture(envmap, uv);
+	}
+	else if(3 == mapping) 	// sphere
+	{
+		// ToDo: use texture function with the envmap sampler
+		// vec4(1.0, 1.0, 0.0, 1.0);
+		
+		float m = 2.0*sqrt((eye.x*eye.x) + (eye.y*eye.y) + (1.0 - eye.z)*(1.0 - eye.z)); // x*x != pow(x, 2) WTF?
+		vec2 uv = vec2(1.0 - (0.5 + eye.x*(1/m)), 1.0 - (0.5 + eye.y*(1/m)));
+		color = texture(envmap, uv);		
+	}
+	return color;
+}
+
+// Task_2_1 - ToDo End
+
+void main()
+{
+	vec3 eye = normalize(v_eye);
+	vec4 color = env(eye);
+	
+	fragColor = color;
+}
+ 
+[13-11-28::13:32:26] WARNING: ***
+[13-11-28::13:32:42] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::13:32:50] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::13:57:38] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::13:57:51] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::14:04:17] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::14:04:17] WARNING: QOpenGLShader::compile(Fragment): Fragment shader failed to compile with the following errors:
+ERROR: 2:42: error(#132) Syntax error: "if" parse error
+ERROR: error(#273) 1 compilation errors.  No code generated
+
+
+[13-11-28::14:04:17] WARNING: *** Problematic Fragment shader source code ***
+[13-11-28::14:04:17] WARNING: #version 140
+#define lowp
+#define mediump
+#define highp
+
+uniform sampler2D envmap;
+uniform samplerCube cubemap;
+
+uniform int mapping;
+
+out vec4 fragColor;
+
+in vec3 v_eye;
+
+// Task_2_1 - ToDo Begin
+// Implement the four requested projection mappings.
+ 
+const float c_pi = 3.1415926;
+
+vec4 env(in vec3 eye)
+{
+	vec4 color;
+	
+	if(0 == mapping) 		// cube
+	{
+		// ToDo: use texture function with the cubemap sampler
+		// vec4(0.0, 0.0, 0.0, 1.0);
+		
+		color = texture(cubemap, eye);
+	}
+	else if(1 == mapping) 	// polar
+	{	
+		// ToDo: use texture function with the envmap sampler
+		// vec4(0.0, 1.0, 0.0, 1.0);
+		
+		vec2 uv = vec2(0.5*(1/c_pi)*atan(eye.x, eye.z), -1*(2/c_pi)*asin(eye.y)) ;
+		color = texture(envmap, uv); 
+	}	
+	else if(2 == mapping) 	// paraboloid
+	{
+		// ToDo: use texture function with the envmap sampler
+		// vec4(0.0, 0.0, 1.0, 1.0);
+		
+		float m = 2.0 + 2.0 * eye.y;
+		vec2 uv = vec2(0.5 + eye.x*(1/m), 0.5 + eye.z*(1/m));
+		color = if(eye.y>0) texture(envmap, uv);
+	}
+	else if(3 == mapping) 	// sphere
+	{
+		// ToDo: use texture function with the envmap sampler
+		// vec4(1.0, 1.0, 0.0, 1.0);
+		
+		float m = 2.0*sqrt((eye.x*eye.x) + (eye.y*eye.y) + (1.0 - eye.z)*(1.0 - eye.z)); // x*x != pow(x, 2) WTF?
+		vec2 uv = vec2(1.0 - (0.5 + eye.x*(1/m)), 1.0 - (0.5 + eye.y*(1/m)));
+		color = texture(envmap, uv);		
+	}
+	return color;
+}
+
+// Task_2_1 - ToDo End
+
+void main()
+{
+	vec3 eye = normalize(v_eye);
+	vec4 color = env(eye);
+	
+	fragColor = color;
+}
+ 
+[13-11-28::14:04:17] WARNING: ***
+[13-11-28::14:04:49] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::14:04:49] WARNING: QOpenGLShader::compile(Fragment): Fragment shader failed to compile with the following errors:
+ERROR: 2:42: error(#132) Syntax error: "if" parse error
+ERROR: error(#273) 1 compilation errors.  No code generated
+
+
+[13-11-28::14:04:49] WARNING: *** Problematic Fragment shader source code ***
+[13-11-28::14:04:49] WARNING: #version 140
+#define lowp
+#define mediump
+#define highp
+
+uniform sampler2D envmap;
+uniform samplerCube cubemap;
+
+uniform int mapping;
+
+out vec4 fragColor;
+
+in vec3 v_eye;
+
+// Task_2_1 - ToDo Begin
+// Implement the four requested projection mappings.
+ 
+const float c_pi = 3.1415926;
+
+vec4 env(in vec3 eye)
+{
+	vec4 color;
+	
+	if(0 == mapping) 		// cube
+	{
+		// ToDo: use texture function with the cubemap sampler
+		// vec4(0.0, 0.0, 0.0, 1.0);
+		
+		color = texture(cubemap, eye);
+	}
+	else if(1 == mapping) 	// polar
+	{	
+		// ToDo: use texture function with the envmap sampler
+		// vec4(0.0, 1.0, 0.0, 1.0);
+		
+		vec2 uv = vec2(0.5*(1/c_pi)*atan(eye.x, eye.z), -1*(2/c_pi)*asin(eye.y)) ;
+		color = texture(envmap, uv); 
+	}	
+	else if(2 == mapping) 	// paraboloid
+	{
+		// ToDo: use texture function with the envmap sampler
+		// vec4(0.0, 0.0, 1.0, 1.0);
+		
+		float m = 2.0 + 2.0 * eye.y;
+		vec2 uv = vec2(0.5 + eye.x*(1/m), 0.5 + eye.z*(1/m));
+		color = if(eye.y > 0.0) texture(envmap, uv);
+	}
+	else if(3 == mapping) 	// sphere
+	{
+		// ToDo: use texture function with the envmap sampler
+		// vec4(1.0, 1.0, 0.0, 1.0);
+		
+		float m = 2.0*sqrt((eye.x*eye.x) + (eye.y*eye.y) + (1.0 - eye.z)*(1.0 - eye.z)); // x*x != pow(x, 2) WTF?
+		vec2 uv = vec2(1.0 - (0.5 + eye.x*(1/m)), 1.0 - (0.5 + eye.y*(1/m)));
+		color = texture(envmap, uv);		
+	}
+	return color;
+}
+
+// Task_2_1 - ToDo End
+
+void main()
+{
+	vec3 eye = normalize(v_eye);
+	vec4 color = env(eye);
+	
+	fragColor = color;
+}
+ 
+[13-11-28::14:04:49] WARNING: ***
+[13-11-28::14:05:37] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::14:05:37] WARNING: QOpenGLShader::compile(Fragment): Fragment shader failed to compile with the following errors:
+ERROR: 2:42: error(#132) Syntax error: "if" parse error
+ERROR: error(#273) 1 compilation errors.  No code generated
+
+
+[13-11-28::14:05:37] WARNING: *** Problematic Fragment shader source code ***
+[13-11-28::14:05:37] WARNING: #version 140
+#define lowp
+#define mediump
+#define highp
+
+uniform sampler2D envmap;
+uniform samplerCube cubemap;
+
+uniform int mapping;
+
+out vec4 fragColor;
+
+in vec3 v_eye;
+
+// Task_2_1 - ToDo Begin
+// Implement the four requested projection mappings.
+ 
+const float c_pi = 3.1415926;
+
+vec4 env(in vec3 eye)
+{
+	vec4 color;
+	
+	if(0 == mapping) 		// cube
+	{
+		// ToDo: use texture function with the cubemap sampler
+		// vec4(0.0, 0.0, 0.0, 1.0);
+		
+		color = texture(cubemap, eye);
+	}
+	else if(1 == mapping) 	// polar
+	{	
+		// ToDo: use texture function with the envmap sampler
+		// vec4(0.0, 1.0, 0.0, 1.0);
+		
+		vec2 uv = vec2(0.5*(1/c_pi)*atan(eye.x, eye.z), -1*(2/c_pi)*asin(eye.y)) ;
+		color = texture(envmap, uv); 
+	}	
+	else if(2 == mapping) 	// paraboloid
+	{
+		// ToDo: use texture function with the envmap sampler
+		// vec4(0.0, 0.0, 1.0, 1.0);
+		
+		float m = 2.0 + 2.0 * eye.y;
+		vec2 uv = vec2(0.5 + eye.x*(1/m), 0.5 + eye.z*(1/m));
+		color = if(eye.y > 0.0) {texture(envmap, uv)};
+	}
+	else if(3 == mapping) 	// sphere
+	{
+		// ToDo: use texture function with the envmap sampler
+		// vec4(1.0, 1.0, 0.0, 1.0);
+		
+		float m = 2.0*sqrt((eye.x*eye.x) + (eye.y*eye.y) + (1.0 - eye.z)*(1.0 - eye.z)); // x*x != pow(x, 2) WTF?
+		vec2 uv = vec2(1.0 - (0.5 + eye.x*(1/m)), 1.0 - (0.5 + eye.y*(1/m)));
+		color = texture(envmap, uv);		
+	}
+	return color;
+}
+
+// Task_2_1 - ToDo End
+
+void main()
+{
+	vec3 eye = normalize(v_eye);
+	vec4 color = env(eye);
+	
+	fragColor = color;
+}
+ 
+[13-11-28::14:05:37] WARNING: ***
+[13-11-28::14:06:09] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::14:06:27] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::14:08:55] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::14:09:10] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::14:09:10] WARNING: QOpenGLShader::compile(Fragment): Fragment shader failed to compile with the following errors:
+ERROR: 2:34: error(#143) Undeclared identifier: rgb
+ERROR: 2:34: error(#202) No matching overloaded function found: rgb
+WARNING: 2:34: warning(#402) Implicit truncation of vector from size: 1 to size: 4
+ERROR: error(#273) 2 compilation errors.  No code generated
+
+
+[13-11-28::14:09:10] WARNING: *** Problematic Fragment shader source code ***
+[13-11-28::14:09:10] WARNING: #version 140
+#define lowp
+#define mediump
+#define highp
+
+uniform sampler2D envmap;
+uniform samplerCube cubemap;
+
+uniform int mapping;
+
+out vec4 fragColor;
+
+in vec3 v_eye;
+
+// Task_2_1 - ToDo Begin
+// Implement the four requested projection mappings.
+ 
+const float c_pi = 3.1415926;
+
+vec4 env(in vec3 eye)
+{
+	vec4 color;
+	
+	if(0 == mapping) 		// cube
+	{
+		// ToDo: use texture function with the cubemap sampler
+		// vec4(0.0, 0.0, 0.0, 1.0);
+		
+		color = texture(cubemap, eye);
+	}
+	else if(1 == mapping) 	// polar
+	{	
+		// ToDo: use texture function with the envmap sampler
+		// vec4(0.0, 1.0, 0.0, 1.0);
+		
+		vec2 uv = vec2(0.5*(1/c_pi)*atan(eye.x, eye.z), -1*(2/c_pi)*asin(eye.y)) ;
+		if(eye.y>0.0) color = texture(envmap, uv);
+		if(eye.y<=0.0) color = rgb(107, 176, 232);
+	}	
+	else if(2 == mapping) 	// paraboloid
+	{
+		// ToDo: use texture function with the envmap sampler
+		// vec4(0.0, 0.0, 1.0, 1.0);
+		
+		float m = 2.0 + 2.0 * eye.y;
+		vec2 uv = vec2(0.5 + eye.x*(1/m), 0.5 + eye.z*(1/m));
+		if(eye.y>0.0) color = texture(envmap, uv);
+	}
+	else if(3 == mapping) 	// sphere
+	{
+		// ToDo: use texture function with the envmap sampler
+		// vec4(1.0, 1.0, 0.0, 1.0);
+		
+		float m = 2.0*sqrt((eye.x*eye.x) + (eye.y*eye.y) + (1.0 - eye.z)*(1.0 - eye.z)); // x*x != pow(x, 2) WTF?
+		vec2 uv = vec2(1.0 - (0.5 + eye.x*(1/m)), 1.0 - (0.5 + eye.y*(1/m)));
+		color = texture(envmap, uv);		
+	}
+	return color;
+}
+
+// Task_2_1 - ToDo End
+
+void main()
+{
+	vec3 eye = normalize(v_eye);
+	vec4 color = env(eye);
+	
+	fragColor = color;
+}
+ 
+[13-11-28::14:09:10] WARNING: ***
+[13-11-28::14:09:14] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::14:09:14] WARNING: QOpenGLShader::compile(Fragment): Fragment shader failed to compile with the following errors:
+ERROR: 2:34: error(#160) Cannot convert from: "const highp 3-component vector of vec3" to: "highp 4-component vector of vec4"
+ERROR: error(#273) 1 compilation errors.  No code generated
+
+
+[13-11-28::14:09:14] WARNING: *** Problematic Fragment shader source code ***
+[13-11-28::14:09:14] WARNING: #version 140
+#define lowp
+#define mediump
+#define highp
+
+uniform sampler2D envmap;
+uniform samplerCube cubemap;
+
+uniform int mapping;
+
+out vec4 fragColor;
+
+in vec3 v_eye;
+
+// Task_2_1 - ToDo Begin
+// Implement the four requested projection mappings.
+ 
+const float c_pi = 3.1415926;
+
+vec4 env(in vec3 eye)
+{
+	vec4 color;
+	
+	if(0 == mapping) 		// cube
+	{
+		// ToDo: use texture function with the cubemap sampler
+		// vec4(0.0, 0.0, 0.0, 1.0);
+		
+		color = texture(cubemap, eye);
+	}
+	else if(1 == mapping) 	// polar
+	{	
+		// ToDo: use texture function with the envmap sampler
+		// vec4(0.0, 1.0, 0.0, 1.0);
+		
+		vec2 uv = vec2(0.5*(1/c_pi)*atan(eye.x, eye.z), -1*(2/c_pi)*asin(eye.y)) ;
+		if(eye.y>0.0) color = texture(envmap, uv);
+		if(eye.y<=0.0) color = vec3(107, 176, 232);
+	}	
+	else if(2 == mapping) 	// paraboloid
+	{
+		// ToDo: use texture function with the envmap sampler
+		// vec4(0.0, 0.0, 1.0, 1.0);
+		
+		float m = 2.0 + 2.0 * eye.y;
+		vec2 uv = vec2(0.5 + eye.x*(1/m), 0.5 + eye.z*(1/m));
+		if(eye.y>0.0) color = texture(envmap, uv);
+	}
+	else if(3 == mapping) 	// sphere
+	{
+		// ToDo: use texture function with the envmap sampler
+		// vec4(1.0, 1.0, 0.0, 1.0);
+		
+		float m = 2.0*sqrt((eye.x*eye.x) + (eye.y*eye.y) + (1.0 - eye.z)*(1.0 - eye.z)); // x*x != pow(x, 2) WTF?
+		vec2 uv = vec2(1.0 - (0.5 + eye.x*(1/m)), 1.0 - (0.5 + eye.y*(1/m)));
+		color = texture(envmap, uv);		
+	}
+	return color;
+}
+
+// Task_2_1 - ToDo End
+
+void main()
+{
+	vec3 eye = normalize(v_eye);
+	vec4 color = env(eye);
+	
+	fragColor = color;
+}
+ 
+[13-11-28::14:09:14] WARNING: ***
+[13-11-28::14:10:43] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::14:10:43] WARNING: QOpenGLShader::compile(Fragment): Fragment shader failed to compile with the following errors:
+ERROR: 2:34: error(#160) Cannot convert from: "const highp 3-component vector of vec3" to: "highp 4-component vector of vec4"
+ERROR: error(#273) 1 compilation errors.  No code generated
+
+
+[13-11-28::14:10:43] WARNING: *** Problematic Fragment shader source code ***
+[13-11-28::14:10:43] WARNING: #version 140
+#define lowp
+#define mediump
+#define highp
+
+uniform sampler2D envmap;
+uniform samplerCube cubemap;
+
+uniform int mapping;
+
+out vec4 fragColor;
+
+in vec3 v_eye;
+
+// Task_2_1 - ToDo Begin
+// Implement the four requested projection mappings.
+ 
+const float c_pi = 3.1415926;
+
+vec4 env(in vec3 eye)
+{
+	vec4 color;
+	
+	if(0 == mapping) 		// cube
+	{
+		// ToDo: use texture function with the cubemap sampler
+		// vec4(0.0, 0.0, 0.0, 1.0);
+		
+		color = texture(cubemap, eye);
+	}
+	else if(1 == mapping) 	// polar
+	{	
+		// ToDo: use texture function with the envmap sampler
+		// vec4(0.0, 1.0, 0.0, 1.0);
+		
+		vec2 uv = vec2(0.5*(1/c_pi)*atan(eye.x, eye.z), -1*(2/c_pi)*asin(eye.y)) ;
+		if(eye.y>0.0) color = texture(envmap, uv);
+		if(eye.y<=0.0) color = vec3(107/255, 176/255, 232/255);
+	}	
+	else if(2 == mapping) 	// paraboloid
+	{
+		// ToDo: use texture function with the envmap sampler
+		// vec4(0.0, 0.0, 1.0, 1.0);
+		
+		float m = 2.0 + 2.0 * eye.y;
+		vec2 uv = vec2(0.5 + eye.x*(1/m), 0.5 + eye.z*(1/m));
+		if(eye.y>0.0) color = texture(envmap, uv);
+	}
+	else if(3 == mapping) 	// sphere
+	{
+		// ToDo: use texture function with the envmap sampler
+		// vec4(1.0, 1.0, 0.0, 1.0);
+		
+		float m = 2.0*sqrt((eye.x*eye.x) + (eye.y*eye.y) + (1.0 - eye.z)*(1.0 - eye.z)); // x*x != pow(x, 2) WTF?
+		vec2 uv = vec2(1.0 - (0.5 + eye.x*(1/m)), 1.0 - (0.5 + eye.y*(1/m)));
+		color = texture(envmap, uv);		
+	}
+	return color;
+}
+
+// Task_2_1 - ToDo End
+
+void main()
+{
+	vec3 eye = normalize(v_eye);
+	vec4 color = env(eye);
+	
+	fragColor = color;
+}
+ 
+[13-11-28::14:10:43] WARNING: ***
+[13-11-28::14:10:57] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::14:11:02] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::14:12:58] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::14:13:25] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::14:13:40] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::14:14:39] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::14:15:51] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::14:15:56] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::14:17:26] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::14:18:21] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::14:18:35] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::14:18:46] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::14:21:01] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.vert" 
+[13-11-28::14:23:03] Recompiling "C:/Users/Florian/Desktop/Semester 3/cg2/uebung 2/CG2Uebung/data/envmap.frag" 
+[13-11-28::14:24:20] cg2sandbox cg2ws1314.1.. on Qt-5.1.1
+[13-11-28::14:24:20] cg2ws1314.1.. 
+[13-11-28::14:24:21] 
+[13-11-28::14:24:21] GPU: AMD Radeon HD 7800 Series (ATI Technologies Inc., 3.2.12337 Core Profile Context 13.101.0.0)
+[13-11-28::14:24:21] GL Version: 3.2 Core
+[13-11-28::14:24:21] 
+[13-11-28::14:24:21] Setting swap interval to VerticalSyncronization.
+[13-11-28::14:24:23] cube fbo invalid 
+[13-11-28::14:28:04] cg2sandbox cg2ws1314.1.. exited
+[13-11-28::14:28:04] 
