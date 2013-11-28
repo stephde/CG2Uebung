@@ -10,6 +10,8 @@ uniform mat4 viewTransform;
 uniform mat4 projectionTransform;
 uniform mat4 viewTransformInv;
 uniform mat4 projectionTransformInv;
+uniform mat4 viewProjectionTransform;
+uniform vec3 camPos;
 
 in vec3 a_vertex;
 
@@ -22,10 +24,10 @@ void main()
 
 	// ToDo: Retrive the eye vector and pass to next stage
 	
-	v_eye = ( projectionTransformInv * viewTransformInv * (vec4(a_vertex, 1.0))).xyz;
+	v_eye = ( transform * (vec4(a_vertex, 1.0))).xyz - camPos;
 
 
-	gl_Position = transform * vec4(a_vertex, 1.0);
+	gl_Position =  viewProjectionTransform * transform * vec4(a_vertex, 1.0) ;
 }
 
 // Task_2_2 - ToDo End

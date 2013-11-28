@@ -8,6 +8,8 @@ uniform mat4 viewTransform;
 uniform mat4 projectionTransform;
 uniform mat4 viewTransformInv;
 uniform mat4 projectionTransformInv;
+uniform mat4 transform;
+uniform vec3 camPos;
 
 
 
@@ -23,7 +25,8 @@ void main()
 	// the fragment stage for accessing the various projection
 	// mappings. 
 		
-	v_eye = ( projectionTransformInv * viewTransformInv * (vec4(a_vertex, 0.0, 1.0))).xyz;
+	v_eye = ( projectionTransformInv *  vec4(a_vertex, 1.0, 1.0)* viewTransform ).xyz;
+// - camera.eye * projection
 
 	// Task_2_1 - ToDo End
 	

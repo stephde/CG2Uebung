@@ -57,7 +57,10 @@ Painter::~Painter()
         glDeleteTextures(1, &m_cubeTex);
     if (m_cubeDepthRB != -1)
         glDeleteTextures(1, &m_cubeDepthRB);
-
+	if(m_water != -1)
+		glDeleteTextures(1, &m_water);
+	if(m_caustics != -1)
+		glDeleteTextures(1, &m_caustics);
 
     delete m_quad;
     delete m_icosa;
@@ -78,7 +81,6 @@ bool Painter::initialize()
     m_transforms[0].translate(-.5f, 0.f, -.5f);
 
     m_terrains << new Terrain(256, *this);
-    m_terrains << new Terrain(256, *this); // this should give you a plane that you might use as a water plane ;)
 
 
     // Note: You can absolutely modify/paint/change these textures if you like.
@@ -99,7 +101,7 @@ bool Painter::initialize()
 
     // uebung 1_4 +
     m_programs[PaintMode4] = createBasicShaderProgram("data/terrain_1_4.vert", "data/terrain_1_4.frag"); 
-    m_programs[PaintMode5] = createBasicShaderProgram("data/terrain_1_5.vert", "data/terrain_1_5.frag");
+    m_programs[PaintMode5] = createBasicShaderProgram("data/water.vert", "data/water.frag");
 
     // ...
 
@@ -133,7 +135,7 @@ bool Painter::initialize()
 
     // uebung 2_3
 
-   m_programs[TerrainProgram] = createBasicShaderProgram("data/terrain.vert", "data/terrain.frag");
+   m_programs[TerrainProgram] = createBasicShaderProgram("data/terrain_1_4.vert", "data/terrain_1_4.frag");
     
     m_waterheights = FileAssociatedTexture::getOrCreate2D("data/waterheights.png", *this);
     m_waternormals = FileAssociatedTexture::getOrCreate2D("data/waternormals.png", *this);
@@ -157,25 +159,31 @@ bool Painter::initialize()
 
     glGenTextures(1, &m_cubeTex);
     glBindTexture(GL_TEXTURE_CUBE_MAP, m_cubeTex);
-    //glTexParameteri(..., ..., GL_NEAREST);
+    //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     //...
-    //glTexParameteri(..., GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     //...
 
-    // glTexImage2D(...) // for each face ;)
+    /*glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 
+					1024, 1024,         // FIXME
+					0, GL_RGBA, 
+					GL_UNSIGNED_INT_8_8_8_8, &m_cubeTex);// for each face ;)*/
 
     // same procedure again...
 
-    glGenRenderbuffers(1, &m_cubeDepthRB);
+    glGenTextures(1, &m_cubeDepthRB); //glGenRenderBuffer
     glBindTexture(GL_TEXTURE_CUBE_MAP, m_cubeDepthRB);
-    //glTexParameteri(..., ..., GL_NEAREST);
+   // glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     //...
-    //glTexParameteri(..., GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    //glTexParameteri(GL_TEXTURE_CUBEMAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     //...
 
     // Note: Be aware of multiple available DepthBufferComponent formats...
 
-    // glTexImage2D(...) // for each face ;)
+    /*glTexImage2D(GL_TEXTURE_CUBE_MAP, 0, GL_RGBA, 
+					1024, 1024,         // FIXME
+					0, GL_RGBA, 
+					GL_UNSIGNED_INT_8_8_8_8, &m_cubeDepthRB);// for each face ;) */
 
 
     // Task_2_3 - ToDo End
@@ -392,6 +400,13 @@ void Painter::update(const QList<QOpenGLShaderProgram *> & programs)
 
             case SphereProgram:
                 program->setUniformValue("mapping", m_mapping);
+				
+				program->setUniformValue("projectionTransformInv", camera()->projection().inverted());
+				program->setUniformValue("viewTransformInv", camera()->view().inverted());
+				program->setUniformValue("projectionTransform", camera()->projection());
+				program->setUniformValue("viewTransform", camera()->view());
+				program->setUniformValue("viewProjectionTransform", camera()->viewProjection());
+				program->setUniformValue("viewProjectionTransformInv", camera()->viewProjection().inverted());
 
                 program->setUniformValue("envmap", 0);
                 program->setUniformValue("cubemap", 1);
@@ -404,12 +419,6 @@ void Painter::update(const QList<QOpenGLShaderProgram *> & programs)
 
                 program->setUniformValue("transform", m_transforms[1]);
                 //program->setUniformValue("...", camera()->...);
-                program->setUniformValue("projectionTransformInv", camera()->projection().inverted());
-				program->setUniformValue("viewTransformInv", camera()->view().inverted());
-				program->setUniformValue("projectionTransform", camera()->projection());
-				program->setUniformValue("viewTransform", camera()->view());
-				program->setUniformValue("viewProjectionTransform", camera()->viewProjection());
-				program->setUniformValue("viewProjectionTransformInv", camera()->viewProjection().inverted());
 
                 // Task_2_2 - ToDo End
 
@@ -686,6 +695,7 @@ void Painter::paint_2_2_sphere(
 
     program->bind();
     program->setUniformValue("timef", timef);
+	program->setUniformValue("camPos", camera()->eye());
     m_icosa->draw(*this);
     program->release();
 
@@ -706,8 +716,12 @@ void Painter::paint_2_3(float timef)
     glBindFramebuffer(GL_FRAMEBUFFER, m_cubeFBO);
     
     // ToDO: set viewport, clear buffer
-    
+	glClear(GL_FRAMEBUFFER);
+	//glViewport(...);		camera()->viewport().
     // ...
+
+	/* Camera cnx,(m_icosa_center);
+		cnx.setUp(QVector3D(0, -1, 0));*/
 
     paint_2_1_envmap(EnvMapCubeProgram, timef);
 //    paint_2_3_terrain(TerrainCubeProgram, timef);
@@ -735,8 +749,8 @@ void Painter::paint_2_3(float timef)
     // .. draw scene geometry 
 
 
-    //paint_2_3_terrain(TerrainProgram, timef);
-    //paint_2_1_envmap(EnvMapProgram, timef);
+    paint_2_3_terrain(TerrainProgram, timef);
+    paint_2_1_envmap(EnvMapProgram, timef);
 
     // Task_2_3 - ToDo End
 }
@@ -746,6 +760,8 @@ void Painter::paint_2_3_terrain(
     const int programIndex
 ,   float timef)
 {
+	//paint_1_4(timef);
+
     //QOpenGLShaderProgram * program(m_programs[programIndex]);
     //Terrain * terrain(m_terrains[0]);
 

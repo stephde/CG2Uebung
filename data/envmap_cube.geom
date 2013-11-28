@@ -2,7 +2,8 @@
 
 // Task_2_3 - ToDo Begin
 
-//uniform mat4 ...[6];
+//uniform mat4 view[6];
+//uniform mat4 projinvs[6];
 //...
 
 layout (triangles) in;
