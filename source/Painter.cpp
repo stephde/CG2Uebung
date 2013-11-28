@@ -172,10 +172,10 @@ bool Painter::initialize()
 
     // Note: Be aware of multiple available DepthBufferComponent formats...
 
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA,
+    /*glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA,
       &m_cubeTex.width, &m_cubeTex.height, 	// FIXME
       0, GL_RGBA, GL_UNSIGNED_INT_8_8_8_8, &m_cubeTex); // for each face ;)
-
+	*/
 
     // Task_2_3 - ToDo End
 

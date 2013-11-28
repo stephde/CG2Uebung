@@ -1537,3 +1537,11 @@ void main()
 [13-11-28::14:24:23] cube fbo invalid 
 [13-11-28::14:28:04] cg2sandbox cg2ws1314.1.. exited
 [13-11-28::14:28:04] 
+[13-11-28::14:59:13] cg2sandbox cg2ws1314.1.. on Qt-5.1.1
+[13-11-28::14:59:13] cg2ws1314.1.. 
+[13-11-28::14:59:14] 
+[13-11-28::14:59:14] GPU: AMD Radeon HD 7800 Series (ATI Technologies Inc., 3.2.12337 Core Profile Context 13.101.0.0)
+[13-11-28::14:59:14] GL Version: 3.2 Core
+[13-11-28::14:59:14] 
+[13-11-28::14:59:14] Setting swap interval to VerticalSyncronization.
+[13-11-28::14:59:16] cube fbo invalid 
