@@ -168,9 +168,9 @@ bool Painter::initialize()
     for(int i=0; i<6; i++)
 	{
 		glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGBA, 
-					1024, 1024,         
+					CubeMapSize, CubeMapSize,         
 					0, GL_RGBA, 
-					GL_FLOAT, nullptr);// for each face ;)*/
+					GL_UNSIGNED_BYTE, nullptr);// for each face ;)*/
 	}
 
     //same procedure again...
@@ -188,9 +188,9 @@ bool Painter::initialize()
     for(int i=0; i<6; i++)
 	{
 		glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_DEPTH_COMPONENT24, 
-					1024, 1024,         // FIXME
+					CubeMapSize, CubeMapSize,        
 					0, GL_DEPTH_COMPONENT, 
-					GL_FLOAT, nullptr);// for each face ;) 
+					GL_UNSIGNED_BYTE, nullptr);// for each face ;) 
 	}
 
     // Task_2_3 - ToDo End
@@ -358,21 +358,45 @@ void Painter::update(const QList<QOpenGLShaderProgram *> & programs)
 
             case EnvMapCubeProgram:
                 {
-                // Task_2_3 - ToDo Begin
+					QVector3D up = QVector3D(0.0, -1.0, 0.0);
+                	Camera * cnx = new Camera(m_icosa_center, m_icosa_center + QVector3D(1.0, 0.0, 0.0), up); 
+                    Camera * cnmx = new Camera(m_icosa_center, m_icosa_center - QVector3D(1.0, 0.0, 0.0), up); 
+                    Camera * cny = new Camera(m_icosa_center, m_icosa_center + QVector3D(0.0, 1.0, 0.0), up); 
+                    Camera * cnmy = new Camera(m_icosa_center, m_icosa_center - QVector3D(0.0, 1.0, 0.0), up); 
+                    Camera * cnz = new Camera(m_icosa_center, m_icosa_center + QVector3D(0.0, 0.0, 1.0), up); 
+                    Camera * cnmz = new Camera(m_icosa_center, m_icosa_center - QVector3D(0.0, 0.0, 1.0), up); 
+  
+                    cnx->setViewport(QSize(CubeMapSize, CubeMapSize)); 
+                    cnmx->setViewport(QSize(CubeMapSize, CubeMapSize)); 
+                    cny->setViewport(QSize(CubeMapSize, CubeMapSize)); 
+                    cnmy->setViewport(QSize(CubeMapSize, CubeMapSize)); 
+                    cnz->setViewport(QSize(CubeMapSize, CubeMapSize)); 
+                    cnmz->setViewport(QSize(CubeMapSize, CubeMapSize)); 
+  
+                    cnx->setFovy(90.0); 
+                    cnmx->setFovy(90.0); 
+                    cny->setFovy(90.0); 
+                    cnmy->setFovy(90.0); 
+                    cnz->setFovy(90.0); 
+                    cnmz->setFovy(90.0); 
+  
+                    QMatrix4x4 viewProjections[6] = 
+                    { 
+                        cnx->viewProjection(), cnmx->viewProjection(), 
+                        cny->viewProjection(), cnmy->viewProjection(), 
+                        cnz->viewProjection(), cnmz->viewProjection() 
+                    };
+               
+                    QMatrix4x4 views[6] = 
+                    { 
+                        cnx->view(), cnmx->view(), 
+                        cny->view(), cnmy->view(), 
+                        cnz->view(), cnmz->view() 
+                    }; 
 
-                // Provide the appropriate matrices to the geometry shader.
-                // Note: This is basically the same as for task 2_1, but instead
-                // of using the main camera, use 6 cameras with fixed fov, viewport, etc.
-
-                /*QMatrix4x4 transforms[6] = 
-                {
-                    ...
-                };*/
-                //program->setUniformValueArray("", transforms, 6);
-                //...
-                
-                // Task_2_3 - ToDo End
-                }
+                    program->setUniformValueArray("projectionsInverted", viewProjections, 6); 
+                    program->setUniformValueArray("views", views, 6); 
+              }
 
             case EnvMapProgram:
                 program->setUniformValue("mapping", m_mapping);
@@ -727,22 +751,19 @@ void Painter::paint_2_3(float timef)
     
     // ToDO: set viewport, clear buffer
 	glClear(GL_FRAMEBUFFER);
-	//glViewport(...);		camera()->viewport().
-    // ...
+    glClearColor(0.0, 1.0, 0.0, 1.0); 
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); 
+	glViewport(0, 0, CubeMapSize, CubeMapSize);	
 
-	/* Camera cnx(m_icosa_center);
-		cnx.setUp(QVector3D(0, -1, 0));*/
 
     paint_2_1_envmap(EnvMapCubeProgram, timef);
-    //paint_2_3_terrain(TerrainCubeProgram, timef);
-
-
-    // ..
+    paint_2_3_terrain(TerrainCubeProgram, timef);
 
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
     // ... set viewport, setup depth test, 
-
+	glViewport(0, 0, camera()->viewport().width(), camera()->viewport().height()); 
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); 
     // ...
 
     glActiveTexture(GL_TEXTURE2);
