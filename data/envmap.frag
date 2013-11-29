@@ -30,7 +30,7 @@ vec4 env(in vec3 eye)
 		
 		vec2 uv = vec2(0.5*(1/pi)*atan(-eye.x, eye.z), (1/pi)*acos(eye.y)) ;
 
-		color = texture(envmap, uv);//vec4(0.0, 1.0, 0.0, 1.0); // ToDo
+		color = mix(vec4(0.2,0.4,0.6, 1.0), texture(envmap, uv), smoothstep(-0.25, 0.2, eye.y));//vec4(0.0, 1.0, 0.0, 1.0); // ToDo
 	}	
 	else if(2 == mapping) 	// paraboloid
 	{

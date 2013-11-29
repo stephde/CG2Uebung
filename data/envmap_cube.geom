@@ -2,8 +2,8 @@
 
 // Task_2_3 - ToDo Begin
 
-//uniform mat4 view[6];
-//uniform mat4 projinvs[6];
+uniform mat4 view[6];
+uniform mat4 projinvs[6];
 //...
 
 layout (triangles) in;
@@ -17,6 +17,7 @@ void main()
 
 	// use the gl_Layer to set the current cube map face to render to
 	
+	//gl_layer = 1...6;
 	// retrieve the g_eye vector and pass to fragment stage
 	
 	// set  gl_Position, the input is available via 

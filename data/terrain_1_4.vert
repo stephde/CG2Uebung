@@ -23,11 +23,11 @@ void main()
 	// find two vectors that are sufficient for correct light impression.
 	// (It is not required to be absolutely physically correct, but only
 	// to depend on the terrains slope.
-	float prec = 64 * smoothstep(0.0, 1.0, cameraPos/25);
+	float prec =256 * smoothstep(0.0, 1.0, cameraPos/25);
 	vec4 v = texture(height, vec2(a_vertex.x/256, a_vertex.z/256.0));
 	h = v.z;
 	gl_Position = transform * vec4(a_vertex.x/256.0, h, a_vertex.z/256.0, 1.0);
-	texCoord = vec2(a_vertex.x/prec, a_vertex.z/prec); //
+	texCoord = vec2(a_vertex.x/prec, a_vertex.z/prec);
 	
 	// Task_1_4 - ToDo End
 }

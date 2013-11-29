@@ -38,8 +38,8 @@ void main()
 
 	
 	if(h < 0.3) fragColor = mix(	fragColor
-					,texture(caustics, vec2(uvB.x + timef/2, uvA.y)/2)
-					,smoothstep(0.35,0.01,h));
+					,texture(caustics, vec2(uvB.x/4 + timef/2, uvA.y/4)/2)
+					,smoothstep(0.35,0.005,h));
 
 	
 	

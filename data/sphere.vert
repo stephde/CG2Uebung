@@ -2,8 +2,6 @@
 
 // Task_2_2 - ToDo Begin
 
-// uniform mat4 ...;
-// ...
 
 uniform mat4 transform;
 uniform mat4 viewTransform;

@@ -24,7 +24,7 @@ void main()
 	// vec4 refl = ...(r);
 	// vec4 refr = ...(q);
 	
-	// fragColor = ...;
+	fragColor = vec4(1.0,0.0,0.0,1.0);
 }
 
 // Task_2_3 - ToDo End

@@ -159,32 +159,39 @@ bool Painter::initialize()
 
     glGenTextures(1, &m_cubeTex);
     glBindTexture(GL_TEXTURE_CUBE_MAP, m_cubeTex);
-    //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-    //...
-    //glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-    //...
+    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
 
-    /*glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 
-					1024, 1024,         // FIXME
+    for(int i=0; i<6; i++)
+	{
+		glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_RGBA, 
+					1024, 1024,         
 					0, GL_RGBA, 
-					GL_UNSIGNED_INT_8_8_8_8, &m_cubeTex);// for each face ;)*/
+					GL_FLOAT, nullptr);// for each face ;)*/
+	}
 
-    // same procedure again...
+    //same procedure again...
 
-    glGenTextures(1, &m_cubeDepthRB); //glGenRenderBuffer
+    glGenTextures(1, &m_cubeDepthRB); //glGenRenderbuffers
     glBindTexture(GL_TEXTURE_CUBE_MAP, m_cubeDepthRB);
-   // glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-    //...
-    //glTexParameteri(GL_TEXTURE_CUBEMAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-    //...
+    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
 
     // Note: Be aware of multiple available DepthBufferComponent formats...
 
-    /*glTexImage2D(GL_TEXTURE_CUBE_MAP, 0, GL_RGBA, 
+    for(int i=0; i<6; i++)
+	{
+		glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i, 0, GL_DEPTH_COMPONENT24, 
 					1024, 1024,         // FIXME
-					0, GL_RGBA, 
-					GL_UNSIGNED_INT_8_8_8_8, &m_cubeDepthRB);// for each face ;) */
-
+					0, GL_DEPTH_COMPONENT, 
+					GL_FLOAT, nullptr);// for each face ;) 
+	}
 
     // Task_2_3 - ToDo End
 
@@ -202,13 +209,7 @@ bool Painter::initialize()
         qDebug() << "cube fbo invalid";
 
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
-
-    //m_programs[PaintMode4] = createBasicShaderProgram("data/terrain_1_4.vert", "data/terrain_1_4.frag"); 
-    //m_programs[PaintMode5] = createBasicShaderProgram("data/water.vert", "data/water.frag");
-    //...
-
-    //m_programs[OtherProgram] = createBasicShaderProgram("data/other_1.vert", "data/other_1.frag");
-	
+		
     return true;
 }
 
@@ -342,6 +343,7 @@ void Painter::update(const QList<QOpenGLShaderProgram *> & programs)
             case PaintMode6:
             case PaintMode5:
             case PaintMode4:
+				program->setUniformValue("waterHeights", 4);
 				program->setUniformValue("water",    2);
 				program->setUniformValue("caustics", 3);
             case PaintMode3:
@@ -496,7 +498,7 @@ void Painter::paint_1_1(float timef)
 void Painter::paint_1_2(float timef)
 {
     QOpenGLShaderProgram * program(m_programs[PaintMode2]);
-    Terrain * terrain(m_terrains[1]);
+    Terrain * terrain(m_terrains[0]);
 
     if (program->isLinked())
     {
@@ -516,7 +518,7 @@ void Painter::paint_1_2(float timef)
 void Painter::paint_1_3(float timef)
 {
     QOpenGLShaderProgram * program(m_programs[PaintMode3]);
-    Terrain * terrain(m_terrains[1]);
+    Terrain * terrain(m_terrains[0]);
 
     if (program->isLinked())
     {
@@ -545,8 +547,8 @@ void Painter::paint_1_4(float timef)
 {
     QOpenGLShaderProgram * program(m_programs[PaintMode4]);
 	QOpenGLShaderProgram * program2(m_programs[PaintMode5]);
-    Terrain * terrain(m_terrains[1]);
-	Terrain * terWater(m_terrains[2]);
+    Terrain * terrain(m_terrains[0]);
+	Terrain * terWater(m_terrains[0]);
 
 
 
@@ -591,11 +593,19 @@ void Painter::paint_1_4(float timef)
 		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D, m_water);
 
+		glActiveTexture(GL_TEXTURE4);
+		glEnable(GL_TEXTURE_2D);
+		glBindTexture(GL_TEXTURE_2D, m_waterheights);
+
 		program2->bind();
 		program2->setUniformValue("timef", timef);
         terWater->draw(*this);
         program2->release();
 
+        glBindTexture(GL_TEXTURE_2D, 0);
+        glDisable(GL_TEXTURE_2D);
+
+		glActiveTexture(GL_TEXTURE2);		
         glBindTexture(GL_TEXTURE_2D, 0);
         glDisable(GL_TEXTURE_2D);
 
@@ -720,11 +730,11 @@ void Painter::paint_2_3(float timef)
 	//glViewport(...);		camera()->viewport().
     // ...
 
-	/* Camera cnx,(m_icosa_center);
+	/* Camera cnx(m_icosa_center);
 		cnx.setUp(QVector3D(0, -1, 0));*/
 
     paint_2_1_envmap(EnvMapCubeProgram, timef);
-//    paint_2_3_terrain(TerrainCubeProgram, timef);
+    //paint_2_3_terrain(TerrainCubeProgram, timef);
 
 
     // ..
@@ -760,39 +770,39 @@ void Painter::paint_2_3_terrain(
     const int programIndex
 ,   float timef)
 {
-	//paint_1_4(timef);
+	paint_1_4(timef);
 
-    //QOpenGLShaderProgram * program(m_programs[programIndex]);
-    //Terrain * terrain(m_terrains[0]);
+	/*QOpenGLShaderProgram * program(m_programs[PaintMode5]);
+    Terrain * terrain(m_terrains[0]);
 
-    //if (!program->isLinked())
-    //    return;
+    if (!program->isLinked())
+        return;
 
-    //glActiveTexture(GL_TEXTURE0);
-    //glEnable(GL_TEXTURE_2D);
-    //glBindTexture(GL_TEXTURE_2D, m_height);
+    glActiveTexture(GL_TEXTURE0);
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, m_height);
 
-    //glActiveTexture(GL_TEXTURE1);
-    //glEnable(GL_TEXTURE_2D);
-    //glBindTexture(GL_TEXTURE_2D, m_ground);
+    glActiveTexture(GL_TEXTURE1);
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, m_ground);
 
-    //glActiveTexture(GL_TEXTURE2);
-    //glEnable(GL_TEXTURE_2D);
-    //glBindTexture(GL_TEXTURE_2D, m_caustics);
+    glActiveTexture(GL_TEXTURE2);
+    glEnable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, m_caustics);
 
-    //program->bind();
-    //program->setUniformValue("timef", timef);
-    //terrain->draw(*this);
-    //program->release();
+    program->bind();
+    program->setUniformValue("timef", timef);
+    terrain->draw(*this);
+    program->release();
 
-    //glBindTexture(GL_TEXTURE_2D, 0);
-    //glDisable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glDisable(GL_TEXTURE_2D);
 
-    //glActiveTexture(GL_TEXTURE1);
-    //glBindTexture(GL_TEXTURE_2D, 0);
-    //glDisable(GL_TEXTURE_2D);
+    glActiveTexture(GL_TEXTURE1);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glDisable(GL_TEXTURE_2D);
 
-    //glActiveTexture(GL_TEXTURE0);
-    //glBindTexture(GL_TEXTURE_2D, 0);
-    //glDisable(GL_TEXTURE_2D);
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glDisable(GL_TEXTURE_2D);*/
 }
