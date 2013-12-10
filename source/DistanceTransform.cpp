@@ -75,24 +75,24 @@ void DistanceTransform::sedt(const unsigned char threshold)
 	float closest=255.0, dist;
     // Task_3_2 - ToDo Begin
 	//distance = anzahl der steps bis zum auftreffen der kontour
-	for(int y=0; y < m_dstSize.height();y++)
-		for(int x =0; x < m_dstSize.width();x++)
-		{
+	//for(int y=0; y < m_dstsize.height();y++)
+	//	for(int x =0; x < m_dstsize.width();x++)
+	//	{
 
-			//find closest pixel
-			for(int y2=0; y2 < m_dstSize.height();y++)
-				for(int x2 =0; x2 < m_dstSize.width();x++)
-				{
-					c = static_cast<unsigned char>(m_source.bits()[(y2 * w + x2) * step]);
-					if( c >= threshold ){
-						//calc distance
-						dist = sqrt((y-y2)*(y-y2) + (x-x2)*(x-x2));
-						if(dist < closest)closest = dist;
-					}
-				}
-			m_sedt[y * m_dstSize.width() + x] = closest;
-			closest = 255.0;
-		}
+	//		//find closest pixel
+	//		for(int y2=0; y2 < m_dstsize.height();y++)
+	//			for(int x2 =0; x2 < m_dstsize.width();x++)
+	//			{
+	//				c = static_cast<unsigned char>(m_source.bits()[(y2 * w + x2) * step]);
+	//				if( c >= threshold ){
+	//					//calc distance
+	//					dist = sqrt((y-y2)*(y-y2) + (x-x2)*(x-x2));
+	//					if(dist < closest)closest = dist;
+	//				}
+	//			}
+	//		m_sedt[y * m_dstsize.width() + x] = closest;
+	//		closest = 255.0;
+	//	}
 
     // m_sedt << should contain all scaled distances ;)
 
