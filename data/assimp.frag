@@ -18,6 +18,7 @@ in vec3 v_normal;
 in vec2 v_texc;
 in vec3 v_eye;
 in vec3 v_light;
+in vec4 v_shadow;
 
 void main()
 {
@@ -39,8 +40,8 @@ void main()
 	if(useshadow)
 	{
 		// Task_3_3 - ToDo Begin
-	
-		// shadow = ...?
+		vec4 scoord = v_shadow / v_shadow.w;	
+		if(texture(shadowmap, scoord.xy).x + 0.0001 < (scoord.z))shadow = .0;
 
 		// Task_3_3 - ToDo End
 	}

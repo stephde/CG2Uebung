@@ -222,8 +222,12 @@ bool Painter::initialize()
     glBindTexture(GL_TEXTURE_2D, m_depthTex);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT32, ShadowMapSize, ShadowMapSize, 0, GL_DEPTH_COMPONENT, GL_FLOAT, 0);
 
-    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	GLfloat * borderColor = new GLfloat;
+	*borderColor = 1.0;
+
+	glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, borderColor);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_BORDER);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glBindTexture(GL_TEXTURE_2D, 0);
@@ -525,11 +529,17 @@ void Painter::paint_3_4(float timef)
 
     // Task_3_3 - ToDo Begin
 
-    // QMatrix4x4 ...
+	QMatrix4x4 bias = QMatrix4x4(
+		0.5, 0.0, 0.0, 0.5,
+		0.0, 0.5, 0.0, 0.5,
+		0.0, 0.0, 0.5, 0.5,
+		0.0, 0.0, 0.0, 1.0);
+
+	Camera * cam = new Camera(m_light);
     
     program->bind();
     program->setUniformValue("light", m_light);
-    // program->setUniformValue("todo", ?);
+	program->setUniformValue("lightMat", bias * cam->viewProjection());
     program->release();
 
     // Task_3_3 - ToDo End
