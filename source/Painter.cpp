@@ -90,8 +90,7 @@ bool Painter::initialize()
     QOpenGLShaderProgram * program;
 
     // setup default assimp scene shader (rendering the meshes...)
-	m_water		= FileAssociatedTexture::getOrCreate2D("data/water.png", *this);
-
+	
     // ToDo: If you render your own scene (e.g., a terrain, keep in mind
     // to extend your shaders for supporting shadowmaps as well as in assimp shaders...
 
@@ -110,9 +109,12 @@ bool Painter::initialize()
     m_hpicgsLabelAM = FileAssociatedTexture::getOrCreate2D("data/hpicgs_label.png", *this);
     m_portccLabelAM = FileAssociatedTexture::getOrCreate2D("data/companion_cube_label.png", *this);
 
-    // uebung 1_4 +
+	/*
+	// uebung 1_4 +
     m_programs[PaintMode4] = createBasicShaderProgram("data/terrain_1_4.vert", "data/terrain_1_4.frag"); 
     m_programs[PaintMode5] = createBasicShaderProgram("data/water.vert", "data/water.frag");
+	*/
+
     // load and position 3d models in the scene 
     // Note: feel free to modify / add / remove here... there should be at least 
     // a few scene objects visible ;)
@@ -126,11 +128,10 @@ bool Painter::initialize()
     m_plane->transform().translate(0.f, -0.1f, 0.f);
     m_portcc = new AssimpScene(*this, "data/companion_cube.obj", true);
     m_portcc->transform().scale(0.5f, 0.5f, 0.5f);
-    m_portcc->transform().translate(1.1f, 0.73f, 1.2f);
+    m_portcc->transform().translate(1.1f, 0.9f, 1.2f);
     m_portcc->transform().rotate(8.0f, 0.f, 1.0f, 0.f);
 
     // initialize label positions
-
 
     // Task_3_1 - ToDo Begin
 
@@ -144,7 +145,7 @@ bool Painter::initialize()
     // ToDo: use T.translate/scale/rotate ...
 	T.scale(0.5, 0.5, 0.3);
 	T.rotate(-20.0, QVector3D(1.0,0.0,0.0));
-	T.translate(1.0,1.0,0.0);
+	T.translate(0.3,0.8,-0.3);
 
     m_transforms << T;
 
@@ -153,7 +154,7 @@ bool Painter::initialize()
     // ToDo: use T.translate/scale/rotate ...
 	T = QMatrix4x4();
 	T.scale(0.5);
-	T.translate(-1.0,0.25,1.0);
+	T.translate(-0.5,0.0,1.8);
 	T.rotate(-30.0, QVector3D(1.0,0.0,0.0));
 
     m_transforms << T;
@@ -186,10 +187,11 @@ bool Painter::initialize()
         QImage image("data/hpicgs_label_bitmask.png");
 
         // ToDo: pre resize?
+		//image = image.scaled(512, 128, Qt::KeepAspectRatio, Qt::FastTransformation);
 
 		printf("Calculate Distance Transform...\n");
         DistanceTransform DT(image, 512, 128, 0.0625f);
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_R32F, 512, 128, 0, GL_RED, GL_FLOAT, DT.data());
+        //glTexImage2D(GL_TEXTURE_2D, 0, GL_R32F, 512, 128, 0, GL_RED, GL_FLOAT, DT.data());
     }
     glGenerateMipmap(GL_TEXTURE_2D);
 
@@ -205,10 +207,10 @@ bool Painter::initialize()
         QImage image("data/companion_cube_label_bitmask.png");
 
         // ToDo: pre resize?
-        // image = image.scaled(? , ? , Qt::FastTransformation);
+        //image = image.scaled(512, 128, Qt::KeepAspectRatio, Qt::FastTransformation);
 
         DistanceTransform DT(image, 512, 128, 0.0625f);
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_R32F, 512, 128, 0, GL_RED, GL_FLOAT, DT.data());
+        //glTexImage2D(GL_TEXTURE_2D, 0, GL_R32F, 512, 128, 0, GL_RED, GL_FLOAT, DT.data());
     }        
     glGenerateMipmap(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, 0);
