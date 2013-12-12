@@ -477,10 +477,10 @@ void Painter::paint_3_3_shadowmap(float timef)
 
     // Task_3_3 - ToDo Begin
 
-    QMatrix4x4 L;
+	Camera * lcam = new Camera(m_light);
 
-    // L ...
-
+	QMatrix4x4 L = lcam->viewProjection();
+	
     // Task_3_3 - ToDo End
 
 
