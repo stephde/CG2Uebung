@@ -47,9 +47,9 @@ void Terrain::draw(
 
     // gl.glEnable(...
     // ...
-	glEnable(GL_PRIMITIVE_RESTART);
+	gl.glEnable(GL_PRIMITIVE_RESTART);
 	//glEnable(GL_PRIMITIVE_RESTART_FIXED_INDEX);
-	glEnable(GL_CULL_FACE);
+	gl.glEnable(GL_CULL_FACE);
 	glDisable(GL_CULL_FACE);
 	//glEnable(GL_DEPTH_TEST);
 	gl.glPrimitiveRestartIndex(static_cast<unsigned short int>(-1));
@@ -66,8 +66,8 @@ void Terrain::draw(
     // ...
 	gl.glDisableVertexAttribArray(0);
 	//glDisable(GL_PRIMITIVE_RESTART_FIXED_INDEX);
-	glDisable(GL_PRIMITIVE_RESTART);
-	glDisable(GL_CULL_FACE);
+	gl.glDisable(GL_PRIMITIVE_RESTART);
+	gl.glDisable(GL_CULL_FACE);
     // Task_1_1 - ToDo End
 }
 
