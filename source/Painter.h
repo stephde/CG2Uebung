@@ -77,15 +77,8 @@ protected:
 
     QMap<int, QOpenGLShaderProgram *> m_programs;
     QList<QOpenGLShader *> m_shaders;
-
-<<<<<<< HEAD
-    AssimpScene * m_hpicgs;
-    AssimpScene * m_plane;
-    AssimpScene * m_portcc;
-	GLuint m_water;
-=======
+	
     PatchedTerrain * m_terrain;
->>>>>>> 71fa8611a44069b12df735feda137393968dfad4
 
     std::vector<unsigned short> m_heights;
 

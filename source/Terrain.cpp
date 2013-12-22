@@ -50,7 +50,7 @@ void Terrain::draw(
 	gl.glEnable(GL_PRIMITIVE_RESTART);
 	//glEnable(GL_PRIMITIVE_RESTART_FIXED_INDEX);
 	gl.glEnable(GL_CULL_FACE);
-	glDisable(GL_CULL_FACE);
+	gl.glDisable(GL_CULL_FACE);
 	//glEnable(GL_DEPTH_TEST);
 	gl.glPrimitiveRestartIndex(static_cast<unsigned short int>(-1));
     gl.glEnableVertexAttribArray(0);

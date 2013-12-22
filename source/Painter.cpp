@@ -210,9 +210,6 @@ void Painter::update(const QList<QOpenGLShaderProgram *> & programs)
                 program->setUniformValue("detail",  3);
                 program->setUniformValue("detailn", 4);
                 break;
-            case LabelAlphaMappingProgram:
-            case LabelDistanceMapProgram:
-                program->setUniformValue("label", 0);
                 //case OtherProgram: // feel free to use more than one program per mode...
                 //    break;
 
@@ -319,12 +316,10 @@ void Painter::patchify(
     //{
     //    // check culling
 
-	Camera * lcam = new Camera(m_light);
     //    //if (cull(.., .., ..))
     //    //    xLOD = 3;
     //    // ...
 
-	QMatrix4x4 L = lcam->viewProjection();
 	
     //    //m_terrain->drawPatch(QVector3D(x, 0.0, z), extend, bLOD, rLOD, tLOD, lLOD);
     //}
@@ -349,18 +344,6 @@ void Painter::paint_4_1(float timef)
         glActiveTexture(GL_TEXTURE2);
         glEnable(GL_TEXTURE_2D);
         glBindTexture(GL_TEXTURE_2D, m_diffuse);
-	QMatrix4x4 bias = QMatrix4x4(
-		0.5, 0.0, 0.0, 0.5,
-		0.0, 0.5, 0.0, 0.5,
-		0.0, 0.0, 0.5, 0.5,
-		0.0, 0.0, 0.0, 1.0);
-
-	Camera * cam = new Camera(m_light);
-    
-    program->bind();
-    program->setUniformValue("light", m_light);
-	program->setUniformValue("lightMat", bias * cam->viewProjection());
-    program->release();
 
         glActiveTexture(GL_TEXTURE3);
         glEnable(GL_TEXTURE_2D);
