@@ -264,7 +264,7 @@ void Painter::patchify()
     // You can modify the signature of patchify as it pleases you.
     // This function is called whenever the camera changes.
 
-    patchify(8.f, 0.f, 0.f, 0);
+	patchify(8.f, 0.f, 0.f, m_level);
 
     // Task_4_1 - ToDo End
 }
@@ -307,22 +307,32 @@ void Painter::patchify(
     // Feel free to implement this in any way with as few or as much traversals
     // /passes/recursions you need.
 
-    // Checkt out the paper "Seamless Patches for GPU-Based Terrain Rendering"
+    // Check out the paper "Seamless Patches for GPU-Based Terrain Rendering"
 
-    //if () // needs subdivide?
-    //{
-    //}
+	float p = 1.0;
+	float distance;
+	if(m_camera != nullptr)distance = m_camera->center().y();
+	else distance = 1.0;
+	float lod = level;
+
+	float epsilon = p * level / distance;
+    if (epsilon < 1) // needs subdivide?
+    {
+		lod++;
+    }
     //else // draw patch!
-    //{
-    //    // check culling
+    {
+    //     check culling
 
-    //    //if (cull(.., .., ..))
-    //    //    xLOD = 3;
-    //    // ...
+    //    if (cull(.., .., ..))
+    //        xLOD = 3;
+    //     ...
 
 	
-    //    //m_terrain->drawPatch(QVector3D(x, 0.0, z), extend, bLOD, rLOD, tLOD, lLOD);
-    //}
+        m_terrain->drawPatch(QVector3D(x, 0.0, z), extend, lod-1, lod-1, lod, lod); //bLOD, rLOD, tLOD, lLOD);
+    }
+
+	//m_terrain->drawPatch(QVector3D(x, 0.0, z), extend, 1, 1, 1, 1);
 
     // Task_4_1 - ToDo End
 }
