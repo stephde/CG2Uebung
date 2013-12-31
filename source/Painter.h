@@ -6,6 +6,7 @@
 #include <QVector3D>
 
 #include "AbstractPainter.h"
+#include "EnvironmentMapping.h"
 
 class QOpenGLShader;
 class QOpenGLShaderProgram;
@@ -97,4 +98,6 @@ protected:
     float m_precission;
     int m_level;
     QVector3D m_cachedEye;
+
+	EnvironmentMapping * m_envMap;
 };

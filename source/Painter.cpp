@@ -92,6 +92,8 @@ bool Painter::initialize()
 
     glClearColor(0.6f, 0.8f, 0.94f, 1.f);
 
+	m_envMap = new EnvironmentMapping(*this);
+
     return true;
 }
 
@@ -217,6 +219,8 @@ void Painter::update(const QList<QOpenGLShaderProgram *> & programs)
             program->release();
 		}
 	}
+
+	m_envMap->update(camera());
 }
 
 void Painter::paint(float timef)
@@ -311,7 +315,7 @@ void Painter::patchify(
 
 	float p = 1.0;
 	float distance;
-	if(m_camera != nullptr)distance = m_camera->center().y();
+	if(camera() != nullptr)distance = camera()->center().y();
 	else distance = 1.0;
 	float lod = level;
 
@@ -375,6 +379,9 @@ void Painter::paint_4_1(float timef)
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, 0);
     }
+	
+	m_envMap->paintEnvmap(timef, *this);
+
 }
 
 
