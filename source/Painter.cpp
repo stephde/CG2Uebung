@@ -114,6 +114,9 @@ void Painter::keyPressEvent(QKeyEvent * event)
         m_precission *= (event->modifiers() && Qt::Key_Shift ? 1.1f : 1.f / 1.1f);
         patchify();
         break;
+	case Qt::Key_M:
+        m_envMap->nextMapping(camera());
+        break;
     default:
         break;
     }

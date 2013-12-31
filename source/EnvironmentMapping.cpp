@@ -21,41 +21,6 @@ EnvironmentMapping::~EnvironmentMapping()
 	delete m_quad;
 }
 
-QOpenGLShaderProgram * EnvironmentMapping::createBasicShaderProgram(
-    const QString & vertexShaderFileName
-    , const QString & fragmentShaderFileName)
-{
-    QOpenGLShaderProgram * program = new QOpenGLShaderProgram();
-
-    m_shaders << FileAssociatedShader::getOrCreate(
-        QOpenGLShader::Vertex, vertexShaderFileName, *program);
-    m_shaders << FileAssociatedShader::getOrCreate(
-        QOpenGLShader::Fragment, fragmentShaderFileName, *program);
-    program->bindAttributeLocation("a_vertex", 0);
-    program->link();
-
-    return program;
-}
-
-QOpenGLShaderProgram * EnvironmentMapping::createBasicShaderProgram(
-    const QString & vertexShaderFileName
-    , const QString & geometryShaderFileName
-    , const QString & fragmentShaderFileName)
-{
-    QOpenGLShaderProgram * program = new QOpenGLShaderProgram();
-
-    m_shaders << FileAssociatedShader::getOrCreate(
-        QOpenGLShader::Vertex, vertexShaderFileName, *program);
-    m_shaders << FileAssociatedShader::getOrCreate(
-        QOpenGLShader::Geometry, geometryShaderFileName, *program);
-    m_shaders << FileAssociatedShader::getOrCreate(
-        QOpenGLShader::Fragment, fragmentShaderFileName, *program);
-    program->bindAttributeLocation("a_vertex", 0);
-    program->link();
-
-    return program;
-}
-
 void EnvironmentMapping::bindEnvMaps(GLenum target, OpenGLFunctions &gl)
 {
     // In the case of cube mapping another texture 
@@ -122,6 +87,12 @@ void EnvironmentMapping::update(Camera * camera)
 
 		m_program->release();
 	}
+}
+
+void EnvironmentMapping::nextMapping(Camera * camera)
+{
+	m_mapping = static_cast<EnvironmentMappingType>((m_mapping + 1) % 4);
+    update(camera);
 }
 
 void EnvironmentMapping::paintEnvmap(float timef, OpenGLFunctions &gl)
