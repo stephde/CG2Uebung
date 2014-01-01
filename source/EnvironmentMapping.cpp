@@ -65,22 +65,10 @@ void EnvironmentMapping::update(Camera * camera)
 	{
 		m_program->bind();
 
-		 m_program->setUniformValue("mapping", m_mapping);
-
-		// Task_2_1 - ToDo Begin
-
-		// Set required matrix/matrices of the vertex shader...
-		// Note: use the camera()-> ... matrices here (e.g., view, projection, or inverted, etc..)
-
+		m_program->setUniformValue("mapping", m_mapping);
+		 
 		m_program->setUniformValue("projectionTransformInv", camera->projection().inverted());
-		m_program->setUniformValue("viewTransformInv", camera->view().inverted());
-		m_program->setUniformValue("projectionTransform", camera->projection());
 		m_program->setUniformValue("viewTransform", camera->view());
-		m_program->setUniformValue("viewProjectionTransform", camera->viewProjection());
-		m_program->setUniformValue("viewProjectionTransformInv", camera->viewProjection().inverted());
-		//...
-
-		// Task_2_1 - ToDo End
 
 		m_program->setUniformValue("envmap", 0);
 		m_program->setUniformValue("cubemap", 1);

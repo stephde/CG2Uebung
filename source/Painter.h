@@ -7,6 +7,7 @@
 
 #include "AbstractPainter.h"
 #include "EnvironmentMapping.h"
+#include "WaterRenderer.h"
 
 class QOpenGLShader;
 class QOpenGLShaderProgram;
@@ -100,4 +101,5 @@ protected:
     QVector3D m_cachedEye;
 
 	EnvironmentMapping * m_envMap;
+	WaterRenderer * m_waterRenderer;
 };

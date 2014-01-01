@@ -45,6 +45,9 @@ Painter::~Painter()
     qDeleteAll(m_shaders);
 
     FileAssociatedTexture::clean(*this);
+
+	delete m_envMap;
+	delete m_waterRenderer;
 }
 
 bool Painter::initialize()
@@ -93,6 +96,7 @@ bool Painter::initialize()
     glClearColor(0.6f, 0.8f, 0.94f, 1.f);
 
 	m_envMap = new EnvironmentMapping(*this);
+	m_waterRenderer = new WaterRenderer(*this);
 
     return true;
 }
@@ -224,6 +228,7 @@ void Painter::update(const QList<QOpenGLShaderProgram *> & programs)
 	}
 
 	m_envMap->update(camera());
+	m_waterRenderer->update(camera());
 }
 
 void Painter::paint(float timef)
@@ -384,7 +389,7 @@ void Painter::paint_4_1(float timef)
     }
 	
 	m_envMap->paintEnvmap(timef, *this);
-
+	m_waterRenderer->paintWater(timef, *this);
 }
 
 

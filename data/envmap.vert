@@ -2,15 +2,8 @@
 
 // Task_2_1 - ToDo Begin
 
-uniform mat4 viewProjectionTransform;
-uniform mat4 viewProjectionTransformInv;
 uniform mat4 viewTransform;
-uniform mat4 projectionTransform;
-uniform mat4 viewTransformInv;
 uniform mat4 projectionTransformInv;
-uniform mat4 transform;
-uniform vec3 camPos;
-
 
 
 in vec2 a_vertex;
