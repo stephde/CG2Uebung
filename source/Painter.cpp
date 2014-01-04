@@ -320,19 +320,21 @@ void Painter::patchify(
     // /passes/recursions you need.
 
     // Check out the paper "Seamless Patches for GPU-Based Terrain Rendering"
-
 	float p = 1.0;
 	float distance;
 	if(camera() != nullptr)distance = camera()->center().y();
 	else distance = 1.0;
-	float lod = level;
+	float lod = 1;
 
 	float epsilon = p * level / distance;
-    if (epsilon < 1) // needs subdivide?
+    if (epsilon < 1 && level < 3) // needs subdivide?
     {
-		lod++;
+		patchify(extend/2.0, x, z, level + 1);
+		patchify(extend/2.0, x + extend/2.0, z, level + 1);
+		patchify(extend/2.0, x, z + extend/2.0, level + 1);
+		patchify(extend/2.0, x + extend/2.0, z + extend/2.0, level + 1);
     }
-    //else // draw patch!
+    else // draw patch!
     {
     //     check culling
 

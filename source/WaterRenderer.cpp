@@ -4,12 +4,13 @@ WaterRenderer::WaterRenderer(OpenGLFunctions &gl)
 {
 	
     //m_caustics  = FileAssociatedTexture::getOrCreate2D("data/caustics.png", gl);
-	m_water		= FileAssociatedTexture::getOrCreate2D("data/water.png", gl);
-	m_waterheights = FileAssociatedTexture::getOrCreate2D("data/waterheights.png", gl);
+	m_water		= FileAssociatedTexture::getOrCreate2D("data/water.png", gl, GL_MIRRORED_REPEAT, GL_MIRRORED_REPEAT);
+	m_waterheights = FileAssociatedTexture::getOrCreate2D("data/waterheights.png", gl, GL_MIRRORED_REPEAT, GL_MIRRORED_REPEAT);
     //m_waternormals = FileAssociatedTexture::getOrCreate2D("data/waternormals.png", gl);
 
 	m_program = createBasicShaderProgram("data/water.vert", "data/water.frag");
     m_terrain = new Terrain(256, gl);
+
 }
 
 WaterRenderer::~WaterRenderer()
@@ -50,7 +51,7 @@ void WaterRenderer::paintWater(float timef, OpenGLFunctions &gl)
 		gl.glActiveTexture(GL_TEXTURE4);
 		gl.glEnable(GL_TEXTURE_2D);
 		gl.glBindTexture(GL_TEXTURE_2D, m_waterheights);
-
+		
 		m_program->bind();
 		m_program->setUniformValue("timef", timef);
         m_terrain->draw(gl);
