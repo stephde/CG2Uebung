@@ -4,12 +4,12 @@ EnvironmentMapping::EnvironmentMapping(OpenGLFunctions &gl)
 	: m_mapping(CubeMapping)
 	, m_quad(nullptr)
 {
-	m_envmaps[CubeMapping]       = FileAssociatedTexture::getOrCreateCube("data/env_cube_?.png", gl);
-    m_envmaps[PolarMapping]      = FileAssociatedTexture::getOrCreate2D("data/env_polar_half.png", gl);
-    m_envmaps[ParaboloidMapping] = FileAssociatedTexture::getOrCreate2D("data/env_paraboloid.png", gl);
-    m_envmaps[SphereMapping]     = FileAssociatedTexture::getOrCreate2D("data/env_sphere.png", gl);
+	m_envmaps[CubeMapping]       = FileAssociatedTexture::getOrCreateCube("data/envMapping/env_cube_?.png", gl);
+    m_envmaps[PolarMapping]      = FileAssociatedTexture::getOrCreate2D("data/envMapping/env_polar_half.png", gl);
+    m_envmaps[ParaboloidMapping] = FileAssociatedTexture::getOrCreate2D("data/envMapping/env_paraboloid.png", gl);
+    m_envmaps[SphereMapping]     = FileAssociatedTexture::getOrCreate2D("data/envMapping/env_sphere.png", gl);
 	
-    m_program = createBasicShaderProgram("data/envmap.vert", "data/envmap.frag");
+    m_program = createBasicShaderProgram("data/envMapping/envmap.vert", "data/envMapping/envmap.frag");
 
 	m_quad = new ScreenAlignedQuad(gl);  
 }
