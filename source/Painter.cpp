@@ -97,6 +97,8 @@ bool Painter::initialize()
 
 	m_envMap = new EnvironmentMapping(*this);
 	m_waterRenderer = new WaterRenderer(*this);
+	m_labeler = new Labeler();
+	m_labeler->createLabel(*this, "data/hpicgs_label.png");
 
     return true;
 }
@@ -392,6 +394,7 @@ void Painter::paint_4_1(float timef)
 	
 	m_envMap->paintEnvmap(timef, *this);
 	m_waterRenderer->paintWater(timef, *this);
+	m_labeler->paintLabels(timef, *this, camera());
 }
 
 

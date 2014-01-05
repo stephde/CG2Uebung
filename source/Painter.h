@@ -8,6 +8,7 @@
 #include "AbstractPainter.h"
 #include "EnvironmentMapping.h"
 #include "WaterRenderer.h"
+#include "Labeler.h"
 
 class QOpenGLShader;
 class QOpenGLShaderProgram;
@@ -102,4 +103,5 @@ protected:
 
 	EnvironmentMapping * m_envMap;
 	WaterRenderer * m_waterRenderer;
+	Labeler * m_labeler;
 };
