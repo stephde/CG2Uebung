@@ -99,6 +99,10 @@ bool Painter::initialize()
 	m_waterRenderer = new WaterRenderer(*this);
 	m_labeler = new Labeler();
 	m_labeler->createLabel(*this, "data/hpicgs_label.png");
+	m_objectRenderer = new ObjectRenderer(*this);
+	int i = m_objectRenderer->addSceneObject("data/hpicgs.obj",*this);
+	m_objectRenderer->transformSceneObject(i, QVector3D(-0.9f, 1.8f, -0.3f), 56.0f, QVector3D(0.f, 1.0f, 0.f));
+
 
     return true;
 }
@@ -393,8 +397,9 @@ void Painter::paint_4_1(float timef)
     }
 	
 	m_envMap->paintEnvmap(timef, *this);
-	m_waterRenderer->paintWater(timef, *this);
+	m_waterRenderer->paintWater(timef, m_height, *this);
 	m_labeler->paintLabels(timef, *this, camera());
+	m_objectRenderer->paintSceneObjects(timef, *this, camera());
 }
 
 

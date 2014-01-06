@@ -9,6 +9,7 @@
 #include "EnvironmentMapping.h"
 #include "WaterRenderer.h"
 #include "Labeler.h"
+#include "ObjectRenderer.h"
 
 class QOpenGLShader;
 class QOpenGLShaderProgram;
@@ -104,4 +105,5 @@ protected:
 	EnvironmentMapping * m_envMap;
 	WaterRenderer * m_waterRenderer;
 	Labeler * m_labeler;
+	ObjectRenderer * m_objectRenderer;
 };

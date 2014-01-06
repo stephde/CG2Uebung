@@ -37,12 +37,16 @@ void WaterRenderer::update(Camera * camera)
 	}
 }
 
-void WaterRenderer::paintWater(float timef, OpenGLFunctions &gl)
+void WaterRenderer::paintWater(float timef, GLuint height, OpenGLFunctions &gl)
 {
 	if(m_program->isLinked())
 	{
 		gl.glEnable(GL_BLEND);
 		gl.glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
+
+		gl.glActiveTexture(GL_TEXTURE0);
+		gl.glEnable(GL_TEXTURE_2D);
+		gl.glBindTexture(GL_TEXTURE_2D, height);
 
 		gl.glActiveTexture(GL_TEXTURE2);
 		gl.glEnable(GL_TEXTURE_2D);
@@ -61,6 +65,10 @@ void WaterRenderer::paintWater(float timef, OpenGLFunctions &gl)
         gl.glDisable(GL_TEXTURE_2D);
 
 		gl.glActiveTexture(GL_TEXTURE2);		
+        gl.glBindTexture(GL_TEXTURE_2D, 0);
+        gl.glDisable(GL_TEXTURE_2D);
+
+		gl.glActiveTexture(GL_TEXTURE0);		
         gl.glBindTexture(GL_TEXTURE_2D, 0);
         gl.glDisable(GL_TEXTURE_2D);
 

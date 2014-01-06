@@ -10,7 +10,7 @@ uniform float timef;
 
 in vec3 a_vertex;
  
-out float h;
+//out float h;
 out float waterH;
 out vec2 texCoord;
 out vec4 pos;
@@ -18,7 +18,7 @@ out vec4 pos;
 
 void main()
 {
-	h = texture(height, vec2(a_vertex.x, a_vertex.z)).x;
+	//h = texture(height, vec2(a_vertex.x, a_vertex.z)).x;
 
 	waterH = texture(waterHeights, vec2(a_vertex.x/256.0 + timef/10, a_vertex.z/256.0 + timef/100)).x;
 

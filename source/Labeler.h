@@ -5,8 +5,7 @@
 #include "ScreenAlignedQuad.h"
 #include "Camera.h"
 
-class Label{
-public:
+struct Label{
 	ScreenAlignedQuad * label;
 	GLuint texture;
 	QMatrix4x4 transforms;

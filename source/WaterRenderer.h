@@ -17,7 +17,7 @@ public:
 
 	void update(Camera * camera);
 
-	void paintWater(float timef, OpenGLFunctions &gl);
+	void paintWater(float timef, GLuint height, OpenGLFunctions &gl);
 
 protected:
 	Terrain * m_terrain;
