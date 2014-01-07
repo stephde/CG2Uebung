@@ -98,7 +98,7 @@ bool Painter::initialize()
 	m_envMap = new EnvironmentMapping(*this);
 	m_waterRenderer = new WaterRenderer(*this);
 	m_labeler = new Labeler();
-	m_labeler->createLabel(*this, "data/hpicgs_label.png");
+	m_labeler->createLabel(*this, "data/hpicgs_label.png", QVector3D(0.8f, 0.3f, -0.5f));
 	m_objectRenderer = new ObjectRenderer(*this);
 	int i = m_objectRenderer->addSceneObject("data/hpicgs.obj",*this);
 	m_objectRenderer->transformSceneObject(i, QVector3D(-0.9f, 1.8f, -0.3f), 56.0f, QVector3D(0.f, 1.0f, 0.f));

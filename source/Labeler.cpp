@@ -23,17 +23,17 @@ int Labeler::createLabel(OpenGLFunctions & gl,
 						 const QString & fileName,
 						 QVector3D pos	, 
 						 QVector3D scale , 
-						 QVector3D rot)
+						 float angle, QVector3D rot)
 {
 	int index = m_labels.size();
 	m_labels << new Label();
 	
-	m_labels[index]->label = new ScreenAlignedQuad(gl);
+	m_labels[index]->label = new ScreenAlignedQuad(gl, 0);
 	m_labels[index]->texture = FileAssociatedTexture::getOrCreate2D(fileName, gl);
 	m_labels[index]->transforms = QMatrix4x4();
-	m_labels[index]->transforms.translate(scale);
 	m_labels[index]->transforms.translate(pos);
-	m_labels[index]->transforms.translate(rot);
+	m_labels[index]->transforms.rotate(angle, rot);
+	m_labels[index]->transforms.scale(scale);
 
 
 	return index;
@@ -45,9 +45,6 @@ void Labeler::transformLabel(int index, QMatrix4x4 transform){}
 
 void Labeler::paintLabels(float timef, OpenGLFunctions & gl, Camera * cam)
 {
-	/*
-			//m_vao of screenalignedquad is undefined
-	
 	gl.glEnable(GL_BLEND);
     gl.glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
@@ -66,5 +63,5 @@ void Labeler::paintLabels(float timef, OpenGLFunctions & gl, Camera * cam)
     m_program->release();
 
     gl.glBindTexture(GL_TEXTURE_2D, 0);
-    gl.glDisable(GL_BLEND);*/
+    gl.glDisable(GL_BLEND);
 }

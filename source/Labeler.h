@@ -24,7 +24,7 @@ public:
 	int createLabel(OpenGLFunctions & gl, const QString & fileName, 
 						 QVector3D pos	= QVector3D(1.0, 1.0, 1.0), 
 						 QVector3D scale = QVector3D(1.0, 1.0, 1.0), 
-						 QVector3D rot	= QVector3D(1.0, 1.0, 1.0));
+						 float angle = 0.0, QVector3D rot	= QVector3D(1.0, 1.0, 1.0));
 	void deleteLabel(int index);
 	void transformLabel(int index, QMatrix4x4 transform);
 
