@@ -326,6 +326,33 @@ void Painter::patchify(
     // /passes/recursions you need.
 
     // Check out the paper "Seamless Patches for GPU-Based Terrain Rendering"
+
+
+
+	/****
+
+	Quadtree * root;
+
+	if( camera to close)
+	{
+		Quaddtree** children = root->subdivide();
+
+		for each children
+		{
+			patchify(children)
+		}
+	}
+
+	traverse quadtree
+	{
+		check neighbours for incositincies
+	}
+
+
+	***/
+
+
+
 	float p = 1.0;
 	float distance;
 	if(camera() != nullptr)distance = camera()->center().y();
