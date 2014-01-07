@@ -7,6 +7,10 @@ ObjectRenderer::ObjectRenderer(OpenGLFunctions & gl)
     m_program->bindAttributeLocation("a_normal", 1);
     m_program->bindAttributeLocation("a_texc", 2);    
     m_program->link();
+
+	m_useShadow = true;
+
+	m_shadowRenderer = new ShadowRenderer(gl);
 }
 
 ObjectRenderer::~ObjectRenderer()
@@ -19,14 +23,17 @@ int ObjectRenderer::addSceneObject(const QString & filePath, OpenGLFunctions & g
 {
 	int index = m_sceneObjects.size();
 
-	m_sceneObjects << new AssimpScene(gl, filePath, true);
+	m_sceneObjects.insert(index, new AssimpScene(gl, filePath, true));
 
 	return index;
 }
 
 void ObjectRenderer::removeSceneObject(int index)
 {
-
+	if(0 <= index && index <= m_sceneObjects.size())
+	{
+		m_sceneObjects.remove(index);
+	}
 }
 
 void ObjectRenderer::transformSceneObject(int index, 
@@ -51,9 +58,32 @@ void ObjectRenderer::paintSceneObjects(float timef, OpenGLFunctions & gl, Camera
     m_program->setUniformValue("view", camera->view());
     m_program->release();
 
-	QList<AssimpScene *>::iterator i;
-	for(i=m_sceneObjects.begin(); i!=m_sceneObjects.end(); i++)
+	for(auto i : m_sceneObjects.toStdMap())
 	{
-		(*i)->draw(gl, *m_program);
+		i.second->draw(gl, *m_program);
+	}
+
+	if(m_useShadow)
+	{
+		QOpenGLShaderProgram * program = m_shadowRenderer->startShadowing(light, gl);
+
+		paintSceneObjects(timef, gl, camera, program);
+
+		m_shadowRenderer->endShadowing(camera, gl);
+	}
+}
+
+void ObjectRenderer::paintSceneObjects(float timef, OpenGLFunctions & gl, Camera * camera,  QOpenGLShaderProgram * program, QVector3D light)
+{
+	program->bind();
+    program->setUniformValue("light", light);
+    program->setUniformValue("useshadow", true);
+    program->setUniformValue("projection", camera->projection());
+    program->setUniformValue("view", camera->view());
+    program->release();
+
+	for(auto i : m_sceneObjects.toStdMap())
+	{
+		i.second->draw(gl, *m_program);
 	}
 }

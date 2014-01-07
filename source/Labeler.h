@@ -31,7 +31,7 @@ public:
 private:
 
 	//labels
-	QList<Label *> m_labels;
+	QMap<int, Label *> m_labels;
 };
 
 #endif

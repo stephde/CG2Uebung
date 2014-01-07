@@ -3,16 +3,14 @@
 
 
 Labeler::Labeler(){
-	//m_labels = QList<Label *>();
-	//m_labels << new Label();
-
 	m_program = createBasicShaderProgram("data/label.vert", "data/labelAM.frag");
     m_program->bind();
     m_program->bindAttributeLocation("a_vertex", 0);
-    m_program->setUniformValue("label", 0);
+    //m_program->setUniformValue("label", 0);
     m_program->release();
 	m_program->link();
 }
+
 Labeler::~Labeler(){
 	qDeleteAll(m_labels);
 }
@@ -26,7 +24,7 @@ int Labeler::createLabel(OpenGLFunctions & gl,
 						 float angle, QVector3D rot)
 {
 	int index = m_labels.size();
-	m_labels << new Label();
+	m_labels.insert(index, new Label());
 	
 	m_labels[index]->label = new ScreenAlignedQuad(gl, 0);
 	m_labels[index]->texture = FileAssociatedTexture::getOrCreate2D(fileName, gl);
@@ -39,8 +37,17 @@ int Labeler::createLabel(OpenGLFunctions & gl,
 	return index;
 }
 
-void Labeler::deleteLabel(int index){}
-void Labeler::transformLabel(int index, QMatrix4x4 transform){}
+void Labeler::deleteLabel(int index)
+{
+	if(0 <= index && index <= m_labels.size())
+	{
+		m_labels.remove(index);
+	}
+}
+void Labeler::transformLabel(int index, QMatrix4x4 transform)
+{
+	
+}
 
 
 void Labeler::paintLabels(float timef, OpenGLFunctions & gl, Camera * cam)
@@ -52,12 +59,11 @@ void Labeler::paintLabels(float timef, OpenGLFunctions & gl, Camera * cam)
 	
 	m_program->bind();
 
-	QList<Label *>::iterator i;
-	for(i=m_labels.begin(); i != m_labels.end(); i++)
+	for(auto i : m_labels.toStdMap())
 	{
-		gl.glBindTexture(GL_TEXTURE_2D, (*i)->texture);
-		m_program->setUniformValue("mvp", cam->viewProjection() * (*i)->transforms);
-		(*i)->label->draw(gl);
+		gl.glBindTexture(GL_TEXTURE_2D, i.second->texture);
+		m_program->setUniformValue("mvp", cam->viewProjection() * i.second->transforms);
+		i.second->label->draw(gl);
 	}
 		
     m_program->release();
