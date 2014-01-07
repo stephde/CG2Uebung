@@ -10,6 +10,7 @@
 #include "WaterRenderer.h"
 #include "Labeler.h"
 #include "ObjectRenderer.h"
+#include "TreeNode.h"
 
 class QOpenGLShader;
 class QOpenGLShaderProgram;
@@ -60,6 +61,8 @@ protected:
     ,   float x
     ,   float z
     ,   int level);
+	void patchify(TreeNode * node, int lvl);
+	void traversQuadtree(TreeNode * node);
    
     float height(
         const float x
@@ -106,4 +109,5 @@ protected:
 	WaterRenderer * m_waterRenderer;
 	Labeler * m_labeler;
 	ObjectRenderer * m_objectRenderer;
+	TreeNode * m_quadtreeRoot;
 };

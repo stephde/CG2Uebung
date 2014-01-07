@@ -282,9 +282,58 @@ void Painter::patchify()
     // You can modify the signature of patchify as it pleases you.
     // This function is called whenever the camera changes.
 
-	patchify(8.f, 0.f, 0.f, m_level);
+	m_quadtreeRoot = new TreeNode(nullptr, 0.0, 0.0, 8.0);
+
+	patchify(m_quadtreeRoot, 1);
+
+	//draw patches for new QuadTree
+
+	traversQuadtree(m_quadtreeRoot);
+
+	//patchify(8.f, 0.f, 0.f, m_level);
 
     // Task_4_1 - ToDo End
+}
+
+void Painter::traversQuadtree(TreeNode * node)
+{
+	if(node->hasChildren())
+	{
+		for(auto i : node->children())
+		{
+			traversQuadtree(i.second);
+		}
+	}else{
+		m_terrain->drawPatch(QVector3D(node->x(), 0.0, node->z()), node->extend(), 1, 1, 1, 1);
+	}
+}
+
+void Painter::patchify(TreeNode * node, int lvl)
+{
+	//if resolution not high enough --> subdivide
+
+	//calculate distance from patch to camera
+	// ToDo: How do i know the height of the patch !?!?
+	QVector3D vPatch = QVector3D( node->x() + node->extend()/2, 0.0, node->z());
+	QVector3D vCam = camera()->eye();
+	QVector3D vDist = (vPatch - vCam);
+	float d = sqrt( vDist.x()*vDist.x() + vDist.y() * vDist.y() + vDist.z() * vDist.z() );
+
+	if(((d * lvl) < 5 )&& (lvl < 3))
+	{
+		std::map<TreeNode::Children, TreeNode*> children = node->subdivide();
+		
+		for( auto i : children)
+		{
+			patchify(i.second, lvl+1);
+		}
+	}
+
+	/**traverse quadtree
+	{
+		check neighbours for incositincies
+	}
+	***/
 }
 
 bool Painter::cull(
