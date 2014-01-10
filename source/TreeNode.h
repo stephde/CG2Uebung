@@ -8,7 +8,7 @@ class TreeNode
 {
 public:
 	TreeNode(TreeNode * parent, float x, float z, float extend);
-	~TreeNode();
+	virtual ~TreeNode();
 
 	bool hasChildren();
 	bool isRoot();

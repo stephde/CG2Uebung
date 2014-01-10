@@ -5,9 +5,19 @@ TreeNode::TreeNode(TreeNode * parent, float x, float z, float extend)
 {
 	m_parent = parent;
 
-	m_x = x;
-	m_z = z;
+	m_x = x - extend / 2;
+	m_z = z - extend / 2;
 	m_extend = extend;
+}
+
+TreeNode::~TreeNode()
+{
+	m_parent = nullptr;
+
+	for(auto i : m_children)
+	{
+		delete i.second;
+	}
 }
 
 bool TreeNode::hasChildren()
