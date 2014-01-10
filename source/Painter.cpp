@@ -306,7 +306,11 @@ void Painter::traversQuadtree(TreeNode * node)
 			traversQuadtree(i.second);
 		}
 	}else{
-		m_terrain->drawPatch(QVector3D(node->x(), 0.0, node->z()), node->extend(), 0, 0, 0, 0);
+		auto lods = node->tileLods();
+
+		typedef TreeNode::Tiles t;
+
+		m_terrain->drawPatch(QVector3D(node->x(), 0.0, node->z()), node->extend(), lods[t::N], lods[t::E], lods[t::S], lods[t::W]);
 	}
 }
 
@@ -321,13 +325,19 @@ void Painter::patchify(TreeNode * node, int lvl)
 	QVector3D vDist = (vPatch - vCam);
 	float d = sqrt( vDist.x()*vDist.x() + vDist.y() * vDist.y() + vDist.z() * vDist.z() );
 
-	if(((d * lvl) < 30 )&& (lvl < 5))
+	if( ( (d * (lvl + node->avgLod())) < 30 ) && (lvl < 5) )
 	{
-		std::map<TreeNode::Children, TreeNode*> children = node->subdivide();
-		
-		for( auto i : children)
+		if(node->canIncreaseLods())
 		{
-			patchify(i.second, lvl+1);
+			node->increaseLods();
+			patchify(node, lvl+1);
+		}else{
+			std::map<TreeNode::Children, TreeNode*> children = node->subdivide();
+
+			for( auto i : children)
+			{
+				patchify(i.second, lvl+1);
+			}
 		}
 	}
 

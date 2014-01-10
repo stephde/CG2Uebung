@@ -17,13 +17,20 @@ public:
 	//give children their position (NW, NE, ...) as parameter
 	
 	enum Children{ NW, NE, SW, SE };
-	enum Tiles{ N, E, S, W};
+	enum Tiles{ N, E, S, W, END};
 	
 	typedef std::pair<TreeNode::Children, TreeNode *> childEntry;
+	typedef std::pair<TreeNode::Tiles, int> tileEntry;
 
 	std::map<Children, TreeNode*> subdivide();
 
 	std::map<Children, TreeNode*> children(){return m_children;}
+
+	bool canIncreaseLods();
+	void increaseLods();
+	void setLod(Tiles t, int lod);
+	std::map<Tiles, int> tileLods(){return m_tileLods;}
+	int avgLod();
 
 	float x(){return m_x;}
 	float z(){return m_z;}

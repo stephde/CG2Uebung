@@ -8,6 +8,11 @@ TreeNode::TreeNode(TreeNode * parent, float x, float z, float extend)
 	m_x = x - extend / 2;
 	m_z = z - extend / 2;
 	m_extend = extend;
+
+	for(int i = Tiles::N; i != Tiles::END; i++)
+	{
+		m_tileLods.insert(tileEntry(static_cast<Tiles>(i), (0)));
+	}
 }
 
 TreeNode::~TreeNode()
@@ -47,4 +52,39 @@ std::map<TreeNode::Children, TreeNode*> TreeNode::subdivide()
 	//return array of children
 
 	return m_children;
+}
+
+bool TreeNode::canIncreaseLods()
+{
+	if(m_tileLods[Tiles::N] < 2)
+		return true;
+
+	return false;
+}
+
+void TreeNode::increaseLods()
+{
+	std::map<Tiles, int>::iterator it;
+	for(it = m_tileLods.begin(); it!= m_tileLods.end(); it++)
+	{
+		it->second++;
+	}
+}
+
+void TreeNode::setLod(Tiles t, int lod)
+{
+	if(0 <= lod && lod < 3)
+		m_tileLods[t] = lod;
+}
+
+int TreeNode::avgLod()
+{
+	int avg = 0;
+	std::map<Tiles, int>::iterator it;
+	for(it = m_tileLods.begin(); it != m_tileLods.end(); it++)
+	{
+		avg += it->second;
+	}
+
+	return static_cast<int>(avg / m_tileLods.size());
 }
