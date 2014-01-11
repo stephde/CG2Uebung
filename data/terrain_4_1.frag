@@ -31,7 +31,8 @@ void main()
 		
 		// 1P for having a detail map that blends in based
 		// on the fragments distance.
-		
+	d = mix(d, texture(detail, v_texc * 16).xyz, 0.25);
+	
 		// 1P for having atmospheric scattering (fake or real)
 		// -> use e.g., the gl_FragCoord.z for this
 

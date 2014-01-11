@@ -1,9 +1,9 @@
 #include "TreeNode.h"
 
 
-TreeNode::TreeNode(TreeNode & parent, float x, float z, float extend, Children childType)
+TreeNode::TreeNode(TreeNode * parent, float x, float z, float extend, Children childType)
 {
-	m_parent = &parent;
+	m_parent = parent;
 
 	m_x = x - extend / 2;
 	m_z = z - extend / 2;
@@ -15,10 +15,14 @@ TreeNode::TreeNode(TreeNode & parent, float x, float z, float extend, Children c
 		m_tileLods.insert(TileEntry(static_cast<Tiles>(i), (1)));
 	}
 
-	if(m_parent == nullptr)m_rekursionLevel = 0;
-	else m_rekursionLevel = m_parent->rekursionLevel() + 1;
-
-	m_positionNumber = pow(10, MAXIMUM_DEPTH-m_rekursionLevel) * m_childType + m_parent->positionNumber();
+	if(m_childType == Children::ROOT)
+	{
+		m_rekursionLevel = 0;
+		m_positionNumber = 0;
+	}else{
+		m_rekursionLevel = m_parent->rekursionLevel() + 1;
+		m_positionNumber = pow(10, MAXIMUM_DEPTH-m_rekursionLevel) * m_childType + m_parent->positionNumber();
+	}
 }
 
 TreeNode::~TreeNode()
@@ -40,13 +44,13 @@ bool TreeNode::hasChildren()
 
 bool TreeNode::isRoot()
 {
-	if(m_parent == nullptr /*&& m_childType == Children::ROOT*/)
+	if(m_childType == Children::ROOT /* && m_parent == nullptr*/)
 		return true;
 
 	return false;
 }
 
-TreeNode * TreeNode::children(Children type)
+TreeNode * TreeNode::children(const Children type)
 {
 	return m_children[type];
 }
@@ -71,15 +75,15 @@ std::map<TreeNode::Tiles, TreeNode *> TreeNode::getAdj()
 TreeNode * TreeNode::getN()
 {
 	int lvl = MAXIMUM_DEPTH - m_rekursionLevel;
-	int value;
+	int value = 2 * pow(10, lvl) ;
 
 	while((value % static_cast<int>(pow(10, lvl))) < 3)
 	{
 		if((value % static_cast<int>(pow(10, lvl))) == 0)
 			return nullptr;
 
+		++lvl;
 		value += 2 * pow(10, lvl);
-		lvl++;
 	}
 	
 
@@ -91,15 +95,15 @@ TreeNode * TreeNode::getN()
 TreeNode * TreeNode::getE()
 {
 	int lvl = MAXIMUM_DEPTH - m_rekursionLevel;
-	int value;
+	int value = pow(10, lvl);
 
 	while((value % static_cast<int>(pow(10, lvl))) % 2 == 0)
 	{
 		if((value % static_cast<int>(pow(10, lvl))) == 0)
 			return nullptr;
 
+		++lvl;
 		value -= pow(10, lvl);
-		lvl++;
 	}
 	
 
@@ -112,15 +116,15 @@ TreeNode * TreeNode::getE()
 TreeNode * TreeNode::getS()
 {
 	int lvl = MAXIMUM_DEPTH - m_rekursionLevel;
-	int value;
+	int value = 2 * pow(10, lvl);
 
 	while((value % static_cast<int>(pow(10, lvl))) >= 3)
 	{
 		if((value % static_cast<int>(pow(10, lvl))) == 0)
 			return nullptr;
-
+		
+		++lvl;
 		value -= 2 * pow(10, lvl);
-		lvl++;
 	}
 	
 
@@ -132,15 +136,15 @@ TreeNode * TreeNode::getS()
 TreeNode * TreeNode::getW()
 {
 	int lvl = MAXIMUM_DEPTH - m_rekursionLevel;
-	int value;
+	int value = pow(10, lvl);
 
 	while((value % static_cast<int>(pow(10, lvl))) % 2 == 0)
 	{
 		if((value % static_cast<int>(pow(10, lvl))) == 0)
 			return nullptr;
-
+		
+		++lvl;
 		value += pow(10, lvl);
-		lvl++;
 	}
 	
 
@@ -152,10 +156,10 @@ std::map<TreeNode::Children, TreeNode*> TreeNode::subdivide()
 {
 	//create all 4 children
 	float e = m_extend/2;
-	m_children.insert(ChildEntry(Children::NW, new TreeNode(*this, m_x, m_z, e, Children::NW)));
-	m_children.insert(ChildEntry(Children::NE, new TreeNode(*this, m_x + e, m_z, e, Children::NE)));
-	m_children.insert(ChildEntry(Children::SW, new TreeNode(*this, m_x, m_z + e, e, Children::SW)));
-	m_children.insert(ChildEntry(Children::SE, new TreeNode(*this, m_x + e, m_z + e, e, Children::SE)));
+	m_children.insert(ChildEntry(Children::NW, new TreeNode(this, m_x, m_z, e, Children::NW)));
+	m_children.insert(ChildEntry(Children::NE, new TreeNode(this, m_x + e, m_z, e, Children::NE)));
+	m_children.insert(ChildEntry(Children::SW, new TreeNode(this, m_x, m_z + e, e, Children::SW)));
+	m_children.insert(ChildEntry(Children::SE, new TreeNode(this, m_x + e, m_z + e, e, Children::SE)));
 
 	//return array of children
 	return m_children;
@@ -196,6 +200,10 @@ int TreeNode::avgLod()
 	return static_cast<int>(avg / m_tileLods.size());
 }
 
+TreeNode * TreeNode::getNodeForValue(int value)
+{
+	return nullptr;
+}
 
 void TreeNode::correctTree(TreeNode * node)
 {
@@ -219,6 +227,7 @@ void TreeNode::correctTree(TreeNode * node)
 				case Tiles::E:
 				case Tiles::S:
 				case Tiles::W:
+					break;
 			}
 		}
 	}
