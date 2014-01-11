@@ -1,9 +1,9 @@
 #include "TreeNode.h"
 
 
-TreeNode::TreeNode(TreeNode * parent, float x, float z, float extend, Children childType)
+TreeNode::TreeNode(TreeNode & parent, float x, float z, float extend, Children childType)
 {
-	m_parent = parent;
+	m_parent = &parent;
 
 	m_x = x - extend / 2;
 	m_z = z - extend / 2;
@@ -12,7 +12,7 @@ TreeNode::TreeNode(TreeNode * parent, float x, float z, float extend, Children c
 
 	for(int i = Tiles::N; i != Tiles::END; i++)
 	{
-		m_tileLods.insert(tileEntry(static_cast<Tiles>(i), (1)));
+		m_tileLods.insert(TileEntry(static_cast<Tiles>(i), (1)));
 	}
 
 	if(m_parent == nullptr)m_rekursionLevel = 0;
@@ -40,7 +40,8 @@ bool TreeNode::hasChildren()
 
 bool TreeNode::isRoot()
 {
-	if(m_parent == nullptr)return true;
+	if(m_parent == nullptr /*&& m_childType == Children::ROOT*/)
+		return true;
 
 	return false;
 }
@@ -55,10 +56,16 @@ std::map<TreeNode::Tiles, TreeNode *> TreeNode::getAdj()
 {
 	std::map<TreeNode::Tiles, TreeNode *> adj;
 	
-	adj.insert(adjEntry( Tiles::N, getN() ));
-	adj.insert(adjEntry( Tiles::E, getE() ));
-	adj.insert(adjEntry( Tiles::S, getS() ));
-	adj.insert(adjEntry( Tiles::W, getW() ));
+	TreeNode * node = getN();
+	if(node != nullptr)adj.insert(AdjEntry( Tiles::N, getN() ));
+	node = getE();
+	if(node != nullptr)adj.insert(AdjEntry( Tiles::E, getE() ));
+	node = getS();
+	if(node != nullptr)adj.insert(AdjEntry( Tiles::S, getS() ));
+	node = getW();
+	if(node != nullptr)adj.insert(AdjEntry( Tiles::W, getW() ));
+
+	return adj;
 }
 
 TreeNode * TreeNode::getN()
@@ -145,14 +152,12 @@ std::map<TreeNode::Children, TreeNode*> TreeNode::subdivide()
 {
 	//create all 4 children
 	float e = m_extend/2;
-	m_children.insert(childEntry(Children::NW, new TreeNode(this, m_x, m_z, e, Children::NW)));
-	m_children.insert(childEntry(Children::NE, new TreeNode(this, m_x + e, m_z, e, Children::NE)));
-	m_children.insert(childEntry(Children::SW, new TreeNode(this, m_x, m_z + e, e, Children::SW)));
-	m_children.insert(childEntry(Children::SE, new TreeNode(this, m_x + e, m_z + e, e, Children::SE)));
-
+	m_children.insert(ChildEntry(Children::NW, new TreeNode(*this, m_x, m_z, e, Children::NW)));
+	m_children.insert(ChildEntry(Children::NE, new TreeNode(*this, m_x + e, m_z, e, Children::NE)));
+	m_children.insert(ChildEntry(Children::SW, new TreeNode(*this, m_x, m_z + e, e, Children::SW)));
+	m_children.insert(ChildEntry(Children::SE, new TreeNode(*this, m_x + e, m_z + e, e, Children::SE)));
 
 	//return array of children
-
 	return m_children;
 }
 
@@ -189,4 +194,32 @@ int TreeNode::avgLod()
 	}
 
 	return static_cast<int>(avg / m_tileLods.size());
+}
+
+
+void TreeNode::correctTree(TreeNode * node)
+{
+	//if Patch not last
+	if(node->hasChildren())
+	{
+		auto children = node->children();
+		for(auto i : children)
+		{
+			correctTree(i.second);
+		}
+	}else{
+		//get patches left, right ...
+		auto neighbors = node->getAdj();
+		for(auto i : neighbors)
+		{
+			//check if neighbor lod is compatible with nodes Lod
+			switch(i.first)
+			{
+				case Tiles::N:
+				case Tiles::E:
+				case Tiles::S:
+				case Tiles::W:
+			}
+		}
+	}
 }

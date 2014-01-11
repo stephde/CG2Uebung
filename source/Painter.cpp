@@ -286,6 +286,9 @@ void Painter::patchify()
 
 	patchify(m_quadtreeRoot, 1);
 
+	//cheack for inconsistencies beetwen the Lods
+	TreeNode::correctTree(m_quadtreeRoot);
+
 	//draw patches for new QuadTree
 
 	renderQuadtree(m_quadtreeRoot);
@@ -295,24 +298,6 @@ void Painter::patchify()
 	//patchify(8.f, 0.f, 0.f, m_level);
 
     // Task_4_1 - ToDo End
-}
-
-void Painter::checkTree(TreeNode * node)
-{
-	//if Patch not last
-	if(node->hasChildren())
-	{
-		auto children = node->children();
-		for(auto i : children)
-		{
-			checkTree(i.second);
-		}
-	}else{
-		//get patches left, right ...
-
-		//if not null
-		//
-	}
 }
 
 void Painter::renderQuadtree(TreeNode * node)
