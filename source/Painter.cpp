@@ -282,13 +282,13 @@ void Painter::patchify()
     // You can modify the signature of patchify as it pleases you.
     // This function is called whenever the camera changes.
 
-	m_quadtreeRoot = new TreeNode(nullptr, 4.0, 4.0, 8.0);
+	m_quadtreeRoot = new TreeNode(nullptr, 4.0, 4.0, 8.0, TreeNode::Children::ROOT);
 
 	patchify(m_quadtreeRoot, 1);
 
 	//draw patches for new QuadTree
 
-	traversQuadtree(m_quadtreeRoot);
+	renderQuadtree(m_quadtreeRoot);
 
 	delete m_quadtreeRoot;
 
@@ -297,13 +297,31 @@ void Painter::patchify()
     // Task_4_1 - ToDo End
 }
 
-void Painter::traversQuadtree(TreeNode * node)
+void Painter::checkTree(TreeNode * node)
+{
+	//if Patch not last
+	if(node->hasChildren())
+	{
+		auto children = node->children();
+		for(auto i : children)
+		{
+			checkTree(i.second);
+		}
+	}else{
+		//get patches left, right ...
+
+		//if not null
+		//
+	}
+}
+
+void Painter::renderQuadtree(TreeNode * node)
 {
 	if(node->hasChildren())
 	{
 		for(auto i : node->children())
 		{
-			traversQuadtree(i.second);
+			renderQuadtree(i.second);
 		}
 	}else{
 		auto lods = node->tileLods();
@@ -327,18 +345,18 @@ void Painter::patchify(TreeNode * node, int lvl)
 
 	if( ( (d * (lvl + node->avgLod())) < 30 ) && (lvl < 5) )
 	{
-		if(node->canIncreaseLods())
+		/*if(node->canIncreaseLods())
 		{
 			node->increaseLods();
 			patchify(node, lvl+1);
-		}else{
+		}else{*/
 			std::map<TreeNode::Children, TreeNode*> children = node->subdivide();
 
 			for( auto i : children)
 			{
 				patchify(i.second, lvl+1);
 			}
-		}
+		//}
 	}
 
 	/**traverse quadtree
@@ -485,9 +503,9 @@ void Painter::paint_4_1(float timef)
     }
 	
 	m_envMap->paintEnvmap(timef, *this);
-	m_waterRenderer->paintWater(timef, m_height, *this);
-	m_labeler->paintLabels(timef, *this, camera());
-	m_objectRenderer->paintSceneObjects(timef, *this, camera());
+	//m_waterRenderer->paintWater(timef, m_height, *this);
+	//m_labeler->paintLabels(timef, *this, camera());
+	//m_objectRenderer->paintSceneObjects(timef, *this, camera());
 }
 
 

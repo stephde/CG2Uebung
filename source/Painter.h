@@ -62,7 +62,8 @@ protected:
     ,   float z
     ,   int level);
 	void patchify(TreeNode * node, int lvl);
-	void traversQuadtree(TreeNode * node);
+	void renderQuadtree(TreeNode * node);
+	void checkTree(TreeNode * node);
    
     float height(
         const float x
