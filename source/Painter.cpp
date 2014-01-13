@@ -98,7 +98,7 @@ bool Painter::initialize()
 	m_envMap = new EnvironmentMapping(*this);
 	m_waterRenderer = new WaterRenderer(*this);
 	m_labeler = new Labeler();
-	m_labeler->createLabel(*this, "data/hpicgs_label.png", QVector3D(0.8f, 0.3f, -0.5f));
+	m_labeler->createLabel(*this, "data/grandcanyon_label.png", QVector3D(0.8f, 0.3f, -0.5f));
 	m_objectRenderer = new ObjectRenderer(*this);
 	int i = m_objectRenderer->addSceneObject("data/hpicgs.obj",*this);
 	m_objectRenderer->transformSceneObject(i, QVector3D(-0.9f, 1.8f, -0.3f), 56.0f, QVector3D(0.f, 1.0f, 0.f));
@@ -377,29 +377,29 @@ bool Painter::cull(
 	bool doCull[3] = {false, false, false};
 
 	QVector4D v = camera()->viewProjection() * v0;
-	if(v.x() < 0 || v.y() < 0 || v.z() < 0)
+	if(v.x() < -1.0 || v.y() < -1.0 || v.z() < -1.0)
 		doCull[0] = true;
 	else{
 		v /= v.w();
-		if(v.x() > 1.0 || v.y() > 1.0 || v.z() > 1.0)
+		if((v.x() < 1.0 && v.x() > -1.0) || (v.y() < 1.0 && v.y() > -1.0) || (v.z() < 1.0 && v.z() > -1.0))
 			doCull[0] = true;
 	}
 
 	v = camera()->viewProjection() * v1;
-	if(v.x() < 0 || v.y() < 0 || v.z() < 0)
+	if(v.x() < -1.0 || v.y() < -1.0 || v.z() < -1.0)
 		doCull[1] = true;
 	else{
 		v /= v.w();
-		if(v.x() > 1.0 || v.y() > 1.0 || v.z() > 1.0)
+		if((v.x() < 1.0 && v.x() > -1.0) || (v.y() < 1.0 && v.y() > -1.0) || (v.z() < 1.0 && v.z() > -1.0))
 			doCull[1] = true;
 	}
 
 	v = camera()->viewProjection() * v2;
-	if(v.x() < 0 || v.y() < 0 || v.z() < 0)
+	if(v.x() < -1.0 || v.y() < -1.0 || v.z() < -1.0)
 		doCull[2] = true;
 	else{
 		v /= v.w();
-		if(v.x() > 1.0 || v.y() > 1.0 || v.z() > 1.0)
+		if((v.x() < 1.0 && v.x() > -1.0) || (v.y() < 1.0 && v.y() > -1.0) || (v.z() < 1.0 && v.z() > -1.0))
 			doCull[2] = true;
 	}
     // Task_4_1 - ToDo End
@@ -525,7 +525,7 @@ void Painter::paint_4_1(float timef)
 	
 	m_envMap->paintEnvmap(timef, *this);
 	//m_waterRenderer->paintWater(timef, m_height, *this);
-	//m_labeler->paintLabels(timef, *this, camera());
+	m_labeler->paintLabels(timef, *this, camera());
 	//m_objectRenderer->paintSceneObjects(timef, *this, camera());
 }
 
