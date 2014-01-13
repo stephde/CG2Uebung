@@ -313,7 +313,16 @@ void Painter::renderQuadtree(TreeNode * node)
 
 		typedef TreeNode::Tiles t;
 
-		m_terrain->drawPatch(QVector3D(node->x(), 0.0, node->z()), node->extend(), lods[t::N], lods[t::E], lods[t::S], lods[t::W]);
+		if(!cull(QVector4D(node->x(),					height(node->x(), node->z()),		node->z(), 1.0),
+				 QVector4D(node->x()+node->extend(),	height(node->x()+node->extend(),	node->z()), node->z(), 1.0),
+				 QVector4D(node->x(),					height(node->x(),					node->z()+node->extend()), node->z()+node->extend(), 1.0))
+		|| !cull(QVector4D(node->x(),					height(node->x(), node->z()+node->extend()),	node->z()+node->extend(), 1.0),
+				 QVector4D(node->x()+node->extend(),	height(node->x()+node->extend(),	node->z()), node->z(), 1.0),
+				 QVector4D(node->x()+node->extend(),	height(node->x()+node->extend(),	node->z()+node->extend()), node->z()+node->extend(), 1.0))
+				 )
+		{
+			m_terrain->drawPatch(QVector3D(node->x(), 0.0, node->z()), node->extend(), lods[t::N], lods[t::E], lods[t::S], lods[t::W]);
+		}
 	}
 }
 
@@ -365,10 +374,37 @@ bool Painter::cull(
     // With that in mind, it should be simpler to cull...
 
     // If you like, make use of QVector3D, QVector4D (toVector3DAffine), QPolygonF (boundingRect), and QRectF (intersects)
+	bool doCull[3] = {false, false, false};
 
+	QVector4D v = camera()->viewProjection() * v0;
+	if(v.x() < 0 || v.y() < 0 || v.z() < 0)
+		doCull[0] = true;
+	else{
+		v /= v.w();
+		if(v.x() > 1.0 || v.y() > 1.0 || v.z() > 1.0)
+			doCull[0] = true;
+	}
+
+	v = camera()->viewProjection() * v1;
+	if(v.x() < 0 || v.y() < 0 || v.z() < 0)
+		doCull[1] = true;
+	else{
+		v /= v.w();
+		if(v.x() > 1.0 || v.y() > 1.0 || v.z() > 1.0)
+			doCull[1] = true;
+	}
+
+	v = camera()->viewProjection() * v2;
+	if(v.x() < 0 || v.y() < 0 || v.z() < 0)
+		doCull[2] = true;
+	else{
+		v /= v.w();
+		if(v.x() > 1.0 || v.y() > 1.0 || v.z() > 1.0)
+			doCull[2] = true;
+	}
     // Task_4_1 - ToDo End
 
-    return false;
+    return !doCull[0] || !doCull[1] || !doCull[2];
 }
 
 void Painter::patchify(
