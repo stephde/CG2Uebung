@@ -70,4 +70,19 @@ set(sources
     source/FlightNavigation.cpp
     source/FlightNavigation.h
 
+	source/AbstractRenderer.h
+	source/AbstractRenderer.cpp
+	source/EnvironmentMapping.h
+	source/EnvironmentMapping.cpp
+	source/Labeler.h
+	source/Labeler.cpp
+	source/ObjectRenderer.h
+	source/ObjectRenderer.cpp
+	source/ShadowRenderer.h
+	source/ShadowRenderer.cpp
+	source/WaterRenderer.h
+	source/WaterRenderer.cpp
+	source/TreeNode.h
+	source/TreeNode.cpp
+
     PARENT_SCOPE)

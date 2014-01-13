@@ -23,7 +23,7 @@ public:
 	//methods for children
 	std::map<Children, TreeNode*> subdivide();
 	std::map<Children, TreeNode*> children(){return m_children;}
-	TreeNode* children(Children type);
+	TreeNode* children(const Children type);
 	
 	//methods for neighbors
 	std::map<TreeNode::Tiles, TreeNode *> getAdj();
