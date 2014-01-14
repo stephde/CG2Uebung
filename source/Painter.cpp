@@ -287,17 +287,15 @@ void Painter::patchify()
 
 	patchify(m_quadtreeRoot, 1);
 
-	//cheack for inconsistencies beetwen the Lods
-	TreeNode::correctTree(m_quadtreeRoot);
+	//check for inconsistencies beetwen the Lods
+	//TreeNode::correctTree(m_quadtreeRoot);
 
 	//draw patches for new QuadTree
 
 	renderQuadtree(m_quadtreeRoot);
 
 	//delete m_quadtreeRoot;
-
-	//patchify(8.f, 0.f, 0.f, m_level);
-
+	
     // Task_4_1 - ToDo End
 }
 
@@ -311,27 +309,58 @@ void Painter::renderQuadtree(TreeNode * node)
 		}
 	}else{
 		auto lods = node->tileLods();
-
+		float e = node->extend();
 		typedef TreeNode::Tiles t;
 
-		//ToDo: change to culling tiles instead of patches
-		if(!cull(QVector4D(node->x(),					height(node->x(), node->z()),		node->z(), 1.0),
-				 QVector4D(node->x()+node->extend(),	height(node->x()+node->extend(),	node->z()), node->z(), 1.0),
-				 QVector4D(node->x(),					height(node->x(),					node->z()+node->extend()), node->z()+node->extend(), 1.0))
-		|| !cull(QVector4D(node->x(),					height(node->x(), node->z()+node->extend()),	node->z()+node->extend(), 1.0),
-				 QVector4D(node->x()+node->extend(),	height(node->x()+node->extend(),	node->z()), node->z(), 1.0),
-				 QVector4D(node->x()+node->extend(),	height(node->x()+node->extend(),	node->z()+node->extend()), node->z()+node->extend(), 1.0))
-				 )
-		{
-			m_terrain->drawPatch(QVector3D(node->x(), 0.0, node->z()), node->extend(), lods[t::N], lods[t::E], lods[t::S], lods[t::W]);
-		}
+		QVector<QVector4D> v;
+		v.append(QVector4D(node->x(),		height(node->x(),		node->z()),		node->z(), 1.0));
+		v.append(QVector4D(node->x()+e,		height(node->x()+e,		node->z()),		node->z(), 1.0));
+		v.append(QVector4D(node->x()+e/2,	height(node->x()+e/2,	node->z()+e/2), node->z()+e/2, 1.0));
+		if(cull(v))
+			lods[t::N] = 3;
+
+		v.clear();
+		v.append(QVector4D(node->x()+e,		height(node->x()+e,		node->z()),		node->z(), 1.0));
+		v.append(QVector4D(node->x()+e,		height(node->x()+e,		node->z()),		node->z(), 1.0));
+		v.append(QVector4D(node->x()+e/2,	height(node->x()+e/2,	node->z()+e/2), node->z()+e/2, 1.0));
+		if(cull(v))
+			lods[t::E] = 3;
+
+		v.clear();
+		v.append(QVector4D(node->x(),		height(node->x(),		node->z()+e),	node->z()+e, 1.0));
+		v.append(QVector4D(node->x()+e/2,	height(node->x()+e/2,	node->z()+e/2), node->z()+e/2, 1.0));
+		v.append(QVector4D(node->x()+e,		height(node->x()+e,		node->z()+e),	node->z()+e, 1.0));
+		if(cull(v))
+			lods[t::S] = 3;
+
+		v.clear();
+		v.append(QVector4D(node->x(),		height(node->x(),		node->z()),		node->z(), 1.0));
+		v.append(QVector4D(node->x()+e/2,	height(node->x()+e/2,	node->z()+e/2), node->z()+e/2, 1.0));
+		v.append(QVector4D(node->x(),		height(node->x(),		node->z()+e),	node->z()+e, 1.0));
+		if(cull(v))
+			lods[t::W] = 3;
+
+		m_terrain->drawPatch(QVector3D(node->x(), 0.0, node->z()), node->extend(), lods[t::N], lods[t::E], lods[t::S], lods[t::W]);
 	}
 }
 
 void Painter::patchify(TreeNode * node, int lvl)
 {
-	//if resolution not high enough --> subdivide
+	// Task_4_1 - ToDo Begin
 
+    // Use an ad-hoc or "static" approach where you decide to either 
+    // subdivide the terrain patch and continue with the resulting
+    // children (2x2 or 4x4), or initiate a draw call of patch.
+    // For the draw call the LODs for all four tiles are required.
+    // For skipping a tile (e.g., because of culling), use LOD = 3.
+
+    // This functions signature suggest a recursive approach.
+    // Feel free to implement this in any way with as few or as much traversals
+    // /passes/recursions you need.
+
+    // Check out the paper "Seamless Patches for GPU-Based Terrain Rendering"
+
+	
 	//calculate distance from patch to camera
 	QVector3D vPatch = QVector3D( node->x() + node->extend()/2, 0.0, node->z() + node->extend()/2);
 	QVector3D vCam = camera()->eye();
@@ -353,18 +382,11 @@ void Painter::patchify(TreeNode * node, int lvl)
 			}
 		//}
 	}
-
-	/**traverse quadtree
-	{
-		check neighbours for incositincies
-	}
-	***/
+		
+    // Task_4_1 - ToDo End
 }
 
-bool Painter::cull(
-    const QVector4D & v0
-,   const QVector4D & v1
-,   const QVector4D & v2)
+bool Painter::cull(QVector<QVector4D> v)
 {
     // Task_4_1 - ToDo Begin
     
@@ -375,115 +397,22 @@ bool Painter::cull(
     // With that in mind, it should be simpler to cull...
 
     // If you like, make use of QVector3D, QVector4D (toVector3DAffine), QPolygonF (boundingRect), and QRectF (intersects)
-	bool doCull[3] = {false, false, false};
+	QVector4D point; 
+    QVector<QPointF> points = QVector<QPointF>(3); 
+    QRectF viewFrustum = QRectF(-1.0, -1.0, 2.0, 2.0); 
 
-	QVector4D v = camera()->viewProjection() * v0;
-	if(v.x() < -1.0 || v.y() < -1.0 || v.z() < -1.0)
-		doCull[0] = true;
-	else{
-		v /= v.w();
-		if((v.x() < 1.0 && v.x() > -1.0) || (v.y() < 1.0 && v.y() > -1.0) || (v.z() < 1.0 && v.z() > -1.0))
-			doCull[0] = true;
-	}
+	QVector<QVector4D>::iterator it;
+    for( it = v.begin(); it !=v.end(); it++) { 
+        point = camera()->viewProjection() * * it; 
+        point /= point.w(); 
+        points.append(QPointF(point.x(), point.y())); 
+    } 
 
-	v = camera()->viewProjection() * v1;
-	if(v.x() < -1.0 || v.y() < -1.0 || v.z() < -1.0)
-		doCull[1] = true;
-	else{
-		v /= v.w();
-		if((v.x() < 1.0 && v.x() > -1.0) || (v.y() < 1.0 && v.y() > -1.0) || (v.z() < 1.0 && v.z() > -1.0))
-			doCull[1] = true;
-	}
+    QPolygonF tile = QPolygonF(points); 
 
-	v = camera()->viewProjection() * v2;
-	if(v.x() < -1.0 || v.y() < -1.0 || v.z() < -1.0)
-		doCull[2] = true;
-	else{
-		v /= v.w();
-		if((v.x() < 1.0 && v.x() > -1.0) || (v.y() < 1.0 && v.y() > -1.0) || (v.z() < 1.0 && v.z() > -1.0))
-			doCull[2] = true;
-	}
-    // Task_4_1 - ToDo End
-
-    return !doCull[0] || !doCull[1] || !doCull[2];
+    return !tile.boundingRect().intersects(viewFrustum); 
 }
 
-void Painter::patchify(
-    const float extend
-,   const float x
-,   const float z
-,   const int level)
-{
-    // Task_4_1 - ToDo Begin
-
-    // Use an ad-hoc or "static" approach where you decide to either 
-    // subdivide the terrain patch and continue with the resulting
-    // children (2x2 or 4x4), or initiate a draw call of patch.
-    // For the draw call the LODs for all four tiles are required.
-    // For skipping a tile (e.g., because of culling), use LOD = 3.
-
-    // This functions signature suggest a recursive approach.
-    // Feel free to implement this in any way with as few or as much traversals
-    // /passes/recursions you need.
-
-    // Check out the paper "Seamless Patches for GPU-Based Terrain Rendering"
-
-
-
-	/****
-
-	Quadtree * root;
-
-	if( camera to close)
-	{
-		Quaddtree** children = root->subdivide();
-
-		for each children
-		{
-			patchify(children)
-		}
-	}
-
-	traverse quadtree
-	{
-		check neighbours for incositincies
-	}
-
-
-	***/
-
-
-
-	float p = 1.0;
-	float distance;
-	if(camera() != nullptr)distance = camera()->center().y();
-	else distance = 1.0;
-	float lod = 1;
-
-	float epsilon = p * level / distance;
-    if (epsilon < 1 && level < 3) // needs subdivide?
-    {
-		patchify(extend/2.0, x, z, level + 1);
-		patchify(extend/2.0, x + extend/2.0, z, level + 1);
-		patchify(extend/2.0, x, z + extend/2.0, level + 1);
-		patchify(extend/2.0, x + extend/2.0, z + extend/2.0, level + 1);
-    }
-    else // draw patch!
-    {
-    //     check culling
-
-    //    if (cull(.., .., ..))
-    //        xLOD = 3;
-    //     ...
-
-	
-        m_terrain->drawPatch(QVector3D(x, 0.0, z), extend, lod-1, lod-1, lod, lod); //bLOD, rLOD, tLOD, lLOD);
-    }
-
-	//m_terrain->drawPatch(QVector3D(x, 0.0, z), extend, 1, 1, 1, 1);
-
-    // Task_4_1 - ToDo End
-}
 
 void Painter::paint_4_1(float timef)
 {
@@ -524,10 +453,10 @@ void Painter::paint_4_1(float timef)
         glBindTexture(GL_TEXTURE_2D, 0);
     }
 	
-	m_envMap->paintEnvmap(timef, *this);
 	//m_waterRenderer->paintWater(timef, m_height, *this);
 	m_labeler->paintLabels(timef, *this, camera());
 	m_objectRenderer->paintSceneObjects(timef, *this, camera());
+	m_envMap->paintEnvmap(timef, *this);
 }
 
 

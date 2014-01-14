@@ -56,23 +56,14 @@ protected:
     ,   const QString & fragmentShaderFileName);
 
     void patchify();
-    void patchify(
-        float extend
-    ,   float x
-    ,   float z
-    ,   int level);
 	void patchify(TreeNode * node, int lvl);
 	void renderQuadtree(TreeNode * node);
-	void checkTree(TreeNode * node);
    
     float height(
         const float x
     ,   const float z) const;
 
-    bool cull(
-        const QVector4D & v0
-    ,   const QVector4D & v1
-    ,   const QVector4D & v2);
+    bool cull(const QVector<QVector4D> v);
 
     // ...
 
