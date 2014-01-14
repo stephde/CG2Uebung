@@ -16,7 +16,7 @@ uniform Transforms
 in vec2 a_vertex;
 
 out vec2 v_texc;
-out vec3 v_eye;
+out vec4 v_eye;
 out vec3 v_light;
 
 void main()
@@ -26,6 +26,6 @@ void main()
 
 	v.y = texture(height, v_texc).r * yScale * 1 + yOffset * 1 - 1.5;
 
-	v_eye = v.xyz;
+	v_eye = v;
 	gl_Position = mvp * v;
 }

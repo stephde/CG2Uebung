@@ -313,6 +313,7 @@ void Painter::renderQuadtree(TreeNode * node)
 
 		typedef TreeNode::Tiles t;
 
+		//ToDo: change to culling tiles instead of patches
 		if(!cull(QVector4D(node->x(),					height(node->x(), node->z()),		node->z(), 1.0),
 				 QVector4D(node->x()+node->extend(),	height(node->x()+node->extend(),	node->z()), node->z(), 1.0),
 				 QVector4D(node->x(),					height(node->x(),					node->z()+node->extend()), node->z()+node->extend(), 1.0))
@@ -331,7 +332,6 @@ void Painter::patchify(TreeNode * node, int lvl)
 	//if resolution not high enough --> subdivide
 
 	//calculate distance from patch to camera
-	// ToDo: How do i know the height of the patch !?!?
 	QVector3D vPatch = QVector3D( node->x() + node->extend()/2, 0.0, node->z() + node->extend()/2);
 	QVector3D vCam = camera()->eye();
 	QVector3D vDist = (vPatch - vCam);

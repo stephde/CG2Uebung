@@ -183,6 +183,12 @@ TreeNode * TreeNode::getW()
 	return /*m_root->*/getNodeForValue(value);
 }
 
+
+int TreeNode::getN(int value, int lvl){return 0;}
+int TreeNode::getE(int value, int lvl){return 0;}
+int TreeNode::getS(int value, int lvl){return 0;}
+int TreeNode::getW(int value, int lvl){return 0;}
+
 std::map<TreeNode::Children, TreeNode*> TreeNode::subdivide()
 {
 	//create all 4 children
