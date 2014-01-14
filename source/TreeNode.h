@@ -15,7 +15,7 @@ public:
 	enum Tiles{ N, E, S, W, END};
 	typedef std::pair<TreeNode::Children, TreeNode *> ChildEntry;
 	typedef std::pair<TreeNode::Tiles, int> TileEntry;
-	typedef std::pair<TreeNode::Tiles, TreeNode *> AdjEntry;
+	typedef std::pair<TreeNode::Tiles, std::vector <TreeNode *>> AdjEntry;
 
 	TreeNode(TreeNode * parent, float x, float z, float extend, Children childType);
 	virtual ~TreeNode();
@@ -26,15 +26,15 @@ public:
 	TreeNode* children(const Children type);
 	
 	//methods for neighbors
-	std::map<TreeNode::Tiles, TreeNode *> getAdj();
-	TreeNode * getN();
-	TreeNode * getE();
-	TreeNode * getS();
-	TreeNode * getW();
-	int getN(int value, int lvl);
-	int getE(int value, int lvl);
-	int getS(int value, int lvl);
-	int getW(int value, int lvl);
+	std::map<TreeNode::Tiles, std::vector <TreeNode *>> getAdj();
+	std::vector <TreeNode *> getN();
+	std::vector <TreeNode *> getE();
+	std::vector <TreeNode *> getS();
+	std::vector <TreeNode *> getW();
+	TreeNode * getN(int value, int lvl, std::vector <TreeNode *> nodevect);
+	TreeNode * getE(int value, int lvl, std::vector <TreeNode *> nodevect);
+	TreeNode * getS(int value, int lvl, std::vector <TreeNode *> nodevect);
+	TreeNode * getW(int value, int lvl, std::vector <TreeNode *> nodevect);
 	TreeNode * getNodeForValue(int value);
 
 	//methods for lods
