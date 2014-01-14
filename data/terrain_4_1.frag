@@ -33,21 +33,19 @@ void main()
 		
 		// 1P for having a detail map that blends in based
 		// on the fragments distance.
-			d = mix(d, texture(detail, v_texc * 32).xyz, 0.2);
+		d = mix(d, texture(detail, v_texc * 32).xyz, 0.2);
 		// 1P for having atmospheric scattering (fake or real)
 		// -> use e.g., the gl_FragCoord.z for this
 
 		// FOG
-		float fEnd = 50.0;
-		float fStart = 1.0;
-		vec4 eye = mvp * v_eye;
-		float fogCoord = eye.z/eye.w;
-		vec4 fogColor = vec4(1.0, 1.0, 1.0, 1.0);
-		float fResult = (fEnd - fogCoord) / (fEnd - fStart);
-		
+		const float log2 = 1.442695;
+		float fDensity = 0.095;
+		float fogCoord = length((mvp * v_eye).xyz);
+		vec4 fogColor = vec4(0.2, 0.2, 0.3, 1.0);
+		float fResult = exp (-fDensity * fDensity * fogCoord * fogCoord * log2);		
 		fResult = 1.0-clamp(fResult, 0.0, 1.0);
+
 	// Task_4_2 - ToDo End
 
-	//fragColor = mix( vec4(d, 1.0), fogColor, fResult);
-	fragColor = mix(vec4(d, 1.0), vec4(0.0), shadowFactor);
+	fragColor = mix( mix( vec4(d, 1.0), vec4(0.0), shadowFactor), fogColor, fResult);
 }
