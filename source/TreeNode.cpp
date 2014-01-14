@@ -1,9 +1,10 @@
 #include "TreeNode.h"
 
 
-TreeNode::TreeNode(TreeNode * parent, float x, float z, float extend, Children childType)
+TreeNode::TreeNode(TreeNode * parent, TreeNode * root, float x, float z, float extend, Children childType)
 {
 	m_parent = parent;
+	m_root = root;
 
 	m_x = x - extend / 2;
 	m_z = z - extend / 2;
@@ -211,20 +212,22 @@ std::vector <TreeNode *> TreeNode::getW()
 	return /*m_root->*/nodevect;
 }
 
-
-int TreeNode::getN(int value, int lvl){return 0;}
-int TreeNode::getE(int value, int lvl){return 0;}
-int TreeNode::getS(int value, int lvl){return 0;}
-int TreeNode::getW(int value, int lvl){return 0;}
-
 std::map<TreeNode::Children, TreeNode*> TreeNode::subdivide()
 {
 	//create all 4 children
 	float e = m_extend/2;
-	m_children.insert(ChildEntry(Children::NW, new TreeNode(this, m_x, m_z, e, Children::NW)));
-	m_children.insert(ChildEntry(Children::NE, new TreeNode(this, m_x + e, m_z, e, Children::NE)));
-	m_children.insert(ChildEntry(Children::SW, new TreeNode(this, m_x, m_z + e, e, Children::SW)));
-	m_children.insert(ChildEntry(Children::SE, new TreeNode(this, m_x + e, m_z + e, e, Children::SE)));
+	if(m_root == nullptr)
+	{
+		m_children.insert(ChildEntry(Children::NW, new TreeNode(this, this, m_x, m_z, e, Children::NW)));
+		m_children.insert(ChildEntry(Children::NE, new TreeNode(this, this, m_x + e, m_z, e, Children::NE)));
+		m_children.insert(ChildEntry(Children::SW, new TreeNode(this, this, m_x, m_z + e, e, Children::SW)));
+		m_children.insert(ChildEntry(Children::SE, new TreeNode(this, this, m_x + e, m_z + e, e, Children::SE)));
+	}else{
+		m_children.insert(ChildEntry(Children::NW, new TreeNode(this, m_root, m_x, m_z, e, Children::NW)));
+		m_children.insert(ChildEntry(Children::NE, new TreeNode(this, m_root, m_x + e, m_z, e, Children::NE)));
+		m_children.insert(ChildEntry(Children::SW, new TreeNode(this, m_root, m_x, m_z + e, e, Children::SW)));
+		m_children.insert(ChildEntry(Children::SE, new TreeNode(this, m_root, m_x + e, m_z + e, e, Children::SE)));
+	}
 
 	//return array of children
 	return m_children;
@@ -267,21 +270,29 @@ int TreeNode::avgLod()
 
 TreeNode * TreeNode::getNodeForValue(int value)
 {
-	TreeNode * target = children(ROOT);
+	TreeNode * target = m_root;
 	int lvl = 0;
 
-	while(hasChildren() == true)
+	std::map<TreeNode::Children, TreeNode *> children;
+	while(target->hasChildren() == true)
 	{
+		children = target->children();
+
 		if(value % static_cast<int>(pow(10, lvl)) == 1)
-			target = children(NW);
+			target = children[Children::NW];
 		if(value % static_cast<int>(pow(10, lvl)) == 2)
-			target = children(NE);
+			target = children[Children::NE];
 		if(value % static_cast<int>(pow(10, lvl)) == 3)
-			target = children(SW);
+			target = children[Children::SW];
 		if(value % static_cast<int>(pow(10, lvl)) == 4)
-			target = children(SE);
+			target = children[Children::SE];
 
 		lvl++;
+
+		/***
+			Willst du, dass das target bei jedem schleifendurchlauf das gleiche ist?
+			Sollte das jetzt nicht irgendwie rekursiv für die children aufgerufn werden?
+		***/
 	}
 	
 	return target;

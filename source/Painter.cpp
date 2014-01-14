@@ -256,6 +256,7 @@ void Painter::paint(float timef)
     }
 }
 
+
 // returns the height of the terrain at x, z with respect to the vertical 
 // scale and offset used by the vertex shader and the terrains extend of 8.0
 
@@ -282,7 +283,7 @@ void Painter::patchify()
     // You can modify the signature of patchify as it pleases you.
     // This function is called whenever the camera changes.
 
-	m_quadtreeRoot = new TreeNode(nullptr, 4.0, 4.0, 8.0, TreeNode::Children::ROOT);
+	m_quadtreeRoot = new TreeNode(nullptr, nullptr, 4.0, 4.0, 8.0, TreeNode::Children::ROOT);
 
 	patchify(m_quadtreeRoot, 1);
 
@@ -293,7 +294,7 @@ void Painter::patchify()
 
 	renderQuadtree(m_quadtreeRoot);
 
-	delete m_quadtreeRoot;
+	//delete m_quadtreeRoot;
 
 	//patchify(8.f, 0.f, 0.f, m_level);
 
@@ -526,7 +527,7 @@ void Painter::paint_4_1(float timef)
 	m_envMap->paintEnvmap(timef, *this);
 	//m_waterRenderer->paintWater(timef, m_height, *this);
 	m_labeler->paintLabels(timef, *this, camera());
-	//m_objectRenderer->paintSceneObjects(timef, *this, camera());
+	m_objectRenderer->paintSceneObjects(timef, *this, camera());
 }
 
 

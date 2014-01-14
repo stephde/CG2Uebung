@@ -17,7 +17,7 @@ public:
 	typedef std::pair<TreeNode::Tiles, int> TileEntry;
 	typedef std::pair<TreeNode::Tiles, std::vector <TreeNode *>> AdjEntry;
 
-	TreeNode(TreeNode * parent, float x, float z, float extend, Children childType);
+	TreeNode(TreeNode * parent, TreeNode * root, float x, float z, float extend, Children childType);
 	virtual ~TreeNode();
 
 	//methods for children
@@ -58,6 +58,7 @@ public:
 
 private:
 	TreeNode * m_parent;
+	TreeNode * m_root;
 	
 	std::map<Children, TreeNode *> m_children;
 	std::map<Tiles, int> m_tileLods;
