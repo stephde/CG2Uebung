@@ -31,6 +31,10 @@ public:
 	TreeNode * getE();
 	TreeNode * getS();
 	TreeNode * getW();
+	int getN(int value, int lvl);
+	int getE(int value, int lvl);
+	int getS(int value, int lvl);
+	int getW(int value, int lvl);
 	TreeNode * getNodeForValue(int value);
 
 	//methods for lods

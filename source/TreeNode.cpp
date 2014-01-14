@@ -21,7 +21,7 @@ TreeNode::TreeNode(TreeNode * parent, float x, float z, float extend, Children c
 		m_positionNumber = 0;
 	}else{
 		m_rekursionLevel = m_parent->rekursionLevel() + 1;
-		m_positionNumber = pow(10, MAXIMUM_DEPTH-m_rekursionLevel) * m_childType + m_parent->positionNumber();
+		m_positionNumber = pow(10, MAXIMUM_DEPTH - m_rekursionLevel) * m_childType + m_parent->positionNumber();
 	}
 }
 
@@ -61,13 +61,20 @@ std::map<TreeNode::Tiles, TreeNode *> TreeNode::getAdj()
 	std::map<TreeNode::Tiles, TreeNode *> adj;
 	
 	TreeNode * node = getN();
-	if(node != nullptr)adj.insert(AdjEntry( Tiles::N, getN() ));
+	if(node != nullptr) 
+		adj.insert(AdjEntry( Tiles::N, getN() ));
+
 	node = getE();
-	if(node != nullptr)adj.insert(AdjEntry( Tiles::E, getE() ));
+	if(node != nullptr) 
+		adj.insert(AdjEntry( Tiles::E, getE() ));
+
 	node = getS();
-	if(node != nullptr)adj.insert(AdjEntry( Tiles::S, getS() ));
+	if(node != nullptr) 
+		adj.insert(AdjEntry( Tiles::S, getS() ));
+
 	node = getW();
-	if(node != nullptr)adj.insert(AdjEntry( Tiles::W, getW() ));
+	if(node != nullptr) 
+		adj.insert(AdjEntry( Tiles::W, getW() ));
 
 	return adj;
 }
@@ -75,42 +82,62 @@ std::map<TreeNode::Tiles, TreeNode *> TreeNode::getAdj()
 TreeNode * TreeNode::getN()
 {
 	int lvl = MAXIMUM_DEPTH - m_rekursionLevel;
-	int value = 2 * pow(10, lvl) ;
+	int value = m_positionNumber;
 
 	while((value % static_cast<int>(pow(10, lvl))) < 3)
 	{
 		if((value % static_cast<int>(pow(10, lvl))) == 0)
-			return nullptr;
+		{
+			value = getN(value, lvl+1);
+			return getNodeForValue(value);
+			//add second value
+		}
 
-		++lvl;
 		value += 2 * pow(10, lvl);
+		++lvl;
 	}
-	
-
 	value -= 2 * pow(10, lvl);
 
 	return /*m_root->*/getNodeForValue(value);
 }
- 
+/* implement this
+int TreeNode::getN(int value, int lvl)
+{
+	while((value % static_cast<int>(pow(10, lvl))) < 3)
+	{
+		if((value % static_cast<int>(pow(10, lvl))) == 0)
+		{
+			value = getN(value, lvl+1);
+			return getNodeForValue(value);
+		}
+		++lvl;
+		value += 2 * pow(10, lvl);
+	}
+	value -= 2 * pow(10, lvl);
+
+	return *m_root->* getNodeForValue(value);
+}
+*/
 TreeNode * TreeNode::getE()
 {
 	int lvl = MAXIMUM_DEPTH - m_rekursionLevel;
-	int value = pow(10, lvl);
+	int value = m_positionNumber;
 
 	while((value % static_cast<int>(pow(10, lvl))) % 2 == 0)
 	{
 		if((value % static_cast<int>(pow(10, lvl))) == 0)
-			return nullptr;
+		{
+			value = getE(value, lvl+1);
+			return getNodeForValue(value);
+			//add second value
+		}
 
-		++lvl;
 		value -= pow(10, lvl);
-	}
-	
-
+		++lvl;
+	}	
 	value += pow(10, lvl);
 
 	return /*m_root->*/getNodeForValue(value);
-
 }
 
 TreeNode * TreeNode::getS()
@@ -121,13 +148,14 @@ TreeNode * TreeNode::getS()
 	while((value % static_cast<int>(pow(10, lvl))) >= 3)
 	{
 		if((value % static_cast<int>(pow(10, lvl))) == 0)
-			return nullptr;
-		
-		++lvl;
+		{
+			value = getS(value, lvl+1);
+			return getNodeForValue(value);
+			//add second value
+		}
 		value -= 2 * pow(10, lvl);
+		++lvl;
 	}
-	
-
 	value += 2 * pow(10, lvl);
 
 	return /*m_root->*/getNodeForValue(value);
@@ -141,17 +169,20 @@ TreeNode * TreeNode::getW()
 	while((value % static_cast<int>(pow(10, lvl))) % 2 == 0)
 	{
 		if((value % static_cast<int>(pow(10, lvl))) == 0)
-			return nullptr;
+		{
+			value = getW(value, lvl+1);
+			return getNodeForValue(value);
+			//add second value
+		}
 		
-		++lvl;
 		value += pow(10, lvl);
+		++lvl;
 	}
-	
-
 	value -= pow(10, lvl);
 
 	return /*m_root->*/getNodeForValue(value);
 }
+
 std::map<TreeNode::Children, TreeNode*> TreeNode::subdivide()
 {
 	//create all 4 children
