@@ -486,15 +486,32 @@ void TreeNode::correctTree(TreeNode * node)
 	}else{
 		//get patches left, right ...
 		auto neighbors = node->getAdj();
+		std::vector <TreeNode *>::iterator it;
 		for(auto i : neighbors)
 		{
 			//check if neighbor lod is compatible with nodes Lod
 			switch(i.first)
 			{
 				case Tiles::N:
+					for(it = i.second.begin(); it != i.second.end(); it++)
+					{
+						node->rekursionLevel;
+					}
 				case Tiles::E:
+					for(it = i.second.begin(); it != i.second.end(); it++)
+					{
+						node->rekursionLevel;
+					}
 				case Tiles::S:
+					for(it = i.second.begin(); it != i.second.end(); it++)
+					{
+						node->rekursionLevel;
+					}
 				case Tiles::W:
+					for(it = i.second.begin(); it != i.second.end(); it++)
+					{
+						node->rekursionLevel;
+					}
 					break;
 			}
 		}
