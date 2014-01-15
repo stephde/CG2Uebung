@@ -288,7 +288,7 @@ void Painter::patchify()
 	patchify(m_quadtreeRoot, 1);
 
 	//check for inconsistencies beetwen the Lods
-	//TreeNode::correctTree(m_quadtreeRoot);
+	TreeNode::correctTree(m_quadtreeRoot);
 
 	//draw patches for new QuadTree
 
@@ -367,7 +367,7 @@ void Painter::patchify(TreeNode * node, int lvl)
 	QVector3D vDist = (vPatch - vCam);
 	float d = sqrt( vDist.x()*vDist.x() + vDist.y() * vDist.y() + vDist.z() * vDist.z() );
 
-	if( ( (d * (lvl + node->avgLod())) < 30 ) && (lvl < 5) )
+	if( ( (d * (lvl + node->avgLod())) < 30 ) && (lvl < TreeNode::MAXIMUM_DEPTH) )
 	{
 		/*if(node->canIncreaseLods())
 		{

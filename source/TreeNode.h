@@ -8,7 +8,7 @@
 class TreeNode
 {
 public:
-	static const int MAXIMUM_DEPTH = 4;
+	static const int MAXIMUM_DEPTH = 5;
 
 	//types
 	enum Children{ LAST, NW, NE, SW, SE, ROOT };
@@ -51,7 +51,7 @@ public:
 	float z(){return m_z;}
 	float extend(){return m_extend;}
 	int rekursionLevel(){return m_rekursionLevel;}
-	//char positionNumber(){return m_positionNumber;}
+	char * positionNumber(){return m_positionNumber;}
 
 	//static methods
 	static void correctTree(TreeNode * node);

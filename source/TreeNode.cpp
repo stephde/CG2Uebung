@@ -1,4 +1,5 @@
 #include "TreeNode.h"
+#include <stdio.h>
 
 
 TreeNode::TreeNode(TreeNode * parent, TreeNode * root, float x, float z, float extend, Children childType)
@@ -19,9 +20,11 @@ TreeNode::TreeNode(TreeNode * parent, TreeNode * root, float x, float z, float e
 	if(m_childType == Children::ROOT)
 	{
 		m_rekursionLevel = 0;
-		m_positionNumber[0] = 0;
+		for(int i=0; i< MAXIMUM_DEPTH; i++)
+			m_positionNumber[i] = 0;
 	}else{
 		m_rekursionLevel = m_parent->rekursionLevel() + 1;
+		strcpy(m_positionNumber, m_parent->positionNumber());
 		m_positionNumber[m_rekursionLevel] = m_childType;
 	}
 }
@@ -85,7 +88,7 @@ std::vector <TreeNode *> TreeNode::getN()
 {
 	//init
 	std::vector <TreeNode *> nodevect;
-	int lvl = MAXIMUM_DEPTH;
+	int lvl = MAXIMUM_DEPTH-1;
 	char value[MAXIMUM_DEPTH];
 	strcpy(value, m_positionNumber);
 	
@@ -162,7 +165,7 @@ std::vector <TreeNode *> TreeNode::getE()
 {
 	//init
 	std::vector <TreeNode *> nodevect;
-	int lvl = MAXIMUM_DEPTH;
+	int lvl = MAXIMUM_DEPTH-1;
 	char value[MAXIMUM_DEPTH];
 	strcpy(value, m_positionNumber);
 	
@@ -239,7 +242,7 @@ std::vector <TreeNode *> TreeNode::getS()
 {
 	//init
 	std::vector <TreeNode *> nodevect;
-	int lvl = MAXIMUM_DEPTH;
+	int lvl = MAXIMUM_DEPTH-1;
 	char value[MAXIMUM_DEPTH];
 	strcpy(value, m_positionNumber);
 	
@@ -316,7 +319,7 @@ std::vector <TreeNode *> TreeNode::getW()
 {
 	//init
 	std::vector <TreeNode *> nodevect;
-	int lvl = MAXIMUM_DEPTH;
+	int lvl = MAXIMUM_DEPTH-1;
 	char value[MAXIMUM_DEPTH];
 	strcpy(value, m_positionNumber);
 	
@@ -487,32 +490,31 @@ void TreeNode::correctTree(TreeNode * node)
 		//get patches left, right ...
 		auto neighbors = node->getAdj();
 		std::vector <TreeNode *>::iterator it;
+
 		for(auto i : neighbors)
 		{
-			//check if neighbor lod is compatible with nodes Lod
-			switch(i.first)
+			for(it = i.second.begin(); it != i.second.end(); it++)
 			{
-				case Tiles::N:
-					for(it = i.second.begin(); it != i.second.end(); it++)
-					{
-						node->rekursionLevel();
-					}
-				case Tiles::E:
-					for(it = i.second.begin(); it != i.second.end(); it++)
-					{
-						node->rekursionLevel();
-					}
-				case Tiles::S:
-					for(it = i.second.begin(); it != i.second.end(); it++)
-					{
-						node->rekursionLevel();
-					}
-				case Tiles::W:
-					for(it = i.second.begin(); it != i.second.end(); it++)
-					{
-						node->rekursionLevel();
-					}
-					break;
+				if(node->rekursionLevel() < (*it)->rekursionLevel() + 1)
+				{	
+					node->setLod(i.first, 2);
+					printf("set LOD 2");
+				}
+				if(node->rekursionLevel() < (*it)->rekursionLevel())
+				{	
+					node->setLod(i.first, 1);
+					printf("set LOD 1");
+				}
+				if(node->rekursionLevel() > (*it)->rekursionLevel())
+				{	
+					node->setLod(i.first, 0);
+					printf("set LOD 0");
+				}
+				if(node->rekursionLevel() == (*it)->rekursionLevel())
+				{	
+					node->setLod(i.first, 0);
+					printf("set LOD 0");
+				}
 			}
 		}
 	}
