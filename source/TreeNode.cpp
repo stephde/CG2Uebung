@@ -495,22 +495,22 @@ void TreeNode::correctTree(TreeNode * node)
 				case Tiles::N:
 					for(it = i.second.begin(); it != i.second.end(); it++)
 					{
-						node->rekursionLevel;
+						node->rekursionLevel();
 					}
 				case Tiles::E:
 					for(it = i.second.begin(); it != i.second.end(); it++)
 					{
-						node->rekursionLevel;
+						node->rekursionLevel();
 					}
 				case Tiles::S:
 					for(it = i.second.begin(); it != i.second.end(); it++)
 					{
-						node->rekursionLevel;
+						node->rekursionLevel();
 					}
 				case Tiles::W:
 					for(it = i.second.begin(); it != i.second.end(); it++)
 					{
-						node->rekursionLevel;
+						node->rekursionLevel();
 					}
 					break;
 			}
