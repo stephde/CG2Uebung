@@ -1,6 +1,4 @@
 #include "TreeNode.h"
-#include <stdio.h>
-
 
 TreeNode::TreeNode(TreeNode * parent, TreeNode * root, float x, float z, float extend, Children childType)
 {
@@ -20,12 +18,21 @@ TreeNode::TreeNode(TreeNode * parent, TreeNode * root, float x, float z, float e
 	if(m_childType == Children::ROOT)
 	{
 		m_rekursionLevel = 0;
-		for(int i=0; i< MAXIMUM_DEPTH; i++)
+		for(int i = 0; i <= MAXIMUM_DEPTH; i++)
 			m_positionNumber[i] = 0;
 	}else{
 		m_rekursionLevel = m_parent->rekursionLevel() + 1;
-		strcpy(m_positionNumber, m_parent->positionNumber());
-		m_positionNumber[m_rekursionLevel] = m_childType;
+		if(m_rekursionLevel > 5)
+			printf("WTF");
+		m_positionNumber = m_parent->positionNumber();
+		if(m_childType = NW)
+			m_positionNumber[m_rekursionLevel] = 1;
+		if(m_childType = NE)
+			m_positionNumber[m_rekursionLevel] = 2;
+		if(m_childType = SW)
+			m_positionNumber[m_rekursionLevel] = 3;
+		if(m_childType = SE)
+			m_positionNumber[m_rekursionLevel] = 4;
 	}
 }
 
@@ -67,19 +74,19 @@ std::map<TreeNode::Tiles,  std::vector <TreeNode *>> TreeNode::getAdj()
 	
 	std::vector <TreeNode *> node = getN();
 	if(node.back() != nullptr) 
-		adj.insert(AdjEntry( Tiles::N, getN() ));
+		adj.insert(AdjEntry( Tiles::N, node ));
 
 	node = getE();
 	if(node.back() != nullptr) 
-		adj.insert(AdjEntry( Tiles::E, getE() ));
+		adj.insert(AdjEntry( Tiles::E, node ));
 
 	node = getS();
 	if(node.back() != nullptr) 
-		adj.insert(AdjEntry( Tiles::S, getS() ));
+		adj.insert(AdjEntry( Tiles::S, node ));
 
 	node = getW();
 	if(node.back() != nullptr) 
-		adj.insert(AdjEntry( Tiles::W, getW() ));
+		adj.insert(AdjEntry( Tiles::W, node ));
 
 	return adj;
 }
@@ -88,32 +95,29 @@ std::vector <TreeNode *> TreeNode::getN()
 {
 	//init
 	std::vector <TreeNode *> nodevect;
-	int lvl = MAXIMUM_DEPTH-1;
-	char value[MAXIMUM_DEPTH];
-	strcpy(value, m_positionNumber);
-	
-	//check if mult neighbors
-	if(value[lvl] == 0)
-	{
-		value[lvl] = 3;
-		getN(value, lvl-1, nodevect);
-		value[lvl] = 4;
-		getN(value, lvl-1, nodevect);
-
-		return nodevect;
-	}
+	int lvl = MAXIMUM_DEPTH;
+	std::array<int, MAXIMUM_DEPTH+1> value = m_positionNumber;
 
 	//calc neighbor address
-	while(value[lvl] < 3 && lvl > 0)
+	while(value[lvl] < 3 && lvl > 0 && value[lvl] != 0)
 	{
 		value[lvl] += 2;
 		--lvl;
 	}
-	
 	//cancel if no neighbor
 	if(lvl == 0)
 	{
 		nodevect.push_back(nullptr);
+		return nodevect;
+	}
+	//check if mult neighbors
+	if(value[lvl] == 0)
+	{
+		value[lvl] = 3;
+		getN(value, lvl--, nodevect);
+		value[lvl] = 4;
+		getN(value, lvl-1, nodevect);
+
 		return nodevect;
 	}
 
@@ -123,24 +127,13 @@ std::vector <TreeNode *> TreeNode::getN()
 	return nodevect;
 }
 
-int TreeNode::getN(char* location, int level, std::vector <TreeNode *> nodevect)
+int TreeNode::getN(std::array<int, MAXIMUM_DEPTH+1> location, int level, std::vector <TreeNode *> nodevect)
 {
 	int lvl = level;
-	char value[MAXIMUM_DEPTH];
-	strcpy(value, location);
-	
-	//check if multiple neighbors
-	if(value[lvl] == 0)
-	{
-		value[lvl] = 3;
-		getN(value, lvl-1, nodevect);
-		value[lvl] = 4;
-		getN(value, lvl-1, nodevect);
-		return 0;
-	}
+	std::array<int, MAXIMUM_DEPTH+1> value = location;
 	
 	//while digit < 3 increase by 2
-	while(value[lvl] < 3 && lvl > 0)
+	while(value[lvl] < 3 && lvl > 0 && value[lvl] != 0)
 	{
 		value[lvl] += 2;
 		--lvl;	
@@ -150,7 +143,17 @@ int TreeNode::getN(char* location, int level, std::vector <TreeNode *> nodevect)
 	if(lvl == 0)
 	{
 		nodevect.push_back(nullptr);
-		return 1; //return ok so?
+		return 1;
+	}
+
+	//check if multiple neighbors
+	if(value[lvl] == 0)
+	{
+		value[lvl] = 3;
+		getN(value, lvl-1, nodevect);
+		value[lvl] = 4;
+		getN(value, lvl-1, nodevect);
+		return 0;
 	}
 
 	//first digit > 3 decrease by 2
@@ -165,10 +168,23 @@ std::vector <TreeNode *> TreeNode::getE()
 {
 	//init
 	std::vector <TreeNode *> nodevect;
-	int lvl = MAXIMUM_DEPTH-1;
-	char value[MAXIMUM_DEPTH];
-	strcpy(value, m_positionNumber);
-	
+	int lvl = MAXIMUM_DEPTH;
+	std::array<int, MAXIMUM_DEPTH+1> value = m_positionNumber;
+
+	//calc neighbor address
+	while(value[lvl] % 2 == 0 && lvl > 0 && value[lvl] != 0)
+	{
+		value[lvl]--;
+		--lvl;
+	}
+		
+	//cancel if no neighbor
+	if(lvl == 0)
+	{
+		nodevect.push_back(nullptr);
+		return nodevect;
+	}
+
 	//check if mult neighbors
 	if(value[lvl] == 0)
 	{
@@ -180,31 +196,30 @@ std::vector <TreeNode *> TreeNode::getE()
 		return nodevect;
 	}
 
-	//calc neighbor address
-	while(value[lvl] % 2 == 0 && lvl > 0)
-	{
-		value[lvl]--;
-		--lvl;
-	}
-
-	//cancel if no neighbor
-	if(lvl == 0)
-	{
-		nodevect.push_back(nullptr);
-		return nodevect;
-	}
-
 	value[lvl]++;
 	nodevect.push_back(getNodeForValue(value));
 
 	return nodevect;
 }
 
-int TreeNode::getE(char* location, int level, std::vector <TreeNode *> nodevect)
+int TreeNode::getE(std::array<int, MAXIMUM_DEPTH+1> location, int level, std::vector <TreeNode *> nodevect)
 {
 	int lvl = level;
-	char value[MAXIMUM_DEPTH];
-	strcpy(value, location);
+	std::array<int, MAXIMUM_DEPTH+1> value = location;
+
+	//while digit even decrease by 1
+	while(value[lvl] % 2 == 0  && lvl > 0 && value[lvl] != 0)
+	{
+		value[lvl]--;
+		--lvl;	
+	}
+	
+	//cancel if no neighbor
+	if(lvl == 0)
+	{
+		nodevect.push_back(nullptr);
+		return 1; //return ok so?
+	}
 
 	//check for multiple neighbors
 	if(value[lvl] == 0)
@@ -214,20 +229,6 @@ int TreeNode::getE(char* location, int level, std::vector <TreeNode *> nodevect)
 		value[lvl] = 3;
 		getN(value, lvl-1, nodevect);
 		return 0;
-	}
-	
-	//while digit even decrease by 1
-	while(value[lvl] % 2 == 0  && lvl > 0)
-	{
-		value[lvl]--;
-		--lvl;	
-	}
-
-	//cancel if no neighbor
-	if(lvl == 0)
-	{
-		nodevect.push_back(nullptr);
-		return 1; //return ok so?
 	}
 
 	//first uneven digit increase by 1
@@ -242,10 +243,23 @@ std::vector <TreeNode *> TreeNode::getS()
 {
 	//init
 	std::vector <TreeNode *> nodevect;
-	int lvl = MAXIMUM_DEPTH-1;
-	char value[MAXIMUM_DEPTH];
-	strcpy(value, m_positionNumber);
+	int lvl = MAXIMUM_DEPTH;
+	std::array<int, MAXIMUM_DEPTH+1> value = m_positionNumber;
 	
+	//calc neighbor address
+	while(value[lvl] >= 3 && lvl > 0 && value[lvl] != 0)
+	{
+		value[lvl] -= 2;
+		--lvl;
+	}
+	
+	//cancel if no neighbor
+	if(lvl == 0)
+	{
+		nodevect.push_back(nullptr);
+		return nodevect;
+	}
+
 	//check if mult neighbors
 	if(value[lvl] == 0)
 	{
@@ -257,32 +271,31 @@ std::vector <TreeNode *> TreeNode::getS()
 		return nodevect;
 	}
 
-	//calc neighbor address
-	while(value[lvl] >= 3 && lvl > 0)
-	{
-		value[lvl] -= 2;
-		--lvl;
-	}
-
-	//cancel if no neighbor
-	if(lvl == 0)
-	{
-		nodevect.push_back(nullptr);
-		return nodevect;
-	}
-
 	value[lvl] += 2;
 	nodevect.push_back(getNodeForValue(value));
 
 	return nodevect;
 }
 
-int TreeNode::getS(char* location, int level, std::vector <TreeNode *> nodevect)
+int TreeNode::getS(std::array<int, MAXIMUM_DEPTH+1> location, int level, std::vector <TreeNode *> nodevect)
 {
 	int lvl = level;
-	char value[MAXIMUM_DEPTH];
-	strcpy(value, location);
+	std::array<int, MAXIMUM_DEPTH+1> value = location;
 	
+	//while digit >= 3 decrease by 2
+	while(value[lvl] >= 3 && lvl > 0 && value[lvl] != 0)
+	{
+		value[lvl] += 2;
+		--lvl;	
+	}
+	
+	//cancel if no neighbor
+	if(lvl == 0)
+	{
+		nodevect.push_back(nullptr);
+		return 1; //return ok so?
+	}
+
 	//check for multiple neighbors
 	if(value[lvl] == 0)
 	{
@@ -293,20 +306,6 @@ int TreeNode::getS(char* location, int level, std::vector <TreeNode *> nodevect)
 		return 0;
 	}
 	
-	//while digit >= 3 decrease by 2
-	while(value[lvl] >= 3 && lvl > 0)
-	{
-		value[lvl] += 2;
-		--lvl;	
-	}
-
-	//cancel if no neighbor
-	if(lvl == 0)
-	{
-		nodevect.push_back(nullptr);
-		return 1; //return ok so?
-	}
-
 	//first digit > 3 decrease by 2
 	value[lvl] -= 2;
 
@@ -319,10 +318,23 @@ std::vector <TreeNode *> TreeNode::getW()
 {
 	//init
 	std::vector <TreeNode *> nodevect;
-	int lvl = MAXIMUM_DEPTH-1;
-	char value[MAXIMUM_DEPTH];
-	strcpy(value, m_positionNumber);
+	int lvl = MAXIMUM_DEPTH;
+	std::array<int, MAXIMUM_DEPTH+1> value = m_positionNumber;
 	
+	//calc neighbor address
+	while(value[lvl] % 2 == 1 && lvl > 0 && value[lvl] != 0)
+	{
+		value[lvl]++;
+		--lvl;
+	}
+	
+	//cancel if no neighbor
+	if(lvl == 0)
+	{
+		nodevect.push_back(nullptr);
+		return nodevect;
+	}
+
 	//check for mult neighbors
 	if(value[lvl] == 0)
 	{
@@ -334,32 +346,31 @@ std::vector <TreeNode *> TreeNode::getW()
 		return nodevect;
 	}
 
-	//calc neighbor address
-	while(value[lvl] % 2 == 1 && lvl > 0)
-	{
-		value[lvl]++;
-		--lvl;
-	}
-
-	//cancel if no neighbor
-	if(lvl == 0)
-	{
-		nodevect.push_back(nullptr);
-		return nodevect;
-	}
-
 	value[lvl]--;
 	nodevect.push_back(getNodeForValue(value));
 
 	return nodevect;
 }
 
-int TreeNode::getW(char* location, int level, std::vector <TreeNode *> nodevect)
+int TreeNode::getW(std::array<int, MAXIMUM_DEPTH+1> location, int level, std::vector <TreeNode *> nodevect)
 {
 	int lvl = level;
-	char value[MAXIMUM_DEPTH];
-	strcpy(value, location);
+	std::array<int, MAXIMUM_DEPTH+1> value = location;
 	
+	//while digit even increase by 1
+	while(value[lvl] % 2 == 1  && lvl > 0 && value[lvl] != 0)
+	{
+		value[lvl]++;
+		--lvl;	
+	}
+	
+	//cancel if no neighbor
+	if(lvl == 0)
+	{
+		nodevect.push_back(nullptr);
+		return 1; //return ok so?
+	}
+
 	//check for multiple neighbors
 	if(value[lvl] == 0)
 	{
@@ -370,20 +381,6 @@ int TreeNode::getW(char* location, int level, std::vector <TreeNode *> nodevect)
 		return 0;
 	}
 	
-	//while digit even increase by 1
-	while(value[lvl] % 2 == 1  && lvl > 0)
-	{
-		value[lvl]++;
-		--lvl;	
-	}
-
-	//cancel if no neighbor
-	if(lvl == 0)
-	{
-		nodevect.push_back(nullptr);
-		return 1; //return ok so?
-	}
-
 	//first even digit decrease by 1
 	value[lvl]--;
 
@@ -448,10 +445,10 @@ int TreeNode::avgLod()
 	return static_cast<int>(avg / m_tileLods.size());
 }
 
-TreeNode * TreeNode::getNodeForValue(char *value)
+TreeNode * TreeNode::getNodeForValue(std::array<int, MAXIMUM_DEPTH+1> value)
 {
 	TreeNode * target = m_root;
-	int lvl = 0;
+	int lvl = 1;
 
 	std::map<TreeNode::Children, TreeNode *> children;
 	while(target->hasChildren())
@@ -497,23 +494,20 @@ void TreeNode::correctTree(TreeNode * node)
 			{
 				if(node->rekursionLevel() < (*it)->rekursionLevel() + 1)
 				{	
-					node->setLod(i.first, 2);
-					printf("set LOD 2");
-				}
-				if(node->rekursionLevel() < (*it)->rekursionLevel())
-				{	
-					node->setLod(i.first, 1);
-					printf("set LOD 1");
+					if(node->rekursionLevel() < (*it)->rekursionLevel())
+					{	
+						node->setLod(i.first, 1);
+					}else{
+						node->setLod(i.first, 2);
+					}
 				}
 				if(node->rekursionLevel() > (*it)->rekursionLevel())
 				{	
 					node->setLod(i.first, 0);
-					printf("set LOD 0");
 				}
 				if(node->rekursionLevel() == (*it)->rekursionLevel())
 				{	
 					node->setLod(i.first, 0);
-					printf("set LOD 0");
 				}
 			}
 		}

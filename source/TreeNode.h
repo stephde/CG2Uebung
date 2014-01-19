@@ -3,6 +3,7 @@
 
 #include <map>
 #include <vector>
+#include <array>
 
 
 class TreeNode
@@ -31,11 +32,11 @@ public:
 	std::vector <TreeNode *> getE();
 	std::vector <TreeNode *> getS();
 	std::vector <TreeNode *> getW();
-	int getN(char * value, int lvl, std::vector <TreeNode *> nodevect);
-	int getE(char * value, int lvl, std::vector <TreeNode *> nodevect);
-	int getS(char * value, int lvl, std::vector <TreeNode *> nodevect);
-	int getW(char * value, int lvl, std::vector <TreeNode *> nodevect);
-	TreeNode * getNodeForValue(char * value);
+	int getN(std::array<int, MAXIMUM_DEPTH+1> value, int lvl, std::vector <TreeNode *> nodevect);
+	int getE(std::array<int, MAXIMUM_DEPTH+1> value, int lvl, std::vector <TreeNode *> nodevect);
+	int getS(std::array<int, MAXIMUM_DEPTH+1> value, int lvl, std::vector <TreeNode *> nodevect);
+	int getW(std::array<int, MAXIMUM_DEPTH+1> value, int lvl, std::vector <TreeNode *> nodevect);
+	TreeNode * getNodeForValue(std::array<int, MAXIMUM_DEPTH+1> value);
 
 	//methods for lods
 	bool canIncreaseLods();
@@ -51,7 +52,7 @@ public:
 	float z(){return m_z;}
 	float extend(){return m_extend;}
 	int rekursionLevel(){return m_rekursionLevel;}
-	char * positionNumber(){return m_positionNumber;}
+	std::array<int, MAXIMUM_DEPTH+1> positionNumber(){return m_positionNumber;}
 
 	//static methods
 	static void correctTree(TreeNode * node);
@@ -68,7 +69,7 @@ private:
 	float m_x;
 	float m_z;
 	int m_rekursionLevel;
-	char m_positionNumber[MAXIMUM_DEPTH];
+	std::array<int, MAXIMUM_DEPTH+1> m_positionNumber;
 };
 
 #endif
