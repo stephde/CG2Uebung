@@ -111,13 +111,15 @@ std::vector <TreeNode *> TreeNode::getN()
 		return nodevect;
 	}
 	//check if mult neighbors
-	if(value[lvl] == 0)
+	if(value[lvl] == 0 && lvl != 0)
 	{
 		value[lvl] = 3;
-		getN(value, lvl--, nodevect);
+		std::vector <TreeNode *> N1 = getN(value, lvl-1);
 		value[lvl] = 4;
-		getN(value, lvl-1, nodevect);
-
+		std::vector <TreeNode *> N2 = getN(value, lvl-1);
+		nodevect.reserve( N1.size() + N2.size() );
+		nodevect.insert( nodevect.end(), N1.begin(), N1.end() );
+		nodevect.insert( nodevect.end(), N2.begin(), N2.end() );
 		return nodevect;
 	}
 
@@ -127,9 +129,10 @@ std::vector <TreeNode *> TreeNode::getN()
 	return nodevect;
 }
 
-int TreeNode::getN(std::array<int, MAXIMUM_DEPTH+1> location, int level, std::vector <TreeNode *> nodevect)
+std::vector <TreeNode *> TreeNode::getN(std::array<int, MAXIMUM_DEPTH+1> location, int level)
 {
 	int lvl = level;
+	std::vector <TreeNode *> nodevect;
 	std::array<int, MAXIMUM_DEPTH+1> value = location;
 	
 	//while digit < 3 increase by 2
@@ -143,17 +146,22 @@ int TreeNode::getN(std::array<int, MAXIMUM_DEPTH+1> location, int level, std::ve
 	if(lvl == 0)
 	{
 		nodevect.push_back(nullptr);
-		return 1;
+		return nodevect;
 	}
 
 	//check if multiple neighbors
 	if(value[lvl] == 0)
 	{
 		value[lvl] = 3;
-		getN(value, lvl-1, nodevect);
+		std::vector <TreeNode *> N1 = getN(value, lvl-1);
 		value[lvl] = 4;
-		getN(value, lvl-1, nodevect);
-		return 0;
+		std::vector <TreeNode *> N2 = getN(value, lvl-1);
+
+		nodevect.reserve( N1.size() + N2.size() );
+		nodevect.insert( nodevect.end(), N1.begin(), N1.end() );
+		nodevect.insert( nodevect.end(), N2.begin(), N2.end() );
+
+		return nodevect;
 	}
 
 	//first digit > 3 decrease by 2
@@ -161,7 +169,7 @@ int TreeNode::getN(std::array<int, MAXIMUM_DEPTH+1> location, int level, std::ve
 
 	//get neighboring node and pushback
 	nodevect.push_back(getNodeForValue(value));
-	return 0;
+	return nodevect;
 }
 
 std::vector <TreeNode *> TreeNode::getE()
@@ -189,9 +197,13 @@ std::vector <TreeNode *> TreeNode::getE()
 	if(value[lvl] == 0)
 	{
 		value[lvl] = 1;
-		getN(value, lvl-1, nodevect);
+		std::vector <TreeNode *> N1 = getN(value, lvl-1);
 		value[lvl] = 3;
-		getN(value, lvl-1, nodevect);
+		std::vector <TreeNode *> N2 = getN(value, lvl-1);
+
+		nodevect.reserve( N1.size() + N2.size() );
+		nodevect.insert( nodevect.end(), N1.begin(), N1.end() );
+		nodevect.insert( nodevect.end(), N2.begin(), N2.end() );
 
 		return nodevect;
 	}
@@ -202,9 +214,10 @@ std::vector <TreeNode *> TreeNode::getE()
 	return nodevect;
 }
 
-int TreeNode::getE(std::array<int, MAXIMUM_DEPTH+1> location, int level, std::vector <TreeNode *> nodevect)
+std::vector <TreeNode *> TreeNode::getE(std::array<int, MAXIMUM_DEPTH+1> location, int level)
 {
 	int lvl = level;
+	std::vector <TreeNode *> nodevect;
 	std::array<int, MAXIMUM_DEPTH+1> value = location;
 
 	//while digit even decrease by 1
@@ -218,17 +231,22 @@ int TreeNode::getE(std::array<int, MAXIMUM_DEPTH+1> location, int level, std::ve
 	if(lvl == 0)
 	{
 		nodevect.push_back(nullptr);
-		return 1; //return ok so?
+		return nodevect; //return ok so?
 	}
 
 	//check for multiple neighbors
 	if(value[lvl] == 0)
 	{
 		value[lvl] = 1;
-		getN(value, lvl-1, nodevect);
+		std::vector <TreeNode *> N1 = getN(value, lvl-1);
 		value[lvl] = 3;
-		getN(value, lvl-1, nodevect);
-		return 0;
+		std::vector <TreeNode *> N2 = getN(value, lvl-1);
+
+		nodevect.reserve( N1.size() + N2.size() );
+		nodevect.insert( nodevect.end(), N1.begin(), N1.end() );
+		nodevect.insert( nodevect.end(), N2.begin(), N2.end() );
+
+		return nodevect;
 	}
 
 	//first uneven digit increase by 1
@@ -236,7 +254,7 @@ int TreeNode::getE(std::array<int, MAXIMUM_DEPTH+1> location, int level, std::ve
 
 	//get neighboring node and pushback
 	nodevect.push_back(getNodeForValue(value));
-	return 0;
+	return nodevect;
 }
 
 std::vector <TreeNode *> TreeNode::getS()
@@ -264,9 +282,13 @@ std::vector <TreeNode *> TreeNode::getS()
 	if(value[lvl] == 0)
 	{
 		value[lvl] = 1;
-		getN(value, lvl-1, nodevect);
+		std::vector <TreeNode *> N1 = getN(value, lvl-1);
 		value[lvl] = 2;
-		getN(value, lvl-1, nodevect);
+		std::vector <TreeNode *> N2 = getN(value, lvl-1);
+
+		nodevect.reserve( N1.size() + N2.size() );
+		nodevect.insert( nodevect.end(), N1.begin(), N1.end() );
+		nodevect.insert( nodevect.end(), N2.begin(), N2.end() );
 
 		return nodevect;
 	}
@@ -277,9 +299,10 @@ std::vector <TreeNode *> TreeNode::getS()
 	return nodevect;
 }
 
-int TreeNode::getS(std::array<int, MAXIMUM_DEPTH+1> location, int level, std::vector <TreeNode *> nodevect)
+std::vector <TreeNode *> TreeNode::getS(std::array<int, MAXIMUM_DEPTH+1> location, int level)
 {
 	int lvl = level;
+	std::vector <TreeNode *> nodevect;
 	std::array<int, MAXIMUM_DEPTH+1> value = location;
 	
 	//while digit >= 3 decrease by 2
@@ -293,17 +316,22 @@ int TreeNode::getS(std::array<int, MAXIMUM_DEPTH+1> location, int level, std::ve
 	if(lvl == 0)
 	{
 		nodevect.push_back(nullptr);
-		return 1; //return ok so?
+		return nodevect;
 	}
 
 	//check for multiple neighbors
 	if(value[lvl] == 0)
 	{
 		value[lvl] = 1;
-		getN(value, lvl-1, nodevect);
+		std::vector <TreeNode *> N1 = getN(value, lvl-1);
 		value[lvl] = 2;
-		getN(value, lvl-1, nodevect);
-		return 0;
+		std::vector <TreeNode *> N2 = getN(value, lvl-1);
+
+		nodevect.reserve( N1.size() + N2.size() );
+		nodevect.insert( nodevect.end(), N1.begin(), N1.end() );
+		nodevect.insert( nodevect.end(), N2.begin(), N2.end() );
+
+		return nodevect;
 	}
 	
 	//first digit > 3 decrease by 2
@@ -311,7 +339,7 @@ int TreeNode::getS(std::array<int, MAXIMUM_DEPTH+1> location, int level, std::ve
 
 	//get neighboring node and pushback
 	nodevect.push_back(getNodeForValue(value));
-	return 0;
+	return nodevect;
 }
 
 std::vector <TreeNode *> TreeNode::getW()
@@ -338,10 +366,14 @@ std::vector <TreeNode *> TreeNode::getW()
 	//check for mult neighbors
 	if(value[lvl] == 0)
 	{
-		value[lvl] = 3;
-		getN(value, lvl-1, nodevect);
+		value[lvl] = 2;
+		std::vector <TreeNode *> N1 = getN(value, lvl-1);
 		value[lvl] = 4;
-		getN(value, lvl-1, nodevect);
+		std::vector <TreeNode *> N2 = getN(value, lvl-1);
+
+		nodevect.reserve( N1.size() + N2.size() );
+		nodevect.insert( nodevect.end(), N1.begin(), N1.end() );
+		nodevect.insert( nodevect.end(), N2.begin(), N2.end() );
 
 		return nodevect;
 	}
@@ -352,9 +384,10 @@ std::vector <TreeNode *> TreeNode::getW()
 	return nodevect;
 }
 
-int TreeNode::getW(std::array<int, MAXIMUM_DEPTH+1> location, int level, std::vector <TreeNode *> nodevect)
+std::vector <TreeNode *> TreeNode::getW(std::array<int, MAXIMUM_DEPTH+1> location, int level)
 {
 	int lvl = level;
+	std::vector <TreeNode *> nodevect;
 	std::array<int, MAXIMUM_DEPTH+1> value = location;
 	
 	//while digit even increase by 1
@@ -368,17 +401,22 @@ int TreeNode::getW(std::array<int, MAXIMUM_DEPTH+1> location, int level, std::ve
 	if(lvl == 0)
 	{
 		nodevect.push_back(nullptr);
-		return 1; //return ok so?
+		return nodevect; //return ok so?
 	}
 
 	//check for multiple neighbors
 	if(value[lvl] == 0)
 	{
-		value[lvl] = 3;
-		getN(value, lvl-1, nodevect);
+		value[lvl] = 2;
+		std::vector <TreeNode *> N1 = getN(value, lvl-1);
 		value[lvl] = 4;
-		getN(value, lvl-1, nodevect);
-		return 0;
+		std::vector <TreeNode *> N2 = getN(value, lvl-1);
+
+		nodevect.reserve( N1.size() + N2.size() );
+		nodevect.insert( nodevect.end(), N1.begin(), N1.end() );
+		nodevect.insert( nodevect.end(), N2.begin(), N2.end() );
+
+		return nodevect;
 	}
 	
 	//first even digit decrease by 1
@@ -386,7 +424,7 @@ int TreeNode::getW(std::array<int, MAXIMUM_DEPTH+1> location, int level, std::ve
 
 	//get neighboring node and pushback
 	nodevect.push_back(getNodeForValue(value));
-	return 0;
+	return nodevect;
 }
 
 std::map<TreeNode::Children, TreeNode*> TreeNode::subdivide()

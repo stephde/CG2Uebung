@@ -32,10 +32,10 @@ public:
 	std::vector <TreeNode *> getE();
 	std::vector <TreeNode *> getS();
 	std::vector <TreeNode *> getW();
-	int getN(std::array<int, MAXIMUM_DEPTH+1> value, int lvl, std::vector <TreeNode *> nodevect);
-	int getE(std::array<int, MAXIMUM_DEPTH+1> value, int lvl, std::vector <TreeNode *> nodevect);
-	int getS(std::array<int, MAXIMUM_DEPTH+1> value, int lvl, std::vector <TreeNode *> nodevect);
-	int getW(std::array<int, MAXIMUM_DEPTH+1> value, int lvl, std::vector <TreeNode *> nodevect);
+	std::vector <TreeNode *> getN(std::array<int, MAXIMUM_DEPTH+1> value, int lvl);
+	std::vector <TreeNode *> getE(std::array<int, MAXIMUM_DEPTH+1> value, int lvl);
+	std::vector <TreeNode *> getS(std::array<int, MAXIMUM_DEPTH+1> value, int lvl);
+	std::vector <TreeNode *> getW(std::array<int, MAXIMUM_DEPTH+1> value, int lvl);
 	TreeNode * getNodeForValue(std::array<int, MAXIMUM_DEPTH+1> value);
 
 	//methods for lods

@@ -288,6 +288,8 @@ void Painter::patchify()
 	patchify(m_quadtreeRoot, 1);
 
 	//check for inconsistencies beetwen the Lods
+
+	// BUG doesnt correct somehow
 	TreeNode::correctTree(m_quadtreeRoot);
 
 	//draw patches for new QuadTree
