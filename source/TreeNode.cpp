@@ -20,7 +20,8 @@ TreeNode::TreeNode(TreeNode * parent, TreeNode * root, float x, float z, float e
 	if(m_childType == Children::ROOT)
 	{
 		m_rekursionLevel = 0;
-		for(int i=0; i< MAXIMUM_DEPTH; i++)
+		int i;
+		for(i=0; i< MAXIMUM_DEPTH; i++)
 			m_positionNumber[i] = 0;
 	}else{
 		m_rekursionLevel = m_parent->rekursionLevel() + 1;
@@ -517,5 +518,7 @@ void TreeNode::correctTree(TreeNode * node)
 				}
 			}
 		}
+
+		// Don't we Need subdivision in one of the conditions?
 	}
 }
