@@ -71,6 +71,7 @@ bool intersect(
 
 	// ...
 	
+	//http://www.ccs.neu.edu/home/fell/CSU540/programs/RayTracingFormulas.htm
 	//http://wiki.cgsociety.org/index.php/Ray_Sphere_Intersection
 	//Compute A, B and C coefficients
     float a = dot(ray.direction, ray.direction);
@@ -144,7 +145,8 @@ bool rcast(in Ray ray, out vec3 normal, out Material material, out float t)
 			t = t0;
 			vec3 ip = ray.origin + ray.direction * t0;
 			normal = abs(blobs[i].position - ip);
-			// Task 5_2: material = ?;
+			// Task 5_2: 
+			material = materials[i];
 			return true;
 		}
 	}

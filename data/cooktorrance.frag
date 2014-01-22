@@ -14,9 +14,9 @@ float fresnel(in float VdotH, in float r)
 	// r: reflectance
 	// Task_5_2 - ToDo Begin
 	
-	// ..
+	float f = r + pow(1 - VdotH, 5) * (1 - r);
 	
-	return 1.0; 
+	return f; 
 	
 	// Task_5_2 - ToDo End
 }
@@ -27,9 +27,9 @@ float roughness(in float NdotH, in float r)
 	// r: roughness
 	// Task_5_2 - ToDo Begin
 
-	// ...
-
-	return 1.0;
+	float v = 1 / (r*r * pow (NdotH, 4)) * exp( (NdotH * NdotH -1) / (r*r * NdotH*NdotH));
+		
+	return v;
 	
 	// Task_5_2 - ToDo End
 }
@@ -40,9 +40,9 @@ float geom(in float NdotH, in float NdotV, in float VdotH, in float NdotL)
 {
 	// Task_5_2 - ToDo Begin
 
-	// ...
+	float g = min(2 * NdotH * NdotV / VdotH, 2 * NdotH * NdotL / VdotH);
 	
-    return 1.0;
+    return g;
 	
 	// Task_5_2 - ToDo End
 }
@@ -59,11 +59,16 @@ vec3 CookTorrance(in vec3 V, in vec3 N, in vec3 L, in Material m, in vec3 R, in 
 	// Task_5_2 - ToDo Begin
 	
 	// hint: R is reflection (e.g., ray in envmap)
+	float rs =  	geom(NdotH, NdotV, VdotH, NdotL) 
+				*   fresnel(VdotH, m.sr.w) 
+				*   roughness(NdotH, m.sr.w) 
+				/ 	(NdotV * NdotL);
 
-	// geom(...) * fresnel(...) * roughness(...) ...
-	// ...
+	vec3 r = /*ambient */ dot(N,L) * (m.sr.xyz * rs + m.dr.xyz);	
 
-	return vec3(1.0);
+	
+
+	return r;// * rs + r;
 
 	// Task_5_2 - ToDo End
 }
