@@ -37,8 +37,8 @@ set(sources
     source/AutoTimer.h
     source/DistanceTransform.cpp
     source/DistanceTransform.h
-    source/AssimpScene.cpp
-    source/AssimpScene.h
+    #source/AssimpScene.cpp
+    #source/AssimpScene.h
     source/ChronoTimer.cpp
     source/ChronoTimer.h
     source/Icosahedron.cpp
@@ -76,12 +76,6 @@ set(sources
 	source/EnvironmentMapping.cpp
 	source/Labeler.h
 	source/Labeler.cpp
-	source/ObjectRenderer.h
-	source/ObjectRenderer.cpp
-	source/ShadowRenderer.h
-	source/ShadowRenderer.cpp
-	source/WaterRenderer.h
-	source/WaterRenderer.cpp
 	source/TreeNode.h
 	source/TreeNode.cpp
 
