@@ -74,8 +74,9 @@ bool intersect(
 	//http://wiki.cgsociety.org/index.php/Ray_Sphere_Intersection
 	//Compute A, B and C coefficients
     float a = dot(ray.direction, ray.direction);
-    float b = 2 * dot(ray.direction, ray.origin);
-    float c = dot(ray.origin, ray.origin) - (blob.radius * blob.radius);
+    float b = 2 * dot(ray.direction, ray.origin - blob.position);
+    float c = dot(blob.position, blob.position) + dot(ray.origin, ray.origin) 
+				- 2 * dot(blob.position, ray.origin) - (blob.radius * blob.radius);
 
     //Find discriminant
     float disc = b * b - 4 * a * c;
