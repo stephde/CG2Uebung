@@ -40,16 +40,18 @@ float geom(in float NdotH, in float NdotV, in float VdotH, in float NdotL)
 {
 	// Task_5_2 - ToDo Begin
 
-	float g = min(2 * NdotH * NdotV / VdotH, 2 * NdotH * NdotL / VdotH);
+	float g = min(1.0, min(2 * NdotH * NdotV / VdotH, 2 * NdotH * NdotL / VdotH));
 	
     return g;
 	
 	// Task_5_2 - ToDo End
 }
 
-vec3 CookTorrance(in vec3 V, in vec3 N, in vec3 L, in Material m, in vec3 R, in vec3 ambient)
+vec3 CookTorrance(in vec3 V, in vec3 n, in vec3 L, in Material m, in vec3 R, in vec3 ambient)
 {
 	vec3 H = normalize(L + V);
+	
+	vec3 N = abs(n);
 
 	float VdotH = clamp(dot(V, H), 0.0, 1.0);
 	float NdotV = clamp(dot(N, V), 0.0, 1.0);
@@ -61,10 +63,10 @@ vec3 CookTorrance(in vec3 V, in vec3 N, in vec3 L, in Material m, in vec3 R, in 
 	// hint: R is reflection (e.g., ray in envmap)
 	float rs =  	geom(NdotH, NdotV, VdotH, NdotL) 
 				*   fresnel(VdotH, m.sr.w) 
-				*   roughness(NdotH, m.sr.w) 
+				*   roughness(NdotH, m.dr.w) 
 				/ 	(NdotV * NdotL);
 
-	vec3 r = /*ambient */ dot(N,L) * (m.sr.xyz * rs + m.dr.xyz);	
+	vec3 r = /*ambient */ NdotL * (m.sr.xyz * rs + m.dr.xyz);	
 
 	
 
