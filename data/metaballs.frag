@@ -144,7 +144,7 @@ bool rcast(in Ray ray, out vec3 normal, out Material material, out float t)
 		{
 			t = t0;
 			vec3 ip = ray.origin + ray.direction * t0;
-			normal = abs(blobs[i].position - ip);
+			normal = blobs[i].position - ip;
 			// Task 5_2: 
 			material = materials[i];
 			return true;
@@ -172,13 +172,13 @@ bool trace(in Ray ray, out vec3 normal, out Material material, out float t)
 	// ...
 	
 	// implement raymarching within your tmin and tmax 
-	// hint: e.g., use while loop, THRESHOLD, and implment yourself
+	// hint: e.g., use while loop, THRESHOLD, and implement yourself
 	// an attribute interpolation function (e.g., interp(pos, normal, material, actives?))
 	// as well as a summation function (e.g., sum(pos))
 	
 	// your shader should terminate!
 
-	// return true if iso surface was hit, fals if not
+	// return true if iso surface was hit, false if not
 
 	return false; 
 }

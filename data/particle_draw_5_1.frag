@@ -56,7 +56,7 @@ void main()
 	if(rcast(ray, n, m, t))
 		c = n * 0.5 + 0.5;
 	else
-		c = vec3(0.0);
+		c = vec3(0.5);
 
 	fragColor = vec4(c, 1.0);
 }
