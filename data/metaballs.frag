@@ -160,6 +160,19 @@ bool rcast(in Ray ray, out vec3 normal, out Material material, out float t)
 
 // ... your helper functions
 
+float energyAtPoint(vec3 p)
+{
+	float sum;
+	for(int i=0; i< SIZE; i++)
+	{
+		float value = 1 / length((p - blobs[i].position)*(p - blobs[i].position));
+		//if(value > THRESHOLD)
+			sum += value;
+	}
+
+	return sum;
+}
+
 // ... more ...
 
 bool trace(in Ray ray, out vec3 normal, out Material material, out float t)
@@ -170,17 +183,51 @@ bool trace(in Ray ray, out vec3 normal, out Material material, out float t)
 	// hint: use for loop, INFINITE, SIZE, intersect, min and max...
 
 	// ...
+	float tmin = INFINITY;
+	float tmax = 0.0;
+	bool intersection = false;
+
+	for(int i = 0; i < SIZE; ++i)
+	{
+		float t0; // = ?
+		float t1; // = ?
+	
+		if(intersect(blobs[i], ray, t0, t1) /* todo, more? */)
+		{
+			//if t0 < tmin set tmin = t0
+			tmin = mix(tmin, t0, step(t0, tmin));
+			//if t1 > tmax set tmax = t1
+			tmax = mix(tmax, t1, step(tmax, t1));
+			intersection = true;
+		}
+	}
 	
 	// implement raymarching within your tmin and tmax 
 	// hint: e.g., use while loop, THRESHOLD, and implment yourself
 	// an attribute interpolation function (e.g., interp(pos, normal, material, actives?))
 	// as well as a summation function (e.g., sum(pos))
-	
-	// your shader should terminate!
+	if(intersection)
+	{
+		vec3 interval = tmax - ray.origin;
+		vec3 p = ray.origin;
+		float energy = 0.5;
+		int steps;
+		vec3 distance = ray.direction/energy;
+		while ( steps < 10 && energy < THRESHOLD)
+		{
+			p += distance;
+			distance = ray.direction/energy;
+			energy = energyAtPoint(p);
+			steps++;
+		}
 
+		t = length( p / interval );
+	}
+
+	// your shader should terminate!
 	// return true if iso surface was hit, fals if not
 
-	return false; 
+	return intersection; 
 }
 
 // Task_5_3 - ToDo End
