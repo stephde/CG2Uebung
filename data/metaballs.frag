@@ -2,7 +2,7 @@
 
 const float INFINITY = 1e+4;
 
-const int SIZE = 16;
+const int SIZE = 10;
 const float THRESHOLD = 0.66;
 
 struct Sphere
@@ -211,7 +211,7 @@ bool trace(in Ray ray, out vec3 normal, out Material material, out float t)
 		vec3 interval = tmax - ray.origin;
 		vec3 p = ray.origin;
 		float energy = 0.5;
-		int steps;
+		int steps = 0;
 		vec3 distance = ray.direction/energy;
 		while ( steps < 10 && energy < THRESHOLD)
 		{
