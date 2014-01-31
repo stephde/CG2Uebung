@@ -199,6 +199,12 @@ bool trace(in Ray ray, out vec3 normal, out Material material, out float t)
 			//if t1 > tmax set tmax = t1
 			tmax = mix(tmax, t1, step(tmax, t1));
 			intersection = true;
+
+			//ToDo: move this to marching part
+			//interpolate normal and material between intersected spheres
+			material = materials[i];
+			vec3 ip = ray.origin + ray.direction * t0;
+			normal = blobs[i].position - ip;
 		}
 	}
 	
@@ -213,7 +219,7 @@ bool trace(in Ray ray, out vec3 normal, out Material material, out float t)
 		float energy = 0.5;
 		int steps = 0;
 		vec3 distance = ray.direction/energy;
-		while ( steps < 10 && energy < THRESHOLD)
+		while ( steps < 15 && energy < THRESHOLD)
 		{
 			p += distance;
 			distance = ray.direction/energy;

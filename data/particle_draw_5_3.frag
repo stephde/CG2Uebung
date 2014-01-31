@@ -66,6 +66,7 @@ void main()
 	if(trace(ray[0], n[0], m[0], t))
 	{
 		vec3 v[2];
+		v[0]= -ray[0].direction;
 
 		// ...
 
@@ -75,12 +76,15 @@ void main()
 	
 		if(trace(ray[1], n[1], m[1], t))
 		{
-			R = vec3(0.0); // CookTorrance(...);
+			v[1] = - ray[1].direction;
+			R = texture(envmap, ray[1].direction).xyz;
+			R = CookTorrance(v[1], n[1], l, m[1], R, ambient);
 		}
 		else
-			R = texture(envmap, ray[1].direction).xyz;
-
-		c = vec3(0.0); // CookTorrance(...);
+		{
+			R = texture(envmap, ray[0].direction).xyz;
+		}
+		c = CookTorrance(v[0], n[0], l, m[0], R, ambient);
 	}
 	else
 	{
@@ -90,5 +94,5 @@ void main()
 	
 	// Task_5_3 - ToDo End
 	
-	fragColor = vec4(c, lum);
+	fragColor = vec4(c, 1.0);//lum);
 }
