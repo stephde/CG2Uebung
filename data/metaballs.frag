@@ -173,6 +173,33 @@ float energyAtPoint(vec3 p)
 	return sum;
 }
 
+vec3 normalInterpol(in vec3 normal, in vec3 p)
+{
+	vec3 n = normal;
+	float t;
+	float f;
+	float outerR;
+	//iterate over blobs and compute influence on normal at p
+	for(int i=0; i< SIZE; ++i)
+	{
+		outerR = blobs[i].radius + 2;
+		if((t = length(abs(blobs[i].position - p))) < outerR)//THRESHOLD)
+		{
+			n = 	0.5 * n//(1 - t/outerR) * n 
+					+ /*(t/outerR)*/ 0.5 * normalize(abs(p-blobs[i].position));
+		}
+	}
+
+	return n;
+}
+
+Material materialInterpol(in Material material, in vec3 p)
+{
+	Material m = material;
+
+	return m;
+}
+
 // ... more ...
 
 bool trace(in Ray ray, out vec3 normal, out Material material, out float t)
@@ -186,12 +213,12 @@ bool trace(in Ray ray, out vec3 normal, out Material material, out float t)
 	float tmin = INFINITY;
 	float tmax = 0.0;
 	bool intersection = false;
+	vec3 ip;
+	float t0; // = ?
+	float t1; // = 
 
 	for(int i = 0; i < SIZE; ++i)
-	{
-		float t0; // = ?
-		float t1; // = ?
-	
+	{	
 		if(intersect(blobs[i], ray, t0, t1) /* todo, more? */)
 		{
 			//if t0 < tmin set tmin = t0
@@ -203,7 +230,7 @@ bool trace(in Ray ray, out vec3 normal, out Material material, out float t)
 			//ToDo: move this to marching part
 			//interpolate normal and material between intersected spheres
 			material = materials[i];
-			vec3 ip = ray.origin + ray.direction * t0;
+			ip = ray.origin + ray.direction * t0;
 			normal = blobs[i].position - ip;
 		}
 	}
@@ -219,15 +246,25 @@ bool trace(in Ray ray, out vec3 normal, out Material material, out float t)
 		float energy = 0.5;
 		int steps = 0;
 		vec3 distance = ray.direction/energy;
-		while ( steps < 15 && energy < THRESHOLD)
+		while ( steps < 40 && energy <= THRESHOLD)
 		{
-			p += distance;
-			distance = ray.direction/energy;
+			p += ip-p / 3;//distance;
+			//distance = ray.direction/energy;
 			energy = energyAtPoint(p);
 			steps++;
 		}
 
-		t = length( p / interval );
+		//normal = interpol(normals of effecting blobs);
+		normal = normalInterpol(normal, p);
+		//material = interpol(materials of effecting blobs);
+		material = materialInterpol(material, p);
+
+		/*if(energy >= THRESHOLD)
+		{
+			t = length( p / interval );
+		}else{
+			t = t0;
+		}*/
 	}
 
 	// your shader should terminate!

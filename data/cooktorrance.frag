@@ -66,7 +66,7 @@ vec3 CookTorrance(in vec3 V, in vec3 n, in vec3 L, in Material m, in vec3 R, in 
 				*   roughness(NdotH, m.dr.w) 
 				/ 	(NdotV * NdotL);
 
-	vec3 r = /*ambient */ NdotL * (m.sr.xyz * rs + m.dr.xyz);	
+	vec3 r = /*ambient + vec3(0.1) */ NdotL * (m.sr.xyz * rs + m.dr.xyz);	
 
 	
 
