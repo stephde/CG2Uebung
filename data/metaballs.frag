@@ -173,9 +173,10 @@ float energyAtPoint(vec3 p)
 	return sum;
 }
 
-vec3 normalInterpol(in vec3 normal, in vec3 p)
+void interpolate(in vec3 normal, in Material material, in vec3 p, out vec3 n, out Material m)
 {
-	vec3 n = normal;
+	n = normal;
+	m = material;
 	float t;
 	float f;
 	float outerR;
@@ -185,19 +186,11 @@ vec3 normalInterpol(in vec3 normal, in vec3 p)
 		outerR = blobs[i].radius + 2;
 		if((t = length(abs(blobs[i].position - p))) < outerR)//THRESHOLD)
 		{
-			n = 	0.5 * n//(1 - t/outerR) * n 
-					+ /*(t/outerR)*/ 0.5 * normalize(abs(p-blobs[i].position));
+			n = mix(n, normalize( abs(p - blobs[i].position)), smoothstep(0.0, 2.0, (outerR - t)));
+			m.sr = mix(m.sr, materials[i].sr, smoothstep(0.0, 2.0, (outerR - t)));
+			m.dr = mix(m.dr, materials[i].dr, smoothstep(0.0, 2.0, (outerR - t)));
 		}
 	}
-
-	return n;
-}
-
-Material materialInterpol(in Material material, in vec3 p)
-{
-	Material m = material;
-
-	return m;
 }
 
 // ... more ...
@@ -246,18 +239,16 @@ bool trace(in Ray ray, out vec3 normal, out Material material, out float t)
 		float energy = 0.5;
 		int steps = 0;
 		vec3 distance = ray.direction/energy;
-		while ( steps < 40 && energy <= THRESHOLD)
+		while ( steps < 100 && energy <= THRESHOLD)
 		{
-			p += ip-p / 3;//distance;
+			p += ip-p / 2;//distance;
 			//distance = ray.direction/energy;
 			energy = energyAtPoint(p);
 			steps++;
 		}
 
-		//normal = interpol(normals of effecting blobs);
-		normal = normalInterpol(normal, p);
-		//material = interpol(materials of effecting blobs);
-		material = materialInterpol(material, p);
+		//interpolate normal and material with influencing blobs
+		interpolate(normal, material, p, normal, material);
 
 		/*if(energy >= THRESHOLD)
 		{

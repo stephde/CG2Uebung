@@ -68,10 +68,9 @@ void main()
 		vec3 v[2];
 		v[0]= -ray[0].direction;
 
-		// ...
+		ray[1].origin = ray[0].origin + ray[0].direction * t;
+		ray[1].direction = ray[0].direction - 2 * dot(ray[0].direction, n[0]) * n[0]; //reflektiertet ray
 
-		// e.g. use ray[1]... ray[2]...
-		
 		vec3 R;
 	
 		if(trace(ray[1], n[1], m[1], t))
