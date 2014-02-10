@@ -51,7 +51,7 @@ void main()
 	ray[0].origin    = eye;
 	ray[0].direction = normalize(v_sky);
 	
-	vec3 	 l = normalize(light); // -ray[0].direction; 
+	vec3 	 l = normalize(light);// -ray[0].direction; 
 	vec3     n[2];
 	Material m[2];
 
