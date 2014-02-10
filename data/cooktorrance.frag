@@ -71,9 +71,10 @@ vec3 CookTorrance(in vec3 V, in vec3 n, in vec3 L, in Material m, in vec3 R, in 
 				*   roughness(NdotH, m.dr.w*2)
 				/ 	(NdotV * NdotL);
 
-	vec3 r = NdotL * ((rs + m.sr.xyz) * m.dr.xyz); // mix(NdotL * ((rs + m.sr.xyz) * m.dr.xyz), (m.sr.xyz * m.dr.xyz));	
-
-	
+	vec3 r = max(NdotL * ((rs + m.sr.xyz) * m.dr.xyz), 0.0);
+	r += ambient * m.sr.xyz * m.dr.xyz;	
+	r += R * m.sr.w;
+	// mix(NdotL * ((rs + m.sr.xyz) * m.dr.xyz), (m.sr.xyz * m.dr.xyz));	
 
 	return r;
 
