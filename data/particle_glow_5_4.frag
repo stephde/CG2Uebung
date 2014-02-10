@@ -14,7 +14,7 @@ void main()
 
 	// Task_5_4 - ToDo Begin
 
-	fragColor = vec4(c.xyz /* ToDo */, 1.0);
+	fragColor = vec4(c.xyz + g.xyz/* ToDo */, 1.0);
 
 	// Task_5_4 - ToDo End
 }

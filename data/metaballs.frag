@@ -1,7 +1,6 @@
 #version 150
 
 const float INFINITY = 1e+4;
-
 const int SIZE = 10;
 const float THRESHOLD = 0.66;
 
@@ -10,13 +9,11 @@ struct Sphere
 	vec3 position;
 	float radius;
 };
-
 struct Material
 {
 	vec4 sr; // vec3 specular, float reflectance
 	vec4 dr; // vec3 diffuse, float roughness
 };
-
 struct Ray
 {
 	vec3 origin;
@@ -125,10 +122,8 @@ bool rcast(in Ray ray, out vec3 normal, out Material material, out float t)
 	// return normal for the nearest intersected sphere, as well as
 	// the intersection parameter t (that should allow to retrieve the 
 	// itnersection point I = ray.origin + ray.direction * t).
-	
 	// the function should return true, if at least one sphere was hit, 
 	// and false if no when no sphere was hit.
-		
 	// (Task_5_2 - ToDo return material of nearest intersected sphere)
 
 	t =  INFINITY;
@@ -151,117 +146,97 @@ bool rcast(in Ray ray, out vec3 normal, out Material material, out float t)
 		}
 	}
 	return false; // ? 
-	
 	// ToDo: End Task 5_1
 }
 
+bool rcast(in Ray ray, out float tmin, out float tmax, out float[SIZE] intersected)
+{
+	float t0 , t1;
+	tmin = INFINITY, tmax = 0.0;
+	bool intersection = false;
+
+	for(int i = 0; i < SIZE; ++i)
+	{
+		intersected[i] = 0;
+		if(intersect(blobs[i], ray, t0, t1))
+		{
+			if(tmin > t0) tmin = t0;
+			if(tmax < t1) tmax = t1;
+			intersection = true;
+			intersected[i] = 1;
+		}
+	}
+
+	return intersection;
+}
 
 // Task_5_3 - ToDo Begin
 
-// ... your helper functions
-
-float energyAtPoint(vec3 p)
+float energyAtPoint(in vec3 p, in float[SIZE] intersected)
 {
-	float sum;
+	float sum = 0.0;
 	for(int i=0; i< SIZE; i++)
 	{
-		float value = 1 / length((p - blobs[i].position)*(p - blobs[i].position));
+		//float value = 1 / length((p - blobs[i].position)*(p - blobs[i].position));
 		//if(value > THRESHOLD)
-			sum += value;
+			//sum += value;
+		sum += intersected[i] * smoothstep(blobs[i].radius, 0.0, length(p - blobs[i].position));
 	}
 
 	return sum;
 }
 
-void interpolate(in vec3 normal, in Material material, in vec3 p, out vec3 n, out Material m)
+
+
+void interpolate(in float e, in vec3 p, out vec3 n, out Material m)
 {
-	n = normal;
-	m = material;
-	float t;
-	float f;
-	float outerR;
-	//iterate over blobs and compute influence on normal at p
-	for(int i=0; i< SIZE; ++i)
+	vec3 tn;
+	float energyPercentage, distance;
+	for(int i=0; i < SIZE; ++i)
 	{
-		outerR = blobs[i].radius + 2;
-		if((t = length(abs(blobs[i].position - p))) < outerR)//THRESHOLD)
-		{
-			n = mix(n, normalize( abs(p - blobs[i].position)), smoothstep(0.0, 2.0, (outerR - t)));
-			m.sr = mix(m.sr, materials[i].sr, smoothstep(0.0, 2.0, (outerR - t)));
-			m.dr = mix(m.dr, materials[i].dr, smoothstep(0.0, 2.0, (outerR - t)));
-		}
+		tn = normalize( abs(p - blobs[i].position));
+		distance = length(p - blobs[i].position);
+		energyPercentage = smoothstep(blobs[i].radius, 0, distance) / e;
+		n += tn * energyPercentage;
+		m.sr += materials[i].sr * energyPercentage;
+		m.dr += materials[i].dr * energyPercentage;
 	}
 }
-
-// ... more ...
 
 bool trace(in Ray ray, out vec3 normal, out Material material, out float t)
 {
 	// Task_5_3 - ToDo Begin
-
 	// find nearest and farthest intersection for all metaballs 
 	// hint: use for loop, INFINITE, SIZE, intersect, min and max...
 
 	// ...
-	float tmin = INFINITY;
-	float tmax = 0.0;
-	bool intersection = false;
-	vec3 ip;
-	float t0; // = ?
-	float t1; // = 
+	float tmin;
+	float tmax;
+	float step = 0.001;
 
-	for(int i = 0; i < SIZE; ++i)
-	{	
-		if(intersect(blobs[i], ray, t0, t1) /* todo, more? */)
-		{
-			//if t0 < tmin set tmin = t0
-			tmin = mix(tmin, t0, step(t0, tmin));
-			//if t1 > tmax set tmax = t1
-			tmax = mix(tmax, t1, step(tmax, t1));
-			intersection = true;
+	float[SIZE] intersected;
+	float energy;
+	vec3 p;
+	rcast(ray, tmin, tmax, intersected);
 
-			//ToDo: move this to marching part
-			//interpolate normal and material between intersected spheres
-			material = materials[i];
-			ip = ray.origin + ray.direction * t0;
-			normal = blobs[i].position - ip;
-		}
-	}
-	
-	// implement raymarching within your tmin and tmax 
-	// hint: e.g., use while loop, THRESHOLD, and implement yourself
-	// an attribute interpolation function (e.g., interp(pos, normal, material, actives?))
-	// as well as a summation function (e.g., sum(pos))
-	if(intersection)
+	while( tmin <= tmax)
 	{
-		vec3 interval = tmax - ray.origin;
-		vec3 p = ray.origin;
-		float energy = 0.5;
-		int steps = 0;
-		vec3 distance = ray.direction/energy;
-		while ( steps < 100 && energy <= THRESHOLD)
+		p = ray.origin + tmin*ray.direction;
+		energy = energyAtPoint(p, intersected);
+
+		if(energy >= THRESHOLD)
 		{
-			p += ip-p / 2;//distance;
-			//distance = ray.direction/energy;
-			energy = energyAtPoint(p);
-			steps++;
+			interpolate(energy, p, normal, material);
+			t = tmin;
+			return true;
 		}
 
-		//interpolate normal and material with influencing blobs
-		interpolate(normal, material, p, normal, material);
-
-		/*if(energy >= THRESHOLD)
-		{
-			t = length( p / interval );
-		}else{
-			t = t0;
-		}*/
+		tmin += step + (THRESHOLD - energy) / 4;
 	}
 
 	// your shader should terminate!
 	// return true if iso surface was hit, false if not
-
-	return intersection; 
+	return false; //intersection; 
 }
 
 // Task_5_3 - ToDo End
