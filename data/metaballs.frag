@@ -149,56 +149,59 @@ bool rcast(in Ray ray, out vec3 normal, out Material material, out float t)
 	// ToDo: End Task 5_1
 }
 
+bool rcast(in Ray ray, out float tmin, out float tmax, out float[SIZE] intersected)
+{
+	float t0 , t1;
+	tmin = INFINITY, tmax = 0.0;
+	bool intersection = false;
+
+	for(int i = 0; i < SIZE; ++i)
+	{
+		intersected[i] = 0;
+		if(intersect(blobs[i], ray, t0, t1))
+		{
+			if(tmin > t0) tmin = t0;
+			if(tmax < t1) tmax = t1;
+			intersection = true;
+			intersected[i] = 1;
+		}
+	}
+
+	return intersection;
+}
+
 // Task_5_3 - ToDo Begin
 
-float energyAtPoint(vec3 p)
+float energyAtPoint(in vec3 p, in float[SIZE] intersected)
 {
-	float sum;
+	float sum = 0.0;
 	for(int i=0; i< SIZE; i++)
 	{
 		//float value = 1 / length((p - blobs[i].position)*(p - blobs[i].position));
 		//if(value > THRESHOLD)
 			//sum += value;
-		sum += smoothstep(0, blobs[i].radius, length(abs(p - blobs[i].position)));
+		sum += intersected[i] * smoothstep(blobs[i].radius, 0.0, length(p - blobs[i].position));
 	}
 
 	return sum;
 }
 
-void interpolate(in vec3 normal, in Material material, in vec3 p, out vec3 n, out Material m)
-{
-	n = normal;
-	m = material;
-	float t;
-	float f;
-	float outerR;
-	float rIncrement = 1.25;
-	//iterate over blobs and compute influence on normal at p
-	for(int i=0; i< SIZE; ++i)
-	{
-		outerR = blobs[i].radius + rIncrement;
-		if((t = length(abs(blobs[i].position - p))) < outerR)//THRESHOLD)
-		{
-			n = mix(n, normalize( abs(p - blobs[i].position)), smoothstep(0.0, rIncrement, (outerR - t)));
-			m.sr = mix(m.sr, materials[i].sr, smoothstep(0.0, rIncrement, (outerR - t)));
-			m.dr = mix(m.dr, materials[i].dr, smoothstep(0.0, rIncrement, (outerR - t)));
-		}
-	}
-}
 
-/*void interpolate(in float e, in vec3 p, out vec3 n, out Material m)
+
+void interpolate(in float e, in vec3 p, out vec3 n, out Material m)
 {
-	float tn, energyPercentage, distance;
-	for(int i=0; i < SIZE, ++i)
+	vec3 tn;
+	float energyPercentage, distance;
+	for(int i=0; i < SIZE; ++i)
 	{
 		tn = normalize( abs(p - blobs[i].position));
-		distance = length(abs(p - blobs[i].position));
-		energyPercentage = smoothstep(0, blobs[i].radius, distance) / e;
+		distance = length(p - blobs[i].position);
+		energyPercentage = smoothstep(blobs[i].radius, 0, distance) / e;
 		n += tn * energyPercentage;
 		m.sr += materials[i].sr * energyPercentage;
-		m.dr += materuals[i].dr * energyPercentage;
+		m.dr += materials[i].dr * energyPercentage;
 	}
-}*/
+}
 
 bool trace(in Ray ray, out vec3 normal, out Material material, out float t)
 {
@@ -207,63 +210,33 @@ bool trace(in Ray ray, out vec3 normal, out Material material, out float t)
 	// hint: use for loop, INFINITE, SIZE, intersect, min and max...
 
 	// ...
-	float tmin = INFINITY;
-	float tmax = 0.0;
-	bool intersection = false;
-	vec3 ip;
-	float t0; // = ?
-	float t1; // = 
+	float tmin;
+	float tmax;
+	float step = 0.001;
 
-	for(int i = 0; i < SIZE; ++i)
-	{	
-		if(intersect(blobs[i], ray, t0, t1) /* todo, more? */)
-		{
-			//if t0 < tmin set tmin = t0
-			tmin = mix(tmin, t0, step(t0, tmin));
-			//if t1 > tmax set tmax = t1
-			tmax = mix(tmax, t1, step(tmax, t1));
-			intersection = true;
+	float[SIZE] intersected;
+	float energy;
+	vec3 p;
+	rcast(ray, tmin, tmax, intersected);
 
-			//ToDo: move this to marching part
-			//interpolate normal and material between intersected spheres
-			material = materials[i];
-			ip = ray.origin + ray.direction * t0;
-			normal = blobs[i].position - ip;
-		}
-	}
-	
-	// implement raymarching within your tmin and tmax 
-	// hint: e.g., use while loop, THRESHOLD, and implement yourself
-	// an attribute interpolation function (e.g., interp(pos, normal, material, actives?))
-	// as well as a summation function (e.g., sum(pos))
-	//if(intersection)
-	//{
-		vec3 p = ray.origin;
-		float energy = 0.1;
-		int steps = 0;
-		vec3 distance = ray.direction/energy;
-		while ( steps < 80 && energy <= THRESHOLD)
-		{
-			energy = energyAtPoint(p);
-			p += (ip-p / 2) / ( 1 - (THRESHOLD - energy));
-			steps++;
-		}
-		
+	while( tmin <= tmax)
+	{
+		p = ray.origin + tmin*ray.direction;
+		energy = energyAtPoint(p, intersected);
+
 		if(energy >= THRESHOLD)
 		{
-			//interpolate normal and material with influencing blobs
-			interpolate(normal, material, p, normal, material);
-			//interpolate(energy, p, normal, material);
-			intersection = true;
-		}else
-		{
-			intersection = false;
+			interpolate(energy, p, normal, material);
+			t = tmin;
+			return true;
 		}
-	//}
+
+		tmin += step + (THRESHOLD - energy) / 4;
+	}
 
 	// your shader should terminate!
 	// return true if iso surface was hit, false if not
-	return intersection; 
+	return false; //intersection; 
 }
 
 // Task_5_3 - ToDo End

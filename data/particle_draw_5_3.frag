@@ -69,7 +69,7 @@ void main()
 		v[0]= -ray[0].direction;
 
 		ray[1].origin = ray[0].origin + ray[0].direction * t;
-		ray[1].direction = ray[0].direction - 2 * dot(ray[0].direction, n[0]) * n[0]; //reflektiertet ray
+		ray[1].direction = reflect(ray[0].direction, n[0]);
 
 		vec3 R;
 	
@@ -81,7 +81,7 @@ void main()
 		}
 		else
 		{
-			R = texture(envmap, ray[0].direction).xyz;
+			R = texture(envmap, ray[1].direction).xyz;
 		}
 		c = CookTorrance(v[0], n[0], l, m[0], R, ambient);
 	}
@@ -93,5 +93,5 @@ void main()
 	
 	// Task_5_3 - ToDo End
 	
-	fragColor = vec4(c, 1.0);//lum);
+	fragColor = vec4(c, lum);
 }
