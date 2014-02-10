@@ -1,7 +1,6 @@
 #version 150
 
 const float INFINITY = 1e+4;
-
 const int SIZE = 10;
 const float THRESHOLD = 0.66;
 
@@ -10,13 +9,11 @@ struct Sphere
 	vec3 position;
 	float radius;
 };
-
 struct Material
 {
 	vec4 sr; // vec3 specular, float reflectance
 	vec4 dr; // vec3 diffuse, float roughness
 };
-
 struct Ray
 {
 	vec3 origin;
@@ -125,10 +122,8 @@ bool rcast(in Ray ray, out vec3 normal, out Material material, out float t)
 	// return normal for the nearest intersected sphere, as well as
 	// the intersection parameter t (that should allow to retrieve the 
 	// itnersection point I = ray.origin + ray.direction * t).
-	
 	// the function should return true, if at least one sphere was hit, 
 	// and false if no when no sphere was hit.
-		
 	// (Task_5_2 - ToDo return material of nearest intersected sphere)
 
 	t =  INFINITY;
@@ -151,23 +146,20 @@ bool rcast(in Ray ray, out vec3 normal, out Material material, out float t)
 		}
 	}
 	return false; // ? 
-	
 	// ToDo: End Task 5_1
 }
 
-
 // Task_5_3 - ToDo Begin
-
-// ... your helper functions
 
 float energyAtPoint(vec3 p)
 {
 	float sum;
 	for(int i=0; i< SIZE; i++)
 	{
-		float value = 1 / length((p - blobs[i].position)*(p - blobs[i].position));
+		//float value = 1 / length((p - blobs[i].position)*(p - blobs[i].position));
 		//if(value > THRESHOLD)
-			sum += value;
+			//sum += value;
+		sum += smoothstep(0, blobs[i].radius, length(abs(p - blobs[i].position)));
 	}
 
 	return sum;
@@ -180,25 +172,37 @@ void interpolate(in vec3 normal, in Material material, in vec3 p, out vec3 n, ou
 	float t;
 	float f;
 	float outerR;
+	float rIncrement = 1.25;
 	//iterate over blobs and compute influence on normal at p
 	for(int i=0; i< SIZE; ++i)
 	{
-		outerR = blobs[i].radius + 2;
+		outerR = blobs[i].radius + rIncrement;
 		if((t = length(abs(blobs[i].position - p))) < outerR)//THRESHOLD)
 		{
-			n = mix(n, normalize( abs(p - blobs[i].position)), smoothstep(0.0, 2.0, (outerR - t)));
-			m.sr = mix(m.sr, materials[i].sr, smoothstep(0.0, 2.0, (outerR - t)));
-			m.dr = mix(m.dr, materials[i].dr, smoothstep(0.0, 2.0, (outerR - t)));
+			n = mix(n, normalize( abs(p - blobs[i].position)), smoothstep(0.0, rIncrement, (outerR - t)));
+			m.sr = mix(m.sr, materials[i].sr, smoothstep(0.0, rIncrement, (outerR - t)));
+			m.dr = mix(m.dr, materials[i].dr, smoothstep(0.0, rIncrement, (outerR - t)));
 		}
 	}
 }
 
-// ... more ...
+/*void interpolate(in float e, in vec3 p, out vec3 n, out Material m)
+{
+	float tn, energyPercentage, distance;
+	for(int i=0; i < SIZE, ++i)
+	{
+		tn = normalize( abs(p - blobs[i].position));
+		distance = length(abs(p - blobs[i].position));
+		energyPercentage = smoothstep(0, blobs[i].radius, distance) / e;
+		n += tn * energyPercentage;
+		m.sr += materials[i].sr * energyPercentage;
+		m.dr += materuals[i].dr * energyPercentage;
+	}
+}*/
 
 bool trace(in Ray ray, out vec3 normal, out Material material, out float t)
 {
 	// Task_5_3 - ToDo Begin
-
 	// find nearest and farthest intersection for all metaballs 
 	// hint: use for loop, INFINITE, SIZE, intersect, min and max...
 
@@ -232,35 +236,33 @@ bool trace(in Ray ray, out vec3 normal, out Material material, out float t)
 	// hint: e.g., use while loop, THRESHOLD, and implement yourself
 	// an attribute interpolation function (e.g., interp(pos, normal, material, actives?))
 	// as well as a summation function (e.g., sum(pos))
-	if(intersection)
-	{
-		vec3 interval = tmax - ray.origin;
+	//if(intersection)
+	//{
 		vec3 p = ray.origin;
-		float energy = 0.5;
+		float energy = 0.1;
 		int steps = 0;
 		vec3 distance = ray.direction/energy;
-		while ( steps < 100 && energy <= THRESHOLD)
+		while ( steps < 80 && energy <= THRESHOLD)
 		{
-			p += ip-p / 2;//distance;
-			//distance = ray.direction/energy;
 			energy = energyAtPoint(p);
+			p += (ip-p / 2) / ( 1 - (THRESHOLD - energy));
 			steps++;
 		}
-
-		//interpolate normal and material with influencing blobs
-		interpolate(normal, material, p, normal, material);
-
-		/*if(energy >= THRESHOLD)
+		
+		if(energy >= THRESHOLD)
 		{
-			t = length( p / interval );
-		}else{
-			t = t0;
-		}*/
-	}
+			//interpolate normal and material with influencing blobs
+			interpolate(normal, material, p, normal, material);
+			//interpolate(energy, p, normal, material);
+			intersection = true;
+		}else
+		{
+			intersection = false;
+		}
+	//}
 
 	// your shader should terminate!
 	// return true if iso surface was hit, false if not
-
 	return intersection; 
 }
 
